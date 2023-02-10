@@ -8,7 +8,7 @@ https://www.nowcoder.com/practice/fcf87540c4f347bcb4cf720b5b350c76?tpId=117&tqId
 描述
 给定一个长度为n的数组nums，请你找到峰值并返回其索引。数组可能包含多个峰值，在这种情况下，返回任何一个所在位置即可。
 1.峰值元素是指其值严格大于左右相邻值的元素。严格大于即不能有等于
-2.假设 nums[-1] = nums[n] = -\infty−∞
+2.假设 nums[-1] = nums[n] =  −∞
 3.对于所有有效的 i 都有 nums[i] != nums[i + 1]
 4.你可以使用O(logN)的时间复杂度实现此问题吗？
 
@@ -29,13 +29,13 @@ https://www.nowcoder.com/practice/fcf87540c4f347bcb4cf720b5b350c76?tpId=117&tqId
 返回值：
 2
 说明：
-3 是峰值元素，返回其索引 2
+3 是峰值元素，返回其索引2
 
 */
 
 func findPeakElement(nums []int) int {
 	// write code here
-	// 分治，动态规划，递归 本质没有什么区别 +  二分查找
+	// 分治，动态规划，递归 本质没有什么区别   +  二分查找
 	/*
 		class Solution:
 		    def findPeakElement(self , nums: List[int]) -> int:
@@ -54,6 +54,7 @@ func findPeakElement(nums []int) int {
 		        # 其中一个波峰
 		        return right
 	*/
+	// 二分查找
 	left := 0
 	right := len(nums) - 1
 	for left < right {

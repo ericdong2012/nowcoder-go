@@ -8,7 +8,7 @@ https://www.nowcoder.com/practice/8ae05c2913fe438b8b14f3968f64fc0b?tpId=117&tqId
 
 
 描述
-给定一个长度为 nn 的无序数组 AA ，包含正数、负数和 0 ，请从中找出 3 个数，使得乘积最大，返回这个乘积。
+给定一个长度为 n 的无序数组 A ，包含正数、负数和 0 ，请从中找出 3 个数，使得乘积最大，返回这个乘积。
 要求时间复杂度： O(n) ，空间复杂度： O(1) 。
 
 
@@ -23,7 +23,7 @@ https://www.nowcoder.com/practice/8ae05c2913fe438b8b14f3968f64fc0b?tpId=117&tqId
 func solve(A []int) int64 {
 	// write code here
 	// 排序
-	// 两绝对值最大的负一最大的正， 3个最大的正数
+	// 两绝对值最大的两个负+ 最大的正 或者 3个最大的正数
 	sort.Ints(A)
 	max1:=A[len(A)-1]*A[len(A)-2]*A[len(A)-3]
 	max2:=A[0]*A[1]*A[len(A)-1]

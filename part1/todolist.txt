@@ -15,14 +15,19 @@ part1:
         9
         10
 
-    2
-        array
-            02
-            06
+    2-binarysearch&sort&array
+        array（未完成）
+            1
+            2
+            6
             10
+
+        binarysearch
+
         sort
             04
             11
+
 
     3-tree
         08

@@ -8,8 +8,6 @@ https://www.nowcoder.com/practice/7edf70f2d29c4b599693dc3aaeea1d31?tpId=117&tqId
 
 描述
 给定一个m x n大小的矩阵（m行，n列），按螺旋的顺序返回矩阵中的所有元素。
-数据范围：0 \le n,m \le 100≤n,m≤10，矩阵中任意元素都满足 |val| \le 100∣val∣≤100
-要求：空间复杂度 O(nm) ，时间复杂度 O(nm)
 
 示例1
 输入：

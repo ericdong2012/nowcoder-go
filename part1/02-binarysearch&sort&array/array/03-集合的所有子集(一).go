@@ -15,8 +15,6 @@ https://www.nowcoder.com/practice/c333d551eb6243e0b4d92e37a06fbfc9?tpId=117&tqId
 你给出的子集中的元素必须按升序排列
 给出的解集中不能出现重复的元素
 
-数据范围：1 \le n \le 51≤n≤5，集合中的任意元素满足 |val| \le 10∣val∣≤10
-要求：空间复杂度 O(n!)，时间复杂度 O(n!)
 
 示例1
 输入：
@@ -47,13 +45,16 @@ func subsets(A []int) [][]int {
 	*/
 
 	//sort.Ints(A)
+
+	// 题目示例答案有问题，导致测试不通过，此处可以不关注结果的完全一致，但是要保证元素完整
+	// 或者真要保证完全一致，可以多次单独遍历，每次遍历次数加1
 	res := [][]int{}
 	res = append(res, []int{})
 	for i := 0; i < len(A); i++ {
-		n := len(res)
+		n := len(res)  // 1, 2, 4
 		for j := 0; j < n; j++ {
 			var subSet []int
-			subSet = append(subSet, res[j]...)
+			subSet = append(subSet, res[j]...) // [[], [1], [2], [1,2]  最后一次是[1,2]
 			subSet = append(subSet, A[i])
 			res = append(res, subSet)
 		}
