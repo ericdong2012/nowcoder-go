@@ -33,13 +33,14 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// 迭代
 func nodeNum(root *TreeNode) int {
 	// write code here
 	if root == nil {
 		return 0
 	}
 
-	leftNodes := nodeNum(root.Left)
+	leftNodes := nodeNum(root.Left)   // 以 {1,2,3} 为例， leftNodes  传入的是单节点2，再次被调用的左右节点都是0，返回的结果是1， 右节点同理
 	rightNodes := nodeNum(root.Right)
 
 	return leftNodes + rightNodes + 1

@@ -11,7 +11,7 @@ https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=117&tqId
 
 示例1
 输入：
-[1,2,3,3,3,3,4,5],3
+[1,2,3,3,3,3,4,5], 3
 返回值：
 4
 

@@ -12,7 +12,7 @@ https://www.nowcoder.com/practice/3afe6fabdb2c46ed98f06cfd9a20f2ce?tpId=117&tqId
 
 示例1
 输入：
-[[1,2,3],[4,5,6]],2,3,6
+[[1,2,3],[4,5,6]], 6
 返回值：
 [1,2]
 
@@ -24,6 +24,8 @@ https://www.nowcoder.com/practice/3afe6fabdb2c46ed98f06cfd9a20f2ce?tpId=117&tqId
 
 */
 
+
+// 该题和array 中二维数组的查找类似
 func findElement(mat [][]int, n int, m int, x int) []int {
 	for i := 0; i < n; i++ {
 		left, right := 0, m-1

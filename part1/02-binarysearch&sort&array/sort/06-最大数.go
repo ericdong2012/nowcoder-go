@@ -11,9 +11,7 @@ https://www.nowcoder.com/practice/fc897457408f4bbe9d3f87588f497729?tpId=117&tqId
 
 描述
 给定一个长度为n的数组nums，数组由一些非负整数组成，现需要将他们进行排列并拼接，每个数不可拆分，使得最后的结果最大，返回值需要是string类型，否则可能会溢出。
-
-数据范围：1 \le n \le 1001≤n≤100，0 \le nums[i] \le 100000≤nums[i]≤10000
-进阶：时间复杂度O(nlogn)O(nlogn) ，空间复杂度：O(n)
+进阶：时间复杂度O(nlogn) ，空间复杂度：O(n)
 
 示例1
 输入：
@@ -38,6 +36,7 @@ https://www.nowcoder.com/practice/fc897457408f4bbe9d3f87588f497729?tpId=117&tqId
 [10]
 返回值：
 "10"
+
 */
 
 func solve(nums []int) string {

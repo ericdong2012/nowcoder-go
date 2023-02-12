@@ -13,25 +13,11 @@ https://www.nowcoder.com/practice/6fbe70f3a51d44fa9395cfc49694404f?tpId=117&tqId
 
 示例1
 输入：
-[1,2,3,4],[3,4,5,6]
-返回值：
+[1,2,3,4], [3,4,5,6]
+返回：
 3
 说明：
 总共有8个数，上中位数是第4小的数，所以返回3。
-
-示例2
-输入：
-[0,1,2],[3,4,5]
-返回值：
-2
-说明：
-总共有6个数，那么上中位数是第3小的数，所以返回2
-
-示例3
-输入：
-[1],[2]
-返回值：
-1
 
 */
 func Min(a, b int) int {
@@ -43,6 +29,17 @@ func Min(a, b int) int {
 
 func findMedianinTwoSortedAray(arr1 []int, arr2 []int) int {
 	// write code here
+	// 方式一： 两个合并， 排序， 算长度，算中位数是第几个，直接取值
+	/*
+		    temp := []int{}
+			temp = append(temp, arr1...)
+			temp = append(temp, arr2...)
+			sort.Ints(temp)
+
+			return temp[len(temp) / 2 -1]
+	*/
+
+	// 方式二：
 	if len(arr1) == 1 {
 		return Min(arr1[0], arr2[0])
 	}

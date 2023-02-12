@@ -7,7 +7,7 @@ NC91 最长上升子序列(三)
 https://www.nowcoder.com/practice/9cf027bf54714ad889d4f30ff0ae5481?tpId=117&tqId=37796&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=5058&title=
 
 描述
-给定数组 arr ，设长度为 n ，输出 arr 的最长上升子序列。（如果有多个答案，请输出其中 按数值(注：区别于按单个字符的ASCII码值)进行比较的 字典序最小的那个）
+给定数组 arr ，设长度为 n ，输出 arr 的最长上升子序列。（如果有多个答案，请输出其中字典序最小的那个）
 
 示例1
 输入：
@@ -33,7 +33,7 @@ https://www.nowcoder.com/practice/9cf027bf54714ad889d4f30ff0ae5481?tpId=117&tqId
 
 对于第一步，有两种解法：
 动态规划，时间复杂度为O(n^2)，会超时
-贪心+二分，时间复杂度为O(nlogn)
+贪心 + 二分，时间复杂度为O(nlogn)
 
 下面说说贪心+二分的解法，举例说明基本思路，假设数组arr为[2, 3, 1, 2, 3]，vec数组里面存放递增子序列，maxLen数组里存放以元素i结尾的最大递增子序列长度，那么遍历数组arr并执行如下更新规则:
 
@@ -56,7 +56,7 @@ func LIS(arr []int) []int {
 	if len(arr) == 0 {
 		return nil
 	}
-	// 记录复合要求的切片长度
+	// 记录复合要求的切片长度切片
 	maxLen := make([]int, len(arr))
 	// 记录切片
 	res := []int{arr[0]}
@@ -75,19 +75,20 @@ func LIS(arr []int) []int {
 			l, r := 0, len(res)-1
 			for l < r {
 				// l + (右减左除以2)  ??? 为什么不直接是右减左除以2
-				mid := l+(r-l)>>1
+				mid := l + (r-l)>>1
 				if res[mid] >= arr[i] {
 					r = mid
 				} else {
-					l = mid+1
+					l = mid + 1
 				}
 			}
 			// 替换res[l]
 			res[l] = arr[i]
 			// 记录复合要求的切片长度为 左 + 1
-			maxLen[i] = l+1
+			maxLen[i] = l + 1
 		}
 	}
+
 	// 处理最小字典序问题
 	for i, j := len(maxLen)-1, len(res); j > 0; i-- {
 		// [1,2，3，3，3]  [1,2,8] / [1,2,6] /[1,2,4]
@@ -97,6 +98,7 @@ func LIS(arr []int) []int {
 			res[j] = arr[i]
 		}
 	}
+
 	return res
 }
 

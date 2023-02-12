@@ -7,7 +7,7 @@ NC202 长度最小的连续子数组
 https://www.nowcoder.com/practice/10dd5f8c5d984aa3bd69788d86aaef23?tpId=117&tqId=39391&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=5058&title=
 
 描述
-给定一个数组 nums 和一个正整数 target , 找出满足和大于等于 target 的长度最短的连续子数组并返回其长度，如果不存在这种子数组则返回 0。
+给定一个数组 nums 和一个正整数 target , 找出满足和大于等于 target 的长度最短的连续子数组并返回其长度，如果不存在这种子数组则返回0。
 
 示例1
 输入：
@@ -24,9 +24,7 @@ https://www.nowcoder.com/practice/10dd5f8c5d984aa3bd69788d86aaef23?tpId=117&tqId
 */
 
 /*
-
 二分+前缀和
-
 
 双指针+窗口
 def minSubarray(self , nums: List[int], target: int) -> int:
@@ -63,11 +61,14 @@ func minSubarray(nums []int, target int) int {
 			right += 1
 		}
 		for right <= len(nums) && sums >= target {
+			// 最短长度
 			ans = min4(ans, right-left)
+			// 总和中减去最左侧的数字，往右移动
 			sums -= nums[left]
 			left += 1
 		}
 	}
+
 	return ans
 }
 

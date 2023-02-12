@@ -8,7 +8,6 @@ https://www.nowcoder.com/practice/fb08c63e2c4f4f7dbf41086e46044211?tpId=117&tqId
 
 描述
 给定一个字符串，请你判断其中每个字符是否全都不同。
-数据范围：字符串长度满足 1 \le n \le 100 \1≤n≤100
 
 
 示例1

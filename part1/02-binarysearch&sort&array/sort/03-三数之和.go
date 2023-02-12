@@ -39,89 +39,56 @@ https://www.nowcoder.com/practice/345e2ed5f81d4017bbb8cc6055b0b711?tpId=117&tqId
 
 /*
 
-1、特判，对于数组长度 n，如果数组为 null 或者数组长度小于 3，返回 []。
+1、特判，如果数组为 null 或者数组长度小于 3，返回 []。
 2、对数组进行排序。
 3、遍历排序后数组：
     1、若 num[i]>0：因为已经排序好，所以后面不可能有三个数加和等于 0，直接返回结果。
-    2、对于重复元素：跳过，避免出现重复解
+    2、对于重复元素(num[i] == num[i- 1] )：跳过
     3、令左指针 L=i+1，右指针R=n−1，
-        1、当 nums[i]+nums[L]+nums[R]==0，执行循环，写入结果，同时判断左界和右界是否和下一位置重复，去除重复解。并将 L,R 移到下一位置
+        1、当 nums[i]+nums[L]+nums[R]==0，执行循环，写入结果, 同时判断左界和右界是否和下一位置重复，去除重复解, 并将 L,R 移到下一位置
         2、若和大于 0，说明 nums[R] 太大，R 左移
         3、若和小于 0，说明 nums[L] 太小，L 右移
 
 */
 
 func threeSum(num []int) [][]int {
-	//1.三元组 非降序排列》》将num升序排列
-	//2.数求和问题》》双指针
-	//if len(num) < 3 || num == nil {
-	//	return [][]int{}
-	//}
-	//res := make([][]int, 0)
-	////排序
-	//sort.Ints(num)
-	//n := len(num)
-	//for i := 0; i < n-2; i++ {
-	//	if num[i] > 0 {
-	//		break //排好序后的数组，如果当前数字大于0, 则三数之和一定大于0
-	//	}
-	//	if i > 0 && num[i] == num[i-1] {
-	//		continue //去重
-	//	}
-	//	//双指针求和
-	//	low, high := i+1, n-1 //一开始就是最大值和最小值
-	//	for low < high {
-	//		sum := num[i] + num[low] + num[high]
-	//		if sum == 0 {
-	//			//写入结果
-	//			res = append(res, []int{num[i], num[low], num[high]})
-	//			// 头部去重（如果后面一个数跟当前的数字相等，则代表有重复的结果生成，跳过
-	//			for low < high && num[low] == num[low+1] {
-	//				low++
-	//			}
-	//			low++
-	//			high--
-	//		} else if sum > 0 {
-	//			//太大前移
-	//			high--
-	//		} else {
-	//			//太小后移
-	//			low++
-	//		}
-	//	}
-	//}
-	//return res
+	//1.三元组 非降序排列 -> 将num升序排列
+	//2.数求和问题 -> 双指针
 
 	if len(num) < 3 || num == nil {
-		return nil
+		return [][]int{}
 	}
-	res := make([][]int, 0)
+	//排序
 	sort.Ints(num)
 	n := len(num)
-	for i := 0; i < n-1; i++ {
+	res := make([][]int, 0)
+	for i := 0; i < n-2; i++ {
 		if num[i] > 0 {
-			return res
+			break //排好序后的数组，如果当前数字大于0, 则三数之和一定大于0， 后面两个数字一定比当前大
 		}
-
 		if i > 0 && num[i] == num[i-1] {
-			continue
+			continue //去重
 		}
-
-		left, right := i+1, n-1
-		for left < right {
-			sums := num[i] + num[left] + num[right]
-			if sums == 0 {
-				res = append(res, []int{num[i], num[left], num[right]})
-
-				for left < right && num[left] == num[left+1] {
-					left++
+		//双指针求和
+		low, high := i+1, n-1 // 一开始就是最大值和最小值
+		for low < high {
+			sum := num[i] + num[low] + num[high]
+			if sum == 0 {
+				//写入结果
+				res = append(res, []int{num[i], num[low], num[high]})
+				// 头部去重（如果后面一个数跟当前的数字相等，则代表有重复的结果生成，跳过
+				for low < high && num[low] == num[low+1] {
+					// continue
+					low++
 				}
-				left++
-				right--
-			} else if sums > 0 {
-				right--
+				low++
+				high--
+			} else if sum > 0 {
+				//太大前移
+				high--
 			} else {
-				left++
+				//太小后移
+				low++
 			}
 		}
 	}
@@ -129,6 +96,6 @@ func threeSum(num []int) [][]int {
 }
 
 func main() {
-	sum := threeSum([]int{0, 0, 0})
+	sum := threeSum([]int{-2, 0, 1, 2, 1, 2 })
 	fmt.Println(sum)
 }

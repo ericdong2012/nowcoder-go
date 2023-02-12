@@ -53,29 +53,29 @@ func search(nums []int, target int) int {
 			left = mid + 1
 		} else {
 			stack = append(stack, mid)
-			// 只要找最小的索引，不是找完整的
-			right = mid  -1
+			// error
+			// left ++
+			// right --
+			// 只要找最小的索引，不是找完整的, 右边有也不是最小，所以只是右边移动
+			right = mid - 1
+
 		}
 	}
 
+	// 异常判断
 	if len(stack) == 0 {
 		return -1
 	}
 
+	// 例如 【1, 2, 4, 4, 4, 6】  4   上述拿到的不一定是最小的索引， 所以还需要处理
 	minV := stack[0]
 	for i := 0; i < len(stack); i++ {
-		minV = min2(minV, stack[i])
+		if stack[i] <= minV {
+			minV = stack[i]
+		}
 	}
 	return minV
 
-}
-
-func min2(a, b int) int {
-	if a < b {
-		return a
-	} else {
-		return b
-	}
 }
 
 func main() {

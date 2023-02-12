@@ -28,6 +28,8 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// 见01-linkeelist/12
+
 func sortInList(head *ListNode) *ListNode {
 	// write code here
 	return mergeSort(head)

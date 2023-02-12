@@ -16,17 +16,23 @@ part1:
         10
 
     2-binarysearch&sort&array
-        array（未完成）
+        array（todo）           1天
             1
             2
             6
             10
 
-        binarysearch
+        binarysearch(未完成)     1天
+            套路：
+                双指针
+                hash
+            7
+            10
+            11 (todo)
 
-        sort
-            04
-            11
+        sort(10题  3 4 3)
+            03
+            07，08(普通的插入排序实现)
 
 
     3-tree

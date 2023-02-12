@@ -24,12 +24,13 @@ https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=117&tqId
 
 */
 
+// 本质上还是二分查找，可以直接使用二分查找的代码
 func minNumberInRotateArray(rotateArray []int) int {
 	// write code here
 	left, right := 0, len(rotateArray)-1
 	minV := 0
-	for left <= right {
-		if rotateArray[left] >= rotateArray[right] && minV <= rotateArray[right] {
+	for left < right {
+		if rotateArray[left] >= minV && rotateArray[right] >= minV && rotateArray[left] >= rotateArray[right] {
 			left++
 			minV = rotateArray[right]
 		} else {
@@ -37,6 +38,7 @@ func minNumberInRotateArray(rotateArray []int) int {
 			minV = rotateArray[left]
 		}
 	}
+
 	return minV
 }
 
