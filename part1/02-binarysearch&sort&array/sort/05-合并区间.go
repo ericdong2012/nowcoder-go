@@ -35,21 +35,24 @@ type Interval struct {
 }
 
 func merge(intervals []*Interval) []*Interval {
-	res := []*Interval{}
 	if len(intervals) == 0 {
-		return res
+		return nil
 	}
-	// 将所有数据按字典序排列
+	// 将所有数据按字典序 升序排列
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i].Start < intervals[j].Start
 	})
+	res := []*Interval{}
 	res = append(res, intervals[0])
 	// 判断首位，末尾，考虑是否合并
 	for i := 1; i < len(intervals); i++ {
 		/*
-				[10, 20] [20, 60]
-				[10, 30] [20, 40]
-			    [10, 30] [20, 25]
+			几种可能的情形:
+			[10, 20] [20, 60]
+			[10, 30] [20, 40]
+			[10, 30] [20, 25]
+
+			[10, 30] [40, 50]
 		*/
 		if intervals[i].Start <= res[len(res)-1].End {
 			res[len(res)-1].End = max(res[len(res)-1].End, intervals[i].End)
@@ -58,6 +61,7 @@ func merge(intervals []*Interval) []*Interval {
 		}
 
 	}
+
 	return res
 }
 

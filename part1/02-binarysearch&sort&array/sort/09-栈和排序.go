@@ -20,6 +20,7 @@ https://www.nowcoder.com/practice/95cb356556cf430f912e7bdf1bc2ec8f?tpId=117&tqId
 [2,1,5,3,4]
 返回值：
 [5,4,3,1,2]
+
 说明：
 操作       栈     结果
 2 入栈；[2]       []
@@ -51,6 +52,7 @@ func solve1(a []int) []int {
 	// 找到最大值
 	curMax := a[len(a)-1]
 	max[len(a)-1] = curMax
+	// 构造一个数组  [5,5,5,5,4]
 	for i := len(a) - 2; i >= 0; i-- {
 		if a[i] > curMax {
 			curMax = a[i]
@@ -59,23 +61,24 @@ func solve1(a []int) []int {
 	}
 
 	var stack []int
-	var rst []int
-
+	var result []int
 	// 顺序入站，如果当前入站的元素比将要入站的剩余元素都要大，那么这个元素出站
 	for i := 0; i < len(a); i++ {
+		// 此处容易出错， 可能连续好几个数字都是一样的， 等于最大的数字
 		for len(stack) != 0 && stack[len(stack)-1] >= max[i] {
-			rst = append(rst, stack[len(stack)-1])
+			result = append(result, stack[len(stack)-1])
 			stack = stack[:len(stack)-1]
 		}
 		stack = append(stack, a[i])
 	}
-
+	// 此时resutl 中有[5,4], stack: [3,1,2]
 	// 将 stack 中剩余的逆序输出
 	for i := len(stack) - 1; i >= 0; i-- {
-		rst = append(rst, stack[i])
+		result = append(result, stack[i])
 	}
-	return rst
+	return result
 }
+
 func main() {
 	//ints := solve1([]int{2, 1, 5, 3, 4})
 	ints := solve1([]int{1, 2, 3, 4, 5})

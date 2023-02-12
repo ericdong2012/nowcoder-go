@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 	"strconv"
 )
@@ -25,18 +26,6 @@ https://www.nowcoder.com/practice/fc897457408f4bbe9d3f87588f497729?tpId=117&tqId
 返回值：
 "8423220"
 
-示例3
-输入：
-[2]
-返回值：
-"2"
-
-示例4
-输入：
-[10]
-返回值：
-"10"
-
 */
 
 func solve(nums []int) string {
@@ -59,18 +48,29 @@ func solve(nums []int) string {
 	*/
 
 	sort.Slice(nums, func(i, j int) bool {
+		// 此时拿到的是字符串
 		var left, right = strconv.Itoa(nums[i]), strconv.Itoa(nums[j])
-		// 要求返回较大值，所以降序排
+		//fmt.Println("left:", left)
+		//fmt.Println("right:", right)
+		// 要求返回较大值，所以降序排   220  202
 		return left+right > right+left
 	})
-
+	// 看看2, 20 的排序
+	//fmt.Println("nums:", nums)
 	var res string
 	for _, num := range nums {
-		// 如果有一个0则添加进去，如果是多个0 挨着，则只有一个0
+		// 如果有一个0则添加进去， 下方的代码会添加进去
+		// 如果是多个0挨着，当前项是0， 之前添加过0， 则跳过
 		if num == 0 && res == "0" {
 			continue
 		}
 		res += strconv.Itoa(num)
 	}
+
 	return res
+}
+
+func main06() {
+	s := solve([]int{2, 20, 23, 4, 8})
+	fmt.Println(s)
 }
