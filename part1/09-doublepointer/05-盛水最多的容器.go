@@ -59,24 +59,24 @@ class Solution:
         if len(height) < 2:
             return 0
         res = 0
-        #双指针左右界
+        # 双指针左右界
         left = 0
         right = len(height) - 1
-        #共同遍历完所有的数组
+        # 共同遍历完所有的数组
         while left < right:
-            #计算区域水容量
+            # 计算区域水容量
             capacity = min(height[left], height[right]) * (right - left)
             #维护最大值
             res = max(res, capacity)
-            #优先舍弃较短的边
+            # 优先舍弃较短的边
             if height[left] < height[right]:
                 left += 1
             else:
                 right -= 1
         return res
-
-
 */
+
+// 双指针， 最大，最小
 func maxArea(height []int) int {
 	// write code here
 	if len(height) < 2 {
@@ -85,8 +85,11 @@ func maxArea(height []int) int {
 	res := 0
 	left, right := 0, len(height)-1
 	for left <= right {
-		cap := min(height[left], height[right]) * (right - left)
-		res = max(res, cap)
+		// 计算公式： 较小的高度 * 底边
+		capacity := min(height[left], height[right]) * (right - left)
+		// 取最大值
+		res = max(res, capacity)
+		// 指针移动
 		if height[left] <= height[right] {
 			left++
 		} else {
@@ -95,7 +98,6 @@ func maxArea(height []int) int {
 	}
 
 	return res
-
 }
 
 func min(a, b int) int {

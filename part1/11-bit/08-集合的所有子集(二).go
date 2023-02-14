@@ -28,6 +28,9 @@ https://www.nowcoder.com/practice/a3dfd4bc8ae74fad9bc65d5ced7ae813?tpId=117&tqId
 
 */
 
+// 对比02-binarysearch&sort&array/array/03-集合的所有子集
+// 区别在于上述是没有重复元素，该题是有重复元素
+
 func subsets(nums []int) [][]int {
 	// write code here
 	/*
@@ -62,11 +65,6 @@ func subsets(nums []int) [][]int {
 				return res;
 			}
 		}
-
-
-
-
-
 
 		递归剪枝
 

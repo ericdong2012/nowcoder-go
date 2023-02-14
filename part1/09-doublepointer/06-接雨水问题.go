@@ -28,13 +28,13 @@ https://www.nowcoder.com/practice/31c1aed01b394f0b8b7734de0324e00f?tpId=295&tqId
 */
 
 /*
+// 总结： 第二高减去剩下的， 并累加
 
-双指针
+方法一： 双指针
 	那这种情况下它是不是将一个水桶分割成了两个水桶，而中间的那条边就是两个水桶的边。
-
 	step 1：检查数组是否为空的特殊情况
 	step 2：准备双指针，分别指向数组首尾元素，代表最初的两个边界
-	step 3：指针往中间遍历，遇到更低柱子就是底，用较短的边界减去底就是这一列的接水量，遇到更高的柱子就是新的边界，更新边界大小。
+	step 3：指针往中间遍历，遇到更低柱子就是底，用较短的边界减去底(计算公式)就是这一列的接水量，遇到更高的柱子就是新的边界，更新(累加)边界大小。
 
 class Solution:
     def maxWater(self , arr: List[int]) -> int:
@@ -45,7 +45,7 @@ class Solution:
         #左右双指针
         left = 0
         right = len(arr) - 1
-        #中间区域的边界高度
+        # 中间区域的边界高度
         maxL = 0
         maxR = 0
         #直到左右指针相遇
@@ -63,7 +63,7 @@ class Solution:
         return res
 
 
-单调栈
+方法二：单调栈
 
 */
 func maxWater(arr []int) int64 {

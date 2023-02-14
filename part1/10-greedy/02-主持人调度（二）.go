@@ -14,8 +14,7 @@ https://www.nowcoder.com/practice/4edf6e6d01554870a12f218c94e8a299?tpId=295&tqId
 有 n 个活动即将举办，每个活动都有开始时间与活动的结束时间，第 i 个活动的开始时间是 starti ,第 i 个活动的结束时间是 endi ,举办某个活动就需要为该活动准备一个活动主持人。
 一位活动主持人在同一时间只能参与一个活动。并且活动主持人需要全程参与活动，换句话说，一个主持人参与了第 i 个活动，那么该主持人在 (starti,endi) 这个时间段不能参与其他任何活动。求为了成功举办这 n 个活动，最少需要多少名主持人。
 
-
-复杂度要求：时间复杂度 O(n \log n) ，空间复杂度 O(n)
+复杂度要求：时间复杂度 O(nlogn) ，空间复杂度 O(n)
 
 示例1
 输入：
@@ -34,6 +33,7 @@ https://www.nowcoder.com/practice/4edf6e6d01554870a12f218c94e8a299?tpId=295&tqId
 
 说明：
 需要两个主持人才能成功举办这两个活动
+
 */
 func minmumNumberOfHost(startEnd [][]int) int {
 	// write code here
@@ -79,6 +79,7 @@ func minmumNumberOfHost(startEnd [][]int) int {
 			count++
 		}
 	}
+
 	return count
 }
 

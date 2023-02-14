@@ -39,14 +39,14 @@ func countBitDiff(m int, n int) int {
 		            r &= (r-1)
 		            res += 1
 		        return res
-
-
 	*/
+
 	res := 0
+	//先异或，得到所有不同位 （r = m^n）
 	temp := m ^ n
 	for temp > 0 {
 		res++
-		// 最后一位1
+		// 消除最后一位1
 		temp &= (temp - 1)
 	}
 	return res

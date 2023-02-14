@@ -32,6 +32,7 @@ M是32位整数，2<=N<=16.
 
 func solve(M int, N int) string {
 	// write code here
+	// 处理负数
 	sign := false
 	if M < 0 {
 		sign = true
@@ -39,15 +40,18 @@ func solve(M int, N int) string {
 	}
 	var ret string
 	for M > 0 {
+		// 算余数
 		mod := M % N
 		var a byte
 		if mod <= 9 {
+			// 自动偏移
 			a = '0' + byte(mod)
 		} else {
 			a = 'A' + byte(mod-10)
 		}
-
+		// 大于给定进制数的，还需继续处理
 		ret = string(a) + ret
+		// 算进制数
 		M = M / N
 	}
 	// 符号更改回去
