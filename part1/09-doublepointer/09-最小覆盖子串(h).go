@@ -8,31 +8,27 @@ https://www.nowcoder.com/practice/c466d480d20c4c7c9d322d12ca7955ac?tpId=295&tqId
 
 
 描述
-
 给出两个字符串 s 和 t，要求在 s 中找出最短的包含 t 中所有字符的连续子串。
+保证s和t字符串中仅包含大小写英文字母
 
-数据范围：0 \le |S|,|T| \le100000≤∣S∣,∣T∣≤10000，保证s和t字符串中仅包含大小写英文字母
-要求: 时间复杂度 O(n)O(n)
 例如：
-S ="XDOYEZODEYXNZ"S="XDOYEZODEYXNZ"
-T ="XYZ"T="XYZ"
-找出的最短子串为"YXNZ""YXNZ".
+S ="XDOYEZODEYXNZ"
+T ="XYZ"
+找出的最短子串为"YXNZ"
 
 注意：
-如果 s 中没有包含 t 中所有字符的子串，返回空字符串 “”；
-满足条件的子串可能有很多，但是题目保证满足条件的最短的子串唯一。
+如果 s 中没有包含 t 中所有字符的子串，返回空字符串 “”
+满足条件的子串可能有很多，但是题目保证满足条件的最短的子串唯一
 
 示例1
 输入：
-"XDOYEZODEYXNZ","XYZ"
-复制
+"XDOYEZODEYXNZ", "XYZ"
 返回值：
 "YXNZ"
-复制
+
 示例2
 输入：
-"abcAbA","AA"
-复制
+"abcAbA", "AA"
 返回值：
 "AbA"
 
@@ -43,6 +39,7 @@ T ="XYZ"T="XYZ"
 func minWindow(S string, T string) string {
 	// hash + double point + sliding windows
 	/*
+		大概思路：
 		step 1：字符串仅包含大小写字母，则字符集是已知且有限的，那这种情况下我们可以考虑使用哈希表——只需要维护一个哈希表，里面是字符串T的字符为key值，初始化时当字符在T中出现一次则value值减1，后续如果找到就可以将其加回来。
 		step 2：依次遍历字符串S，如果匹配则将哈希表中的相应的字符加1。
 		step 3：在遍历过程中维护一个窗口，如果哈希表中所有元素都大于0，意味着已经找全了，则窗口收缩向左移动，找最小的窗口，如果不满足这个条件则窗口右移继续匹配。窗口移动的时候需要更新最小窗口，以取得最短子串。
@@ -55,6 +52,8 @@ func minWindow(S string, T string) string {
 	for i := 0; i < lenT; i++ {
 		windows[T[i]]++
 	}
+
+	// 左右指针
 	left, right := 0, 0
 	// windows中字母大于0 计数
 	count := 0
@@ -62,20 +61,22 @@ func minWindow(S string, T string) string {
 	for right < lenS {
 		char := S[right]
 		right++
-		// windows中已有 -1， 没有的会直接赋值 -1
+		// windows中 已有会-1， 没有会直接赋值 -1
 		windows[char]--
 		if windows[char] >= 0 {
 			count++
 		}
+		// 个数达到， ans 从最初的完整字符串一直在减小 "abcAbA" "bcAbA"
 		for count == lenT {
-			// 取较小值
+			// 取较小值， ans 从最初的完整字符串一直在减小 "abcAbA" "bcAbA"
 			if ans == "" || len(ans) > right-left {
 				ans = S[left:right]
 			}
-			// left 往右移动，windows相应的值加1, 如果 windows[S[left]] =0 ,  count-1
+			// 如果 windows[S[left]] = 0 ,  count-1, 最终的跳出条件在这里
 			if windows[S[left]] == 0 {
 				count--
 			}
+			// left 往右移动，windows相应的值加1,
 			windows[S[left]]++
 			left++
 		}

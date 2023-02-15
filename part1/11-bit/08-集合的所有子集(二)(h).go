@@ -30,7 +30,6 @@ https://www.nowcoder.com/practice/a3dfd4bc8ae74fad9bc65d5ced7ae813?tpId=117&tqId
 
 // 对比02-binarysearch&sort&array/array/03-集合的所有子集
 // 区别在于上述是没有重复元素，该题是有重复元素
-
 func subsets(nums []int) [][]int {
 	// write code here
 	/*
@@ -90,6 +89,7 @@ func subsets(nums []int) [][]int {
 		时间复杂度：O(n×2n)个状态，每个状态需要O(n)的时间代价来构造
 		空间复杂度：O(n)，递归深度的空间开销
 	*/
+
 	sort.Ints(nums)
 	//使用深度优先搜索
 	var res [][]int
@@ -103,10 +103,9 @@ func subsets(nums []int) [][]int {
 			temp = append(temp, nums[i])
 			DFS(i+1, temp)
 			//回溯
-			//var t []int
-			//t = append(t, temp[:len(temp)-1]...)
-			//temp = t
-			temp = temp[:len(temp)-1]
+			var t []int
+			t = append(t, temp[:len(temp)-1]...)
+			temp = t
 		}
 	}
 	DFS(0, []int{})
