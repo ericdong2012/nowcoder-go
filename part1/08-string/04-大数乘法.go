@@ -10,7 +10,6 @@ https://www.nowcoder.com/practice/c4c488d4d40d4c4e9824c3650f7d5571?tpId=117&tqId
 
 描述
 以字符串的形式读入两个数字，编写一个函数计算它们的乘积，以字符串形式返回。
-数据范围： 读入的数字大小满足 0 \le n \le 10^{1000}0≤n≤101000
 要求：空间复杂度 O(n)，时间复杂度 O(n^2)
 
 示例1
@@ -18,7 +17,6 @@ https://www.nowcoder.com/practice/c4c488d4d40d4c4e9824c3650f7d5571?tpId=117&tqId
 "11","99"
 返回值：
 "1089"
-
 说明：
 11*99=1089
 

@@ -8,14 +8,12 @@ https://www.nowcoder.com/practice/48d2ff79b8564c40a50fa79f9d5fa9c7?tpId=117&tqId
 
 描述
 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
-数据范围:
-\ \text{s.length}\le 40000 s.length≤40000
+
 示例1
 输入：
 "abcabcbb"
 返回值：
 3
-
 说明：
 因为无重复字符的最长子串是"abc"，所以其长度为 3。
 
@@ -25,7 +23,6 @@ https://www.nowcoder.com/practice/48d2ff79b8564c40a50fa79f9d5fa9c7?tpId=117&tqId
 "bbbbb"
 返回值：
 1
-
 说明：
 因为无重复字符的最长子串是"b"，所以其长度为 1。
 
@@ -35,7 +32,6 @@ https://www.nowcoder.com/practice/48d2ff79b8564c40a50fa79f9d5fa9c7?tpId=117&tqId
 "pwwkew"
 返回值：
 3
-
 说明：
 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
 请注意，你的答案必须是子串的长度，"pwke" 是一个子序列，不是子串。
@@ -64,19 +60,40 @@ func lengthOfLongestSubstring(s string) int {
 	//return count
 
 	// 双指针
-	n := len(s)
-	// ascii 常用字符128个
-	m := make([]int, 128)
-	res := 0
-	for l, r := 0, 0; r < n; r++ {
-		// l 左指针记录是否有重复元素出现，有的化，往右移动
-		l = max(l, m[s[r]])
-		// 记录个数，索引之差
-		res = max(res, r-l+1)
-		// ??? 上面的m[s[r]] 中有值时，l要往下移动一位，所以上次保存的 r + 1
-		m[s[r]] = r + 1
+	//n := len(s)
+	//// ascii 常用字符128个
+	//m := make(map[byte]int, 128)
+	//res := 0
+	//for l, r := 0, 0; r < n; r++ {
+	//	// l 左指针记录是否有重复元素出现，有的化，往右移动
+	//	l = max(l, m[s[r]])
+	//	// 记录个数，索引之差
+	//	res = max(res, r-l+1)
+	//	// ??? 上面的m[s[r]] 中有值时，l要往下移动一位，所以保存上次的 r + 1
+	//	m[s[r]] = r + 1
+	//}
+	//return res
+
+	left, right := 0, 0
+	maxlen := 0
+	temp := make(map[byte]int, 1000000)
+	for left < len(s) {
+		if right == len(s) {
+			return maxlen
+		}
+		// arr[right] 在temp 中不存在
+		if temp[s[right]] == 0 {
+			temp[s[right]]++
+			right++
+		} else {
+			// 有重复的将上一个清零
+			temp[s[left]] = 0
+			left++
+		}
+		maxlen = max2(maxlen, right-left)
 	}
-	return res
+
+	return maxlen
 }
 
 func max(a, b int) int {

@@ -31,6 +31,20 @@ false
 
 func isSubsequence(S string, T string) bool {
 	// write code here
+	// "nowcoderr","nowcoder1"
+	//temp := make(map[byte]int, len(T))
+	//for i := 0; i < len(T); i++ {
+	//	temp[T[i]]++
+	//}
+	//for i := 0; i < len(S); i++ {
+	//	if _, ok := temp[S[i]]; ok {
+	//		continue
+	//	} else {
+	//		return false
+	//	}
+	//}
+	//return true
+
 	m, n := len(S), len(T)
 	i, j := 0, 0
 	for i < m && j < n {
@@ -41,5 +55,6 @@ func isSubsequence(S string, T string) bool {
 			j++
 		}
 	}
+	// j 一定走到最后，i 如果也走到最后，则所有元素在T中
 	return i == m
 }

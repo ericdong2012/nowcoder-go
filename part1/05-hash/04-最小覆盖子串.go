@@ -9,7 +9,6 @@ https://www.nowcoder.com/practice/c466d480d20c4c7c9d322d12ca7955ac?tpId=117&tqId
 描述:
 给出两个字符串 s 和 t，要求在 s 中找出最短的包含 t 中所有字符的连续子串。
 
-
 例如：
 S ="XDOYEZODEYXNZ"
 T ="XYZ"T="XYZ"
@@ -27,6 +26,7 @@ T ="XYZ"T="XYZ"
 
 */
 
+// 该题和09-doublepointer 中的最小覆盖子串是同一题
 // 滑动窗口， 哈希表
 // 字母表是已知的，所以可以建立hash表
 func minWindow(S string, T string) string {
@@ -44,6 +44,8 @@ func minWindow(S string, T string) string {
 	for i := 0; i < lenT; i++ {
 		windows[T[i]]++
 	}
+
+	// 左右指针
 	left, right := 0, 0
 	// windows中字母大于0 计数
 	count := 0
@@ -51,20 +53,22 @@ func minWindow(S string, T string) string {
 	for right < lenS {
 		char := S[right]
 		right++
-		// windows中已有 -1， 没有的会直接赋值 -1
+		// windows中 已有会-1， 没有会直接赋值 -1
 		windows[char]--
 		if windows[char] >= 0 {
 			count++
 		}
+		// 个数达到， ans 从最初的完整字符串一直在减小 "abcAbA" "bcAbA"
 		for count == lenT {
-			// 取较小值
+			// 取较小值， ans 从最初的完整字符串一直在减小 "abcAbA" "bcAbA"
 			if ans == "" || len(ans) > right-left {
 				ans = S[left:right]
 			}
-			// left 往右移动， count-1 , windows相应的值加1
+			// 如果 windows[S[left]] = 0 ,  count-1, 最终的跳出条件在这里
 			if windows[S[left]] == 0 {
 				count--
 			}
+			// left 往右移动，windows相应的值加1,
 			windows[S[left]]++
 			left++
 		}

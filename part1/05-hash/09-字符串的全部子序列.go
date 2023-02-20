@@ -9,7 +9,7 @@ https://www.nowcoder.com/practice/92e6247998294f2c933906fdedbc6e6a?tpId=117&tqId
 
 描述
 给定一个字符串s，长度为n，求s的所有子序列
-1.子序列: 指一个字符串删掉部分字符（也可以不删）形成的字符串，可以是不连续的，比如"abcde"的子序列可以有"ace","ad"等等
+1.子序列: 指一个字符串删掉部分字符（也可以不删）形成的字符串，可以是不连续的，比如"abcde"的子序列可以有"ace", "ad"等等
 2.将所有的子序列的结果返回为一个字符串数组
 3.字符串里面可能有重复字符，但是返回的子序列不能有重复的子序列，比如"aab"的子序列只有"","a","aa","aab","ab","b"，不能存在2个相同的"ab"
 4.返回字符串数组里面的顺序可以不唯一
@@ -40,16 +40,19 @@ https://www.nowcoder.com/practice/92e6247998294f2c933906fdedbc6e6a?tpId=117&tqId
 返回的字符串数组里面不能存在"ab", "ab"这样2个相同的子序列
 */
 
+// 该题和11-08集合的所有子集 类似， 但是条件限制没有那么多
 func generatePermutation(s string) []string {
-	m := make(map[string]bool)
+	filter := make(map[string]bool)
+	// 添加了一个“”
 	var ans = []string{""}
 	for _, v := range s {
 		var tmp []string
+		// 能把ans中前面有的数据跟当前结合起来
 		for _, a := range ans {
-			if !m[a+string(v)] {
+			if !filter[a+string(v)] {
 				tmp = append(tmp, a+string(v))
 			}
-			m[a+string(v)] = true
+			filter[a+string(v)] = true
 		}
 		ans = append(ans, tmp...)
 	}
