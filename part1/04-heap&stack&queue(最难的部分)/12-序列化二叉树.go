@@ -65,6 +65,7 @@ func Serialize(root *TreeNode) string {
 	var fn = func(val string) {
 		ret = append(ret, val)
 	}
+	// 将fn传递进去
 	serialize(root, fn)
 	return strings.Join(ret, ",")
 }
@@ -77,7 +78,6 @@ func serialize(root *TreeNode, fn func(val string)) {
 	fn(strconv.Itoa(root.Val))
 	serialize(root.Left, fn)
 	serialize((root.Right), fn)
-
 }
 
 func Deserialize(s string) *TreeNode {

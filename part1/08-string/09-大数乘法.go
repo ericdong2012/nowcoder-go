@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 /*
@@ -48,6 +49,7 @@ func solve3(s string, t string) string {
 	tempRes := make([]int, len(s)+len(t))
 	for i := 0; i < len(s); i++ {
 		for j := 0; j < len(t); j++ {
+			// 主要是考虑到进位，在头部加了一位
 			tempRes[i+j+1] += int(numS[i]-'0') * int(numT[j]-'0')
 		}
 	}
@@ -58,7 +60,7 @@ func solve3(s string, t string) string {
 			tempRes[i] %= 10
 		}
 	}
-	// 去除前导0, 有些极端情况
+	// 去除前导0, 找到第一个不是0的索引
 	k := 0
 	for ; k < len(tempRes); k++ {
 		if tempRes[k] != 0 {
@@ -69,15 +71,17 @@ func solve3(s string, t string) string {
 	if k == len(tempRes) {
 		return "0"
 	}
+
+	// k 之后是不为0的地方
 	tempRes = tempRes[k:]
-
-	// 构建字符串
-	res := make([]rune, len(tempRes))
-	for i, n := range tempRes {
-		res[i] = rune(n + '0')
+	// 构建字符串， rune 和 string 转换相对简单
+	//res := make([]rune, len(tempRes))
+	res := ""
+	for _, n := range tempRes {
+		//res[i] = rune(n + '0')
+		res += strconv.Itoa(n)
 	}
-	return string(res)
-
+	return res
 }
 
 func main() {

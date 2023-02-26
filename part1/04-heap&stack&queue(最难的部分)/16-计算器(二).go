@@ -38,15 +38,15 @@ https://www.nowcoder.com/practice/a9c170bfaf7349e3acb475d786ab1c7d?tpId=117&tqId
 
 func calculate2(s string) int {
 	stack := make([]int, 0)
-	// 上一次的符号 + - * /
-	sign := '+'
+	// 下一次的符号 + - * /
+	var sign byte = '+'
 	// 中间获取到的数字
 	num := 0
 	for i := 0; i < len(s); {
-		// 获取具体的数字，  + - * /  ascii 都小于 ‘0’， 此时推出循环，走下面逻辑
+		// 获取具体的数字，  + - * /  ascii 都小于 ‘0’， 此时退出循环，走下面逻辑
 		for j := i; j < len(s) && s[j] >= '0'; j, i = j+1, i+1 {
 			bi := int(s[j] - '0')
-			num = bi + num*10
+			num = num*10 + bi
 		}
 		switch sign {
 		case '+':
@@ -63,12 +63,12 @@ func calculate2(s string) int {
 			stack = append(stack, temp/num)
 		}
 		num = 0
+		// 走到这里下一位(i)一定是加减乘除
 		if i < len(s) {
-			// s[i]  byte uint8
-			// sign  rune int32   unicode
-			sign = rune(s[i])
+			sign = s[i]
 		}
-		i += 1
+		// 继续往下走，取下一个数字
+		i ++
 	}
 
 	result := 0

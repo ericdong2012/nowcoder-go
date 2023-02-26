@@ -41,16 +41,13 @@ https://www.nowcoder.com/practice/9b1fca7407954ba5a6f217e7c3537fed?tpId=117&tqId
 */
 
 func calculate(s string) int {
+	// 记录中间结果
 	stack := make([]int, 0)
 	// 记录上一个符号
 	sign := 1
 	// 记录中间数字
 	num := 0
 	for i := 0; i < len(s); i++ {
-		//for m := i; m < len(s) && s[m] >= '0'; m, i = m+1, i+1 {
-		//	bi := int(s[i] - '0')
-		//	num = bi + num*10
-		//}
 		switch s[i] {
 		case '+':
 			stack = append(stack, sign*num)
@@ -63,6 +60,7 @@ func calculate(s string) int {
 		case '(':
 			// 记录括号个数
 			count := 0
+			// 找到括号的左右边界，并更新索引
 			k := i
 			for ; k < len(s); k++ {
 				if s[k] == '(' {
@@ -75,23 +73,25 @@ func calculate(s string) int {
 					break
 				}
 			}
+			// 此时k位于右边括号
+			// num = 21，i=2, k=8
 			num = calculate(s[i+1 : k])
 			// i 直接从最后的k 开始往后执行
 			i = k
 		default:
 			bi := int(s[i] - '0')
-			num = bi + num*10
+			num = num*10 + bi
 		}
 
 	}
+	// 添加 加，减后的数字
 	stack = append(stack, sign*num)
-
+	// 计算结果
 	result := 0
 	for i := 0; i < len(stack); i++ {
 		result += stack[i]
 	}
 	return result
-
 }
 
 func main() {

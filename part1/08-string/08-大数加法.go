@@ -12,15 +12,14 @@ https://www.nowcoder.com/practice/11ae12e8c6fe48f883cad618c2e81475?tpId=117&tqId
 描述
 以字符串的形式读入两个数字，编写一个函数计算它们的和，以字符串形式返回。
 
-数据范围：s.length,t.length \le 100000s.length,t.length≤100000，字符串仅由'0'~‘9’构成
-要求：时间复杂度 O(n)
+字符串仅由'0'~‘9’构成
+时间复杂度 O(n)
 
 示例1
 输入：
 "1","99"
 返回值：
 "100"
-
 说明：
 1+99=100
 
@@ -33,6 +32,7 @@ https://www.nowcoder.com/practice/11ae12e8c6fe48f883cad618c2e81475?tpId=117&tqId
 */
 
 /*
+
 模拟法或者栈
 
     设定 i，j 两指针分别指向 s，t 尾部，模拟人工加法；
@@ -64,6 +64,7 @@ func solve1(s string, t string) string {
 	var carry int
 	for i >= 0 || j >= 0 {
 		var n1, n2 int
+		// 每个数位数不同，位数走完，需要用0填充
 		if i >= 0 {
 			n1 = int(s[i] - '0')
 		} else {
@@ -77,17 +78,19 @@ func solve1(s string, t string) string {
 		}
 
 		temp := n1 + n2 + carry
+		// 超过10才有进位
 		carry = temp / 10
+		// strconv.Itoa(temp%10)在前是因为 是从个位到十位到百位
 		res = strconv.Itoa(temp%10) + res
 		j--
 		i--
 	}
+
 	if carry != 0 {
 		return "1" + res
 	} else {
 		return res
 	}
-
 }
 
 func main() {

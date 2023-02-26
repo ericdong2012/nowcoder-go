@@ -11,32 +11,31 @@ https://www.nowcoder.com/practice/4e008fd863bb4681b54fb438bb859b92?tpId=117&tqId
 
 描述
 给一个加密过的字符串解码，返回解码后的字符串。
-
 加密方法是：k[c] ，表示中括号中的 c 字符串重复 k 次，例如 3[a] 解码结果是 aaa ，保证输入字符串符合规则。不会出现类似 3a , 3[3] 这样的输入。
 
-数据范围：输出的字符串长度满足 1 \le n \le 50 \1≤n≤50
 示例1
 输入：
 "3[a]"
-复制
 返回值：
 "aaa"
-复制
+
 示例2
 输入：
 "abc"
-复制
 返回值：
 "abc"
-复制
+
 示例3
+输入：
+"3[3[b]]"
+返回值：
+"bbbbbbbbb"
 
 */
 
 // 栈
 /*
 class Solution:
-
     def decodeString(self , s: str) -> str:
         # write code here
         stack, digits, digit, cur = [], [], 0, ""
@@ -56,7 +55,6 @@ class Solution:
             else:
                 cur += c
         return stack[-1] + cur if stack else cur
-
 */
 
 func decodeString(s string) string {
@@ -65,29 +63,36 @@ func decodeString(s string) string {
 	digit := 0
 	cur := ""
 	stack := []string{}
-
+	// 3[3[b]]
 	for i := 0; i < len(s); i++ {
 		if '0' <= s[i] && s[i] <= '9' {
-			temp, _ := strconv.Atoi(string(rune(s[i])))
+			temp, _ := strconv.Atoi(string(s[i]))
 			digit += temp
 		} else if s[i] == '[' {
+			// 把之前的数字添加进，然后清空
 			digits = append(digits, digit)
 			digit = 0
+			// 把之前的字符添加进，然后清空
 			stack = append(stack, cur)
 			cur = ""
 		} else if s[i] == ']' {
+			// 如果digits 不为空，则去除digits 的最后一位， 重复添加到stack最后一位
 			for j := 0; j < digits[len(digits)-1]; j++ {
 				stack[len(stack)-1] += cur
 			}
+			// 拿到stack 最后一位
 			cur = stack[len(stack)-1]
+			// 移除到stack 和 digits最后一位
 			stack = stack[:len(stack)-1]
 			digits = digits[:len(digits)-1]
 		} else {
+			// 具体的字符
 			cur += string(s[i])
 		}
 	}
-
+	// stack还有剩余
 	if len(stack) > 0 {
+		// todo 如何确定只需要最后一位呢
 		return stack[len(stack)-1] + cur
 	} else {
 		return cur
@@ -97,7 +102,7 @@ func decodeString(s string) string {
 func main() {
 	//s := decodeString("3[a]")
 	//s := decodeString("abc")
-	//s := decodeString("3[3[b]]")
-	s := decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef")
+	s := decodeString("3[3[b]]")
+	//s := decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef")
 	fmt.Println(s)
 }

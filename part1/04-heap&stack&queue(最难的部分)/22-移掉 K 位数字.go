@@ -11,7 +11,7 @@ https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=117&tqId
 
 
 描述
-给定一个以字符串表示的数字 num 和一个数字 k ，从 num 中移除 k 位数字，使得剩下的数字最小。如果可以删除全部数字则剩下 0
+给定一个以字符串表示的数字 num 和一个数字 k ，从 num 中移除 k 位数字，使得剩下的数字最小。如果可以删除全部数字则剩下0
 1.num仅有数字组成
 2.num是合法的数字，不含前导0
 3.请你保证删除之后的num也不含前导0
@@ -36,13 +36,7 @@ https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=117&tqId
 
 */
 
-// 单调栈
-/*
-我们需要维护一个单调栈，将数字字符串每一个元素进行入栈处理（在这里我们用列表表示单调栈）
-当取到的数字字符大于栈顶的时候，我们让数字正常入栈
-当取到的数字字符小于栈顶的时候，我们就将栈顶元素出栈，并且一直比较新的栈顶元素，直到栈顶元素与取得元素相等或更小为止
-出栈则说明我们去掉这个数字字符，相应k的值就需要自减
-*/
+
 
 /*
 class Solution:
@@ -62,34 +56,41 @@ class Solution:
         return ''.join(stack)
 */
 
+// 单调栈
+/*
+我们需要维护一个单调栈，将数字字符串每一个元素进行入栈处理（在这里我们用列表表示单调栈）
+当取到的数字字符大于栈顶的时候，我们让数字正常入栈
+当取到的数字字符小于栈顶的时候，我们就将栈顶元素出栈，并且一直比较新的栈顶元素，直到栈顶元素与取得元素相等或更小为止，出栈则说明我们去掉这个数字字符，相应k的值就需要自减
+*/
 func removeKnums(num string, k int) string {
 	// write code here
 	stack := []string{}
 	for _, v := range num {
-
+		// stack不为空，k不为0, 当前值小于栈中最后一个，则移除最后一个
 		for len(stack) != 0 && k != 0 && string(v) < string(stack[len(stack)-1]) {
-			k--
 			stack = stack[:len(stack)-1]
+			k--
 		}
+		// 如果栈中没有元素并且当前值为‘0’, 则继续(比如：某个数字后一堆0)
 		if len(stack) == 0 && v == '0' {
 			continue
 		}
 		stack = append(stack, string(v))
 	}
+	// k还没有找完，并且stack长度大于k, 需要从stack中截取
 	if k != 0 && len(stack)-k >= 0 {
 		stack = stack[len(stack)-k+1:]
 	}
+	// 如果stack 为空，包含k!=0 的情况
 	if len(stack) == 0 {
 		stack = append(stack, "0")
 	}
 	return strings.Join(stack, "")
-
 }
 
 func main() {
-	//knums := removeKnums("1432219", 3)
+	knums := removeKnums("1432219", 3)
 	//knums := removeKnums("100999", 3)
 	//knums := removeKnums("10", 1)
-	knums := removeKnums("20", 2)
 	fmt.Println(knums)
 }

@@ -50,9 +50,9 @@ func getLongestPalindrome1(A string) int {
 	// write code here
 	maxLen := 1
 	for i := len(A) - 1; i >= 0; i-- {
-		// 偶数
+		// 偶数  主要负责扩散
 		left := run(A, i, i)
-		// 奇数
+		// 奇数  主要负责看后面的数和前面是否一样   该判断的作用： "baabccc"
 		right := run(A, i, i+1)
 		maxLen = max1(maxLen, max1(left, right))
 	}

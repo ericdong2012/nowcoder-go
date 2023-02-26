@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
 NC131 数据流中的中位数
 https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=117&tqId=37807&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=590&title=
@@ -31,13 +29,10 @@ https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=117&tqId
 
 // 数组
 var a []int
-
 // 读取的数据个数
 var count int
 
 func Insert(num int) {
-	// 读取数据
-	// 排序
 	n := len(a)
 	count++
 	// 空的， 不用排序，添加, 直接返回
@@ -45,23 +40,12 @@ func Insert(num int) {
 		a = append(a, num)
 		return
 	}
-	// 非空, 插入排序
-	/*
-		插入排序是一个无序数组开始排序，它前面部分就是已经排好的有序数组（一开始长度为0），
-		而其后半部分则是需要排序的无序数组，插入排序的做法就是遍历后续需要排序的无序部分，对于每个元素，插入到前半部分有序数组中属于它的位置, 即最后一个小于它的元素后
-
-		int i = 0;
-		//遍历找到插入点
-		for(; i < val.size(); i++){
-			if(num <= val.get(i))
-				break;
-		}
-		//插入相应位置
-		val.add(i, num);
-	*/
+	// 非空(之前的坑定已经排好序了) 先插入, 后排序
 	a = append(a, num)
+	// 4，5，3
+	// 从n开始加是因为n是之前的长度，对应现在的最后一位
 	for i := n; i > 0; i-- {
-		//  如果当前位小于前一位，继续往前找
+		//  如果当前位小于前一位 交换
 		if a[i] < a[i-1] {
 			a[i], a[i-1] = a[i-1], a[i]
 			//continue
@@ -83,14 +67,15 @@ func GetMedian() float64 {
 }
 
 func main() {
-	a := []int{5, 2, 3, 4, 1, 6, 7, 0, 8}
-	for i := len(a) - 1; i > 0; i-- {
-		if a[i] < a[i-1] {
-			a[i], a[i-1] = a[i-1], a[i]
-			//continue
-		}
-		//break
-	}
+	//a := []int{5, 2, 3, 4, 1, 6, 7, 0, 8}
+	//for i := len(a) - 1; i > 0; i-- {
+	//	if a[i] < a[i-1] {
+	//		a[i], a[i-1] = a[i-1], a[i]
+	//		//continue
+	//	}
+	//	//break
+	//}
+	//
+	//fmt.Printf("%+v", a)
 
-	fmt.Printf("%+v", a)
 }

@@ -30,8 +30,9 @@ https://www.nowcoder.com/practice/c215ba61c8b1443b996351df929dc4d4?tpId=117&tqId
 */
 
 /*
-写一个支持+ - *三种符号的运算器，其中优先级+ - 是一级，*更高一级
-支持括号运算
+终极版的计算器
+
+写一个支持+ - *三种符号的运算器，其中优先级+ - 是一级，*更高一级， 支持括号运算
 
 栈 + 递归
 
@@ -131,17 +132,18 @@ func solve(s string) int {
 	// write code here
 	stack := make([]int, 0)
 	data := []byte(s)
-	number := 0
+	//operation := '+'  // 这种写法声明的int32
 	var operation byte = '+'
+	number := 0
 	result := 0
 	for i := 0; i < len(data); i++ {
 		// 0~9
 		if data[i] >= '0' && data[i] <= '9' {
 			number = 10*number + int(data[i]-'0')
 		}
-
 		// '('
 		if data[i] == '(' {
+			// 计算括号内的 (( 5 + 3 )) 8 , end 走到8， start在第二个左括号
 			count := 1
 			start, end := i+1, i+1
 			for count != 0 {
@@ -154,10 +156,10 @@ func solve(s string) int {
 				end++
 			}
 			i = end - 1
-			number = solve(s[start : end-1])
+			// 算内层括号里面的
+			number = solve(s[start : i])
 		}
-
-		// '+'/'-'/'*'
+		// '+'/ '-' / '*'
 		if data[i] < '0' || data[i] > '9' || i == len(data)-1 {
 			switch operation {
 			case '+':
@@ -165,6 +167,7 @@ func solve(s string) int {
 			case '-':
 				stack = append(stack, -number)
 			case '*':
+				// 此处并不影响* 的优先级，operation 已经提前保存了，而number是算好后的
 				stack[len(stack)-1] = stack[len(stack)-1] * number
 			}
 			number = 0
@@ -176,11 +179,12 @@ func solve(s string) int {
 		result += stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 	}
-	return result
 
+	return result
 }
 
 func main() {
-	i := solve("2*(3-4)+5")
+	//i := solve("2*(3-4)+5")
+	i := solve("5+2*(3-4)")
 	fmt.Println(i)
 }

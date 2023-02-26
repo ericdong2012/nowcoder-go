@@ -36,7 +36,7 @@ false
 
 /*
 可以是左括号入站，也可以是右括号入站
-
+该题和 heap&stack&queue 中的第十题一样的， 并且解法更好
 */
 func isValid(s string) bool {
 	stack := []byte{}

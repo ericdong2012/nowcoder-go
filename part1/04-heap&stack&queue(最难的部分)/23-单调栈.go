@@ -30,7 +30,7 @@ https://www.nowcoder.com/practice/ae25fb47d34144a08a0f8ff67e8e7fb5?tpId=117&tqId
 单调栈：单调栈就是使栈内元素单调递增或者单调递减的栈，单调栈也只能在栈顶操作。
 
 while(栈顶元素比入栈元素小且栈不空){
-        栈顶元素弹出
+	栈顶元素弹出
 }
 元素入栈
 
@@ -123,8 +123,6 @@ func foundMonotoneStack(nums []int) [][]int {
 
 	return ans
 }
-
-// todo 还没有完成
 
 func main() {
 	stack := foundMonotoneStack([]int{0, 0, 0, 0, 0, 0, 0, 0})

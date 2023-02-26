@@ -6,7 +6,7 @@ https://www.nowcoder.com/practice/eceb50e041ec40bd93240b8b3b62d221?tpId=117&tqId
 
 
 描述
-给定一个字符串s，字符串s只包含以下三种字符: (，*，)，请你判断 s是不是一个合法的括号字符串。合法括号字符串有如下规则:
+给定一个字符串s，字符串s只包含以下三种字符: (  *  )，请你判断 s是不是一个合法的括号字符串。合法括号字符串有如下规则:
 1.左括号'('必须有对应的右括号')'
 2.右括号')'必须有对应的左括号'('
 3.左括号必须在对应的右括号前面
@@ -72,6 +72,7 @@ false
 
 func isValidString(s string) bool {
 	// write code here
+	// 存放对应元素的索引
 	left, star := []int{}, []int{}
 	for i := 0; i < len(s); i++ {
 		if string(s[i]) == "(" {
@@ -84,12 +85,15 @@ func isValidString(s string) bool {
 			} else if len(star) != 0 {
 				star = star[:len(star)-1]
 			} else {
+				// 左括号并且 * 都为0， 此时右括号多
 				return false
 			}
 		}
 	}
-
+	// 处理特例，left还有多个， 则要求 * 有多个，此时 * 当做右括号
+	// (((*) => ((*
 	for len(left) != 0 {
+		// left 在 * 左侧， left 索引小于 * 索引
 		if len(star) != 0 && left[len(left)-1] < star[len(star)-1] {
 			left = left[:len(left)-1]
 			star = star[:len(star)-1]

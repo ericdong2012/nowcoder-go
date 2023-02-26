@@ -37,6 +37,8 @@ min(): 		 获取栈中最小元素
 -1,2,1,-1
 
 */
+
+// 后进先出
 var L []int
 
 func Push(node int) {
@@ -45,7 +47,7 @@ func Push(node int) {
 }
 func Pop() {
 	// write code here
-	L = L[0 : len(L)-1]
+	L = L[:len(L)-1]
 }
 func Top() int {
 	// write code here

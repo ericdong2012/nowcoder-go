@@ -12,30 +12,29 @@ https://www.nowcoder.com/practice/885c1db3e39040cbae5cdf59fb0e9382?tpId=117&tqId
 
 描述
 给定一个逆波兰表达式，求表达式的值。
+表达式中仅包含数字和 + ，- , * , / ，
 
-数据范围：表达式长度满足 1 \le n \le 10^4 \1≤n≤10
-4
-   ，表达式中仅包含数字和 + ，- , * , / ，其中数字的大小满足 |val| \le 200 \∣val∣≤200 。
+
 示例1
 输入：
 ["2","1","+","4","*"]
-复制
 返回值：
 12
-复制
+
 示例2
 输入：
 ["2","0","+"]
-复制
 返回值：
 2
 */
 
 func evalRPN(tokens []string) int {
+	// 保存数字及中间结果
 	stack := make([]int, 0)
 	for i := 0; i < len(tokens); i++ {
 		switch tokens[i] {
 		case "+":
+			// 不抽取出来是因为前面的数据取值会有问题
 			a, b := stack[len(stack)-2], stack[len(stack)-1]
 			stack = stack[:len(stack)-2]
 			stack = append(stack, a+b)
@@ -51,13 +50,13 @@ func evalRPN(tokens []string) int {
 			a, b := stack[len(stack)-2], stack[len(stack)-1]
 			stack = stack[:len(stack)-2]
 			stack = append(stack, a/b)
+		// 默认添加数据
 		default:
 			num, _ := strconv.Atoi(tokens[i])
 			stack = append(stack, num)
 		}
 	}
-	re := stack[len(stack)-1]
-	return re
+	return stack[len(stack)-1]
 }
 
 func main() {

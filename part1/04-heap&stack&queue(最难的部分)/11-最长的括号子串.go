@@ -11,7 +11,7 @@ https://www.nowcoder.com/practice/45fd68024a4c4e97a8d6c45fc61dc6ad?tpId=117&tqId
 
 示例1
 输入：
-"(()"
+ "(()"
 返回值：
 2
 
