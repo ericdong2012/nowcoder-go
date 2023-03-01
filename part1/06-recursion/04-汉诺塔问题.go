@@ -37,29 +37,12 @@ n
 
 仅需要将其当作n-1再利用旁边另一个塔即可实现递归
 
-
-
-
 汉诺塔问题的解决方案可以分为3步：
 1、把n-1个盘子从left 借助 right，搬到mid柱子上
 2、把剩下最大的那一个盘子从left搬到right柱子上
 3、把n-1个盘子从mid 借助 left，搬到right柱子上。
 
-至于如何把n-1个盘子搬到另一个柱子上，同样参照上面的3步，不过此时柱子扮演的left，mid，right角色已经改变；对于n-2，n-3等等以此类推。
-
-	vector<string> solution;
-
-    void Hanoi(int n, string left, string mid, string right){
-        if (n==0) return;
-        Hanoi(n-1,left,right,mid);//把n-1个盘子从left借助right搬到mid上去。
-        solution.push_back("move from " + left + " to " + right);//把第n个盘子从left搬到right上。
-        Hanoi(n-1,mid,left,right);//把n-1个盘子从mid借助left搬到right上去。
-    }
-
-    vector<string> getSolution(int n) {
-        Hanoi(n, "left", "mid", "right");
-        return solution;
-    }
+有点像中序遍历
 
 */
 
@@ -83,7 +66,7 @@ func hanno(n int, a, b, c string, res *[]string) {
 	hanno(n-1, b, a, c, res)
 }
 
-func main() {
+func main04() {
 	solution := getSolution(3)
 	fmt.Println(solution)
 }

@@ -38,7 +38,7 @@ true
 //	Right *TreeNode
 //}
 
-var pre = math.MaxInt
+var pre = math.MaxInt32
 
 func isValidBST(root *TreeNode) bool {
 	// 方式一: 递归  二叉树的递归，则是将某个节点的左子树、右子树看成一颗完整的树，那么对于子树的访问或者操作就是对于原树的访问或者操作的子问题，因此可以自我调用函数不断进入子树

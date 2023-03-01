@@ -41,23 +41,26 @@ func findTargetSumWays(nums []int, target int) int {
 	if n == 0 {
 		return 0
 	}
-	res := 0
-	var dfs func(i int, rest int)
-	dfs = func(i int, rest int) {
-		if i == n {
+	count := 0
+	var dfs func(idx int, rest int)
+	dfs = func(idx int, rest int) {
+		// 索引走到最后，剩余的数为0, 个数加一， 并返回
+		if idx == n {
 			if rest == 0 {
-				res += 1
+				count += 1
 			}
 			return
 		}
-		dfs(i+1, rest-nums[i])
-		dfs(i+1, rest+nums[i])
+		// 加号
+		dfs(idx+1, rest-nums[idx])
+		// 减号
+		dfs(idx+1, rest+nums[idx])
 	}
 	dfs(0, target)
-	return res
+	return count
 }
 
-func main() {
+func main03() {
 	ways := findTargetSumWays([]int{1, 1, 1, 2}, 3)
 	fmt.Println(ways)
 }

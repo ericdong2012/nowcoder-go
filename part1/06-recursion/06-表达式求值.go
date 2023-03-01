@@ -33,15 +33,14 @@ func solve(s string) int {
 	// write code here
 	stack := make([]int, 0)
 	num := 0
+	// 记录上一次标识
 	var sign byte = '+'
 	result := 0
-
 	for i := 0; i < len(s); i++ {
 		if s[i] >= '0' && s[i] <= '9' {
 			bi := int(s[i] - '0')
 			num = bi + 10*num
 		}
-
 		if s[i] == '(' {
 			count := 1
 			start, end := i+1, i+1
@@ -55,9 +54,9 @@ func solve(s string) int {
 				end++
 			}
 			i = end - 1
-			num = solve(s[start : end-1])
+			num = solve(s[start : i])
 		}
-
+		// i == len(s) -1 是为了计算最后一位数字与前面的结果
 		if s[i] < '0' || s[i] > '9' || i == len(s)-1 {
 			switch sign {
 			case '+':
@@ -68,11 +67,10 @@ func solve(s string) int {
 				stack[len(stack)-1] = stack[len(stack)-1] * num
 			}
 			num = 0
+			// 此处的sign不仅可以保存+. -, * 还可以保存其他的）或者 数字等， 此时swith 中的sign 不会进入，直接被赋予新的值
 			sign = s[i]
 		}
-
 	}
-
 	for len(stack) != 0 {
 		result += stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
@@ -80,7 +78,8 @@ func solve(s string) int {
 	return result
 }
 
-func main() {
-	i := solve("(2*(3-4))*5")
+func main06() {
+	i := solve("2*(3-4)*5")
+	//i := solve("(2*(3-4))*5")
 	fmt.Println(i)
 }

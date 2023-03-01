@@ -8,15 +8,12 @@ https://www.nowcoder.com/practice/5e2135f4d2b14eb8a5b06fab4c938635?tpId=295&tqId
 
 描述
 给你二叉树的根节点root, 返回它节点值的前序遍历。
-数据范围：二叉树的节点数量满足 0 \le n \le 100 \0≤n≤100，二叉树节点的值满足 1 \le val \le 100 \1≤val≤100，树的各节点的值各不相同
-
 
 示例1
 输入:
 {1,#,2,3}
 返回值:
 [1,2,3]
-
 */
 
 /*
@@ -34,6 +31,16 @@ https://blog.csdn.net/u013834525/article/details/80421684
 step 1：准备数组用来记录遍历到的节点值，Java可以用List，C++可以直接用vector。
 step 2：从根节点开始进入递归，遇到空节点就返回，否则将该节点值加入数组。
 step 3：依次进入左右子树进行递归。
+
+
+		 A
+	 B      C
+  D    E  F   G
+
+前序遍历： ABDECFG
+中序遍历： DBEAFCG
+后序遍历： DEBFGCA
+层序遍历： ABCDEFG
 
 */
 

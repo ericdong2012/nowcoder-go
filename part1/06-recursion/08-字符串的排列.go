@@ -76,12 +76,13 @@ func Permutation(str string) []string {
 	if str == "" {
 		return nil
 	}
+	// 构建slice并排序
 	strList := make([]string, 0, len(str))
 	for _, v := range str{
 		strList = append(strList, string(v))
 	}
 	sort.Strings(strList)
-
+	// dfs
 	result := []string{}
 	dfs(strList, 0, &result)
 
@@ -104,18 +105,13 @@ func dfs(strs []string, index int, result *[]string) {
 		// 递归处理下一层
 		strs[i], strs[index] = strs[index], strs[i]
 		dfs(strs, index+1, result)
-		// 回溯，数据复原
+	}
+	for i := len(strs) - 1; i > index; i-- {
 		strs[i], strs[index] = strs[index], strs[i]
 	}
-	//for i := len(strs) - 1; i > index; i-- {
-	//	strs[i], strs[index] = strs[index], strs[i]
-	//}
-
-	// 去重
-
 }
 
-func main() {
+func main08() {
 	permutation := Permutation("abc")
 	fmt.Println(permutation)
 }

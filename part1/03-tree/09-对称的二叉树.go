@@ -10,7 +10,7 @@ https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=295&tqId
 描述
 给定一棵二叉树，判断其是否是自身的镜像（即：是否对称）
 
-要求：空间复杂度 O(n)O(n)，时间复杂度 O(n)O(n)
+要求：空间复杂度 O(n)，时间复杂度 O(n)
 备注：
 你可以用递归和迭代两种方法解决这个问题
 
@@ -36,28 +36,79 @@ false
 //	Right *TreeNode
 //}
 
-func isSymmetrical(pRoot *TreeNode) bool {
+//func isSymmetrical(pRoot *TreeNode) bool {
+//	// write code here
+//	if pRoot == nil {
+//		return true
+//	}
+//
+//	return helper9(pRoot.Right, pRoot.Left)
+//}
+//
+//func helper9(right, left *TreeNode) bool {
+//	if right == nil && left == nil {
+//		return true
+//	}
+//	if right == nil || left == nil {
+//		return false
+//	}
+//
+//	if right.Val != left.Val {
+//		return false
+//	}
+//
+//	return helper9(right.Left, left.Right) && helper9(right.Right, left.Left)
+//}
+
+func isSymmetrical(root *TreeNode) bool {
 	// write code here
-	if pRoot == nil {
+	if root == nil {
 		return true
 	}
+	// 层序遍历
+	res := [][]int{}
+	q := []*TreeNode{root}
+	for q != nil {
+		// 存储每层的节点值
+		temp := []int{}
+		// 存储每层的节点
+		// newQueue := []*TreeNode{} 报错
+		var newQueue []*TreeNode
+		for i := 0; i < len(q); i++ {
+			temp = append(temp, q[i].Val)
+			if q[i].Left != nil {
+				newQueue = append(newQueue, q[i].Left)
+			}
+			if q[i].Right != nil {
+				newQueue = append(newQueue, q[i].Right)
+			}
+		}
+		res = append(res, temp)
+		q = newQueue
+	}
 
-	return helper9(pRoot.Right, pRoot.Left)
+	// 判断是否对称
+	result := true
+	for i := 0; i < len(res); i++ {
+		if !reverse2(res[i]) {
+			result = false
+		}
+	}
+
+	return result
 }
 
-func helper9(right, left *TreeNode) bool {
-	if right == nil && left == nil {
-		return true
-	}
-	if right == nil || left == nil {
-		return false
-	}
-
-	if right.Val != left.Val {
-		return false
+func reverse2(temp []int) bool {
+	i, j := 0, len(temp)-1
+	for i < j {
+		if temp[i] != temp[j] {
+			return false
+		}
+		i++
+		j--
 	}
 
-	return helper9(right.Left, left.Right) && helper9(right.Right, left.Left)
+	return true
 }
 
 func main() {

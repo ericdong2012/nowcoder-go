@@ -92,24 +92,7 @@ func minNumberDisappeared(nums []int) int {
 //}
 
 func main() {
-	// 构造一个足够大的map
 	nums := []int{1, 23, 3, 4}
-	//temp := map[int]int{1: 0, 2: 0, 3: 0}
-	//for _, v := range nums {
-	//	if v >= 0 {
-	//		index := findIndex(temp, v)
-	//		if index > 0 {
-	//			temp[index] = 1
-	//		}
-	//	}
-	//}
-	//
-	//for _, v := range temp {
-	//	if v == 0 {
-	//		return v
-	//	}
-	//}
-
 	disappeared := minNumberDisappeared(nums)
 	fmt.Println(disappeared)
 

@@ -134,7 +134,6 @@ func dfs2(row, n int, cnt *int, column, dg, udg []bool) {
 		*cnt++
 		return
 	}
-
 	for i := 0; i < n; i++ {
 		// 主要搞清楚 i-row+n， row+i 意思
 		// 主对角线 y-x = b ,  遍历时搜索到的范围为这条线的下半部分，导致-x + y < 0，出现负数。为了防止出现负数，将其进行规格化为n - x + y，保证对角线上元素的相对值相同即可。
@@ -150,7 +149,7 @@ func dfs2(row, n int, cnt *int, column, dg, udg []bool) {
 
 }
 
-func main() {
+func main05() {
 	nqueen := Nqueen(4)
 	fmt.Println(nqueen)
 }

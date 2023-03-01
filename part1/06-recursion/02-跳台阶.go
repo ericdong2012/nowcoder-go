@@ -52,7 +52,7 @@ func jumpFloor(number int) int {
 	return b
 }
 
-func main() {
+func main02() {
 	floor := jumpFloor(1)
 	fmt.Println(floor)
 }

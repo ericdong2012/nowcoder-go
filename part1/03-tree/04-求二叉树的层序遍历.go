@@ -112,11 +112,11 @@ func levelOrder(root *TreeNode) [][]int {
 	}
 	res := [][]int{}
 	q := []*TreeNode{root}
-
 	for q != nil {
 		// 存储每层的节点值
 		temp := []int{}
 		// 存储每层的节点
+		// newQueue := []*TreeNode{} 报错
 		var newQueue []*TreeNode
 		for i := 0; i < len(q); i++ {
 			temp = append(temp, q[i].Val)

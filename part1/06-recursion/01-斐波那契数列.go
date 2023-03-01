@@ -67,7 +67,7 @@ func Fibonacci(n int) int {
 	return b
 }
 
-func main() {
+func main01() {
 	fibonacci := Fibonacci(5)
 	fmt.Println(fibonacci)
 }

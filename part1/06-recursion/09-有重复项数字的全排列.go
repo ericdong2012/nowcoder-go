@@ -12,8 +12,6 @@ https://www.nowcoder.com/practice/a43a2b986ef34843ac4fdd9159b69863?tpId=117&tqId
 
 描述
 给出一组可能包含重复项的数字，返回该组数字的所有排列。结果以字典序升序排列。
-
-数据范围： 0 < n \le 80<n≤8 ，数组中的值满足 -1 \le val \le 5−1≤val≤5
 要求：空间复杂度 O(n!)，时间复杂度 O(n!)
 
 示例1
@@ -37,12 +35,9 @@ func permuteUnique(num []int) [][]int {
 		return nil
 	}
 	sort.Ints(num)
-
 	result := [][]int{}
 	dfs1(num, 0, &result)
-
 	return result
-
 }
 
 func dfs1(nums []int, index int, result *[][]int) {
@@ -53,22 +48,25 @@ func dfs1(nums []int, index int, result *[][]int) {
 		*result = append(*result, temp)
 		return
 	}
-
+	// 注意起始点和终止点
 	for i := index; i < len(nums); i++ {
-		//// 剪枝, 下一次循环的，字符相同
+		//// 剪枝, 下一次循环的，位置不同，字符相同，跳过
 		if i != index && nums[i] == nums[index] {
 			continue
 		}
-		// 递归处理下一层
+		// i != index && nums[i] != nums[index] 数据交换
 		nums[i], nums[index] = nums[index], nums[i]
+		// 递归处理下一个位置
 		dfs1(nums, index+1, result)
 	}
+
+	// 数据的还原
 	for i := len(nums) - 1; i > index; i-- {
 		nums[i], nums[index] = nums[index], nums[i]
 	}
 }
 
-func main() {
+func main09() {
 	unique := permuteUnique([]int{1, 1, 2})
 	fmt.Println(unique)
 }
