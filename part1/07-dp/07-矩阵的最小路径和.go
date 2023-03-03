@@ -26,25 +26,29 @@ https://www.nowcoder.com/practice/7d21b6be4c6b429bb92d219341c4f8bb?tpId=295&tqId
 
 func minPathSum(matrix [][]int) int {
 	// write code here
+	// 行，列
 	m, n := len(matrix), len(matrix[0])
-
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
+			// 跳过第一个点
 			if i == 0 && j == 0 {
 				continue
 			}
+			// 首行, 当前位置 += 左边的位置
 			if i == 0 {
 				matrix[i][j] += matrix[i][j-1]
 				continue
 			}
+			// 首列， 当前位置 += 上边的位置
 			if j == 0 {
 				matrix[i][j] += matrix[i-1][j]
 				continue
 			}
+			// 当前位置 = min(上边, 左边)
 			matrix[i][j] += min3(matrix[i-1][j], matrix[i][j-1])
 		}
 	}
-
+	// 右下角的点
 	return matrix[m-1][n-1]
 }
 

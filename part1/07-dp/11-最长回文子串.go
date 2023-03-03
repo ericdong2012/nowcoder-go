@@ -81,7 +81,7 @@ func max1(a, b int) int {
 	}
 }
 
-func main() {
+func main11() {
 	palindrome := getLongestPalindrome("ababc")
 	fmt.Println(palindrome)
 }

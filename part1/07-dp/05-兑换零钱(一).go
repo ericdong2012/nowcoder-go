@@ -31,32 +31,34 @@ https://www.nowcoder.com/practice/3911a20b3f8743058214ceaa099eeb45?tpId=295&tqId
 
 */
 
-/*
 
+
+/*
 三数之和的升级版
 背包问题简化版
-
 */
-
 func minMoney(arr []int, aim int) int {
 	// write code here
 	if aim < 1 {
 		return 0
 	}
+	// 建立dp, 给首位赋值0， 其他位aim + 1
 	dp := make([]int, aim+1)
 	dp[0] = 0
 	for i := 1; i <= aim; i++ {
 		dp[i] = aim + 1
 	}
-
+	// dp 要凑的钱
 	for i := 1; i < aim+1; i++ {
+		// arr 面值(每种面值的货币都要枚举)
 		for j := 0; j < len(arr); j++ {
-			// 如果面值 小于 剩余钱, 在相等的时候，dp[i-arr[j]] = 0 ， 而面值最小为1元，所以在最后加上1
+			// 如果面值 小于 要凑的钱, 在相等的时候，dp[i-arr[j]] = 0 ， 而面值最小为1元，所以在最后加上1
 			if arr[j] <= i {
-				dp[i] = min2(dp[i], dp[i-arr[j]]+1)
+				dp[i] = min2(dp[i], dp[i-arr[j]] + 1)
 			}
 		}
 	}
+	// 最终，如果dp倒数第二位大于aim, 超过了aim（可能是每个元素都大于aim）
 	if dp[aim] > aim {
 		return -1
 	} else {
@@ -73,7 +75,7 @@ func min2(a, b int) int {
 	}
 }
 
-func main() {
+func main05() {
 	money := minMoney([]int{5, 2, 3}, 20)
 	fmt.Println(money)
 }

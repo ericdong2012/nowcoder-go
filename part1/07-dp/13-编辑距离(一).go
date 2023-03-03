@@ -126,7 +126,7 @@ func min4(a, b int) int {
 	}
 }
 
-func main() {
+func main13() {
 	distance := editDistance("nowcoder", "new")
 	fmt.Println(distance)
 }

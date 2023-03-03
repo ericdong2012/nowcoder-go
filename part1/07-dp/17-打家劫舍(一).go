@@ -87,7 +87,7 @@ func rob(nums []int) int {
 	return dp[n]
 }
 
-func main() {
+func main17() {
 	i := rob([]int{2, 7, 9, 3, 1})
 	fmt.Println(i)
 }

@@ -155,7 +155,7 @@ func min(num1, num2 int) int {
 }
 
 */
-func main() {
+func main20() {
 	profit := maxProfit3([]int{8, 9, 3, 5, 1, 3})
 	fmt.Println(profit)
 }

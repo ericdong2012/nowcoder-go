@@ -90,7 +90,7 @@ func max9(a, b int) int {
 	return b
 }
 
-func main() {
+func main18() {
 	i := rob1([]int{1, 2, 3, 4})
 	fmt.Println(i)
 }

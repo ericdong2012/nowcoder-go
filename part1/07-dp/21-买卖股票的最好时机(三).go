@@ -130,7 +130,7 @@ func max6(a, b int) int {
 	}
 }
 
-func main() {
+func main21() {
 	profit2 := maxProfit2([]int{8, 9, 2, 5, 4, 7, 1})
 	fmt.Println(profit2)
 }

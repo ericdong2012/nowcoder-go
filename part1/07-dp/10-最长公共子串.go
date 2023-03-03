@@ -14,32 +14,17 @@ https://www.nowcoder.com/practice/f33f5adc55f444baa0e0ca87ad8a6aac?tpId=295&tqId
 给定两个字符串str1和str2,输出两个字符串的最长公共子串
 题目保证str1和str2的最长公共子串存在且唯一。
 
-数据范围： 1 \le |str1|,|str2| \le 50001≤∣str1∣,∣str2∣≤5000
-要求： 空间复杂度 O(n^2)O(n
-2
- )，时间复杂度 O(n^2)O(n
-2
- )
+要求： 空间复杂度 O(n^2)，时间复杂度 O(n^2)
+
 示例1
 输入：
 "1AB2345CD","12345EF"
-复制
 返回值：
 "2345"
-复制
-备注：
-1 \leq |str_1|, |str_2| \leq 5\,0001≤∣str
-1
-​
- ∣,∣str
-2
-​
- ∣≤5000
 
 */
 
 /*
-
 双指针 + 中心化扩散
 class Solution:
     def LCS(self , str1: str, str2: str) -> str:
@@ -127,7 +112,7 @@ func LCS(str1 string, str2 string) string {
 
 }
 
-func main() {
+func main10() {
 	lcs := LCS("1AB2345CD", "12345EF")
 	//lcs := LCS("22222", "22222")
 	fmt.Println(lcs)
