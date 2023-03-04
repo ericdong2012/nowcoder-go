@@ -63,7 +63,6 @@ step 3：（状态转移） 然后分别遍历str与pattern的每个长度，开
 不满足上述条件，只能不匹配，让前一个字符出现0次，dp[i][j]=dp[i][j−2]
 */
 
-
 // 画图看几个大的地方，几个关键的值，上下左右，对角线，i-2
 func match(str string, pattern string) bool {
 	m, n := len(str), len(pattern)
@@ -74,22 +73,37 @@ func match(str string, pattern string) bool {
 	dp[0][0] = true
 	for i := 0; i <= m; i++ {
 		for j := 1; j <= n; j++ {
+			/*
+				0 a a d
+			  0 1 0 0 0
+			  c 0 0
+			  * 1 0         (此处a 要和 * 相等，则a 和他的前一位相等)
+			  a 0 1 0
+			  * 1 1 1
+			  d 0
+
+			  dp[i][j] = dp[i-1][j-1]
+			  dp[i][j] = dp[i-1][j] | dp[i][j-2]   纵 和 横
+
+			*/
 			if pattern[j-1] != '*' {
+				// 相等或者是 pattern[j-1] == '.' 则转化为判断子问题  dp[i-1][j-1]
 				if i > 0 && (str[i-1] == pattern[j-1] || pattern[j-1] == '.') {
 					dp[i][j] = dp[i-1][j-1]
 				}
 			} else {
 				// 有 '*' 的情况下
-				// * 当做0使用 横向，适用于i==0
+				// * 当做0使用( 把前面字符消除掉 ) 横向，也适用于i==0
 				if j > 1 {
 					dp[i][j] = dp[i][j-2]
 				}
-				// * 当做1次或者多次用
+
+				// * 当做1次或者多次用(前面的字符出现1次或者多次)
 				// i>0 && j >1 后续用在i-1, j-2
-				// dp[i-1][j] 存在并且 str[i-1] == pattern[j-2]
-				// 或者dp[i-1][j] 存在并且 pattern[j-2] == '.'
+				// dp[i-1][j]  前一位匹配
+				// 首先判断 * 与 当前i 对应的字符进行匹配，然后保留 b* 这个整体，然后i 转移到i-1，再看i-i 与 b* 是否匹配
 				if i > 0 && j > 1 && dp[i-1][j] && (str[i-1] == pattern[j-2] || pattern[j-2] == '.') {
-					dp[i][j] = dp[i-1][j] // 注意这里不是 dp[i-1][j-2]
+					dp[i][j] = dp[i-1][j]
 				}
 			}
 		}

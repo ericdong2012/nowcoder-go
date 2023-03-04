@@ -13,9 +13,7 @@ https://www.nowcoder.com/practice/ce73540d47374dbe85b3125f57727e1e?tpId=295&tqId
 给出的字符串为"25525522135",
 返回["255.255.22.135", "255.255.221.35"]. (顺序没有关系)
 
-数据范围：字符串长度 0 \le n \le 120≤n≤12
-要求：空间复杂度 O(n!)O(n!),时间复杂度 O(n!)O(n!)
-
+要求：空间复杂度 O(n!),时间复杂度 O(n!)
 注意：ip地址是由四段数字组成的数字序列，格式如 "x.x.x.x"，其中 x 的范围应当是 [0,255]。
 
 示例1
@@ -24,26 +22,22 @@ https://www.nowcoder.com/practice/ce73540d47374dbe85b3125f57727e1e?tpId=295&tqId
 返回值：
 ["255.255.22.135","255.255.221.35"]
 
-
 示例2
 输入：
 "1111"
-复制
 返回值：
 ["1.1.1.1"]
-复制
+
 示例3
 输入：
 "000256"
-复制
 返回值：
 "[]"
-
 */
 
 /*
 
-递归+回溯剪枝
+递归 + 回溯剪枝
 
 枚举
 
@@ -105,40 +99,42 @@ func restoreIpAddresses(s string) []string {
 	// write code here
 	res := []string{}
 	n := len(s)
+	// 从1开始
 	i := 1
+	// 第二位
+	// i < 4 && i < n-2 是因为第一位最长三位，后面三个数字最短也要3位，预留
 	for i < 4 && i < n-2 {
 		j := i + 1
+		// 第三位
 		for j < i+4 && j < n-1 {
 			k := j + 1
+			// 第四位
 			for k < j+4 && k < n {
-				// 判断最后一位长度
+				// 判断最后一位长度， 如果预留给第四位的大于4， 则k要往前走
 				if n-k >= 4 {
 					k++
 					continue
 				}
-
 				// 截取
 				a := s[0:i]
 				b := s[i:j]
 				c := s[j:k]
 				d := s[k:n]
-
-				// ip每个不大于255
+				// ip中的每个位不大于255
 				a1, _ := strconv.Atoi(a)
 				b1, _ := strconv.Atoi(b)
 				c1, _ := strconv.Atoi(c)
 				d1, _ := strconv.Atoi(d)
-
 				if a1 > 255 || b1 > 255 || c1 > 255 || d1 > 255 {
 					k++
 					continue
 				}
 				// 排除先导0
 				if (len(a) != 1 && a[0] == '0') || (len(b) != 1 && b[0] == '0') || (len(c) != 1 && c[0] == '0') || (len(d) != 1 && d[0] == '0') {
-					k += 1
+					k ++
 					continue
 				}
-
+				// 拼接，添加到结果中
 				temp := a + "." + b + "." + c + "." + d
 				res = append(res, temp)
 				k++

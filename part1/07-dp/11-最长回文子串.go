@@ -9,33 +9,25 @@ https://www.nowcoder.com/practice/b4525d1d84934cf280439aeecc36f4af?tpId=295&tqId
 
 描述
 对于长度为n的一个字符串A（仅包含数字，大小写英文字母），请设计一个高效算法，计算其中最长回文子串的长度。
+进阶:  空间复杂度 O(n)，时间复杂度 O(n)
 
-
-数据范围： 1 \le n \le 10001≤n≤1000
-要求：空间复杂度 O(1)O(1)，时间复杂度 O(n^2)O(n
-2
- )
-进阶:  空间复杂度 O(n)O(n)，时间复杂度 O(n)O(n)
 示例1
 输入：
 "ababc"
-复制
 返回值：
 3
-复制
-说明：
+说明
 最长的回文子串为"aba"与"bab"，长度都为3
+
 示例2
 输入：
 "abbba"
-复制
 返回值：
 5
-复制
+
 示例3
 输入：
 "b"
-复制
 返回值：
 1
 
@@ -53,6 +45,9 @@ step 4：我们比较完每个字符为中心的最长回文子串，取最大�
 
 func getLongestPalindrome(A string) int {
 	// write code here
+	if len(A) == 0 {
+		return 0
+	}
 	maxLen := 1
 	for i := 0; i < len(A); i++ {
 		// 偶数

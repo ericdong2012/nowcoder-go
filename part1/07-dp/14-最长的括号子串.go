@@ -31,10 +31,9 @@ https://www.nowcoder.com/practice/45fd68024a4c4e97a8d6c45fc61dc6ad?tpId=295&tqId
 */
 
 /*
-栈
+思路一： 栈
+思路二： 动态规划
 
-
-动态规划
 class Solution:
     def longestValidParentheses(self , s: str) -> int:
         res = 0
@@ -67,24 +66,26 @@ class Solution:
 */
 
 func longestValidParentheses(s string) int {
+	// 栈
 	res := 0
 	// 存左括号索引
 	stack := []int{}
 	start := -1
 	for i := 0; i < len(s); i++ {
 		if s[i] == ')' {
-			//如果右括号时栈为空，不合法，设置为结束位置
+			//如果右括号时, 栈为空，不合法(说明此时首位是 右括号 )，start 往前移动到i
 			if len(stack) == 0 {
 				start = i
 			} else {
-				//弹出左括号
+				// 栈不为空
+				// 弹出左括号
 				stack = stack[:len(stack)-1]
-				//栈中还有左括号，说明右括号不够，减去栈顶位置就是长度
+				//栈中还有左括号，则当前行号减去栈顶位置就是长度
 				if len(stack) != 0 {
 					index := stack[len(stack)-1]
 					res = max3(res, i-index)
 				} else {
-					//栈中没有括号，说明左右括号行号，减去上一次结束的位置就是长度
+					// 栈中没有左括号，为空，说明当前行号减去上一次结束的位置就是长度
 					/* ()()   /   )()  */
 					res = max3(res, i-start)
 				}

@@ -15,13 +15,12 @@ https://www.nowcoder.com/practice/5164f38b67f846fb8699e9352695cd2f?tpId=295&tqId
 [6,3,1,5,2,3,7]
 返回值：
 4
-
 说明：
 该数组最长上升子序列为 [1,2,3,7] ，长度为4
 
-
 */
 
+// 解法1
 //func LIS(arr []int) int {
 //	// write code her
 //	maxV := 0
@@ -48,24 +47,29 @@ https://www.nowcoder.com/practice/5164f38b67f846fb8699e9352695cd2f?tpId=295&tqId
 //}
 
 func LIS(arr []int) int {
-	// write code her
-	maxV := 0
+	if len(arr) == 0 {
+		return 0
+	}
+	// 有些特殊情况 比如：[0], 所以初始化为1
+	maxV := 1
+	// 初始化并赋值为1
 	dp := make([]int, len(arr))
 	for i := 0; i < len(arr); i++ {
 		dp[i] = 1
 	}
-
+	// 双指针  i是右指针, j是左指针, 可以回溯
 	for i := 1; i < len(arr); i++ {
 		for j := 0; j < i; j++ {
-			// 后面的元素比前面的大， 并且dp 小于等于前一个
-			if arr[i] > arr[j] && dp[i] < dp[j]+1 {
+			// 后面的元素比前面的大
+			if arr[i] > arr[j] {
 				// 后面元素长度 +1
-				dp[i] = dp[j] + 1
+				dp[i] = max4(dp[i], dp[j]+1)
 				// 比较下长度
 				maxV = max4(maxV, dp[i])
 			}
 		}
 	}
+
 	return maxV
 }
 
