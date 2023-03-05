@@ -48,7 +48,7 @@ func Mirror(root *TreeNode) *TreeNode {
 	return root
 }
 
-func main() {
+func main10() {
 	// test
 	node := TreeNode{
 		Val: 3,

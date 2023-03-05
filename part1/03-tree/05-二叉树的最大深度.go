@@ -64,7 +64,7 @@ func maxDepth(root *TreeNode) int {
 	return height
 }
 
-func main() {
+func main05() {
 	// test
 	node := TreeNode{
 		Val: 3,

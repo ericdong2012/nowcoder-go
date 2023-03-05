@@ -45,7 +45,7 @@ func helper2(nd *TreeNode, res *[]int) {
 	helper2(nd.Right, res)
 	*res = append(*res, nd.Val)
 }
-func main() {
+func main03() {
 	// test
 	node := TreeNode{
 		Val:  1,

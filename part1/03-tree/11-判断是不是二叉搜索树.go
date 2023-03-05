@@ -104,7 +104,7 @@ func isValidBST(root *TreeNode) bool {
 	if !isValidBST(root.Left) {
 		return false
 	}
-	// 判断右边节点
+	// 判断右边
 	if root.Val < pre {
 		return false
 	}
@@ -112,7 +112,7 @@ func isValidBST(root *TreeNode) bool {
 	return isValidBST(root.Right)
 }
 
-func main() {
+func main11() {
 	// 本地无法完成自测
 	node := TreeNode{
 		Val: 3,

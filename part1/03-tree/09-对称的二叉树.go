@@ -111,7 +111,7 @@ func reverse2(temp []int) bool {
 	return true
 }
 
-func main() {
+func main09() {
 	// test
 	node := TreeNode{
 		Val: 3,

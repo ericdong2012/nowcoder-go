@@ -83,7 +83,7 @@ func Deserialize(s string) *TreeNode {
 	return fn()
 }
 
-func main() {
+func main16() {
 	node := TreeNode{
 		Val: 3,
 		Left: &TreeNode{

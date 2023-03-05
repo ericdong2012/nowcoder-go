@@ -113,7 +113,7 @@ func inorder(cur *TreeNode) {
 	inorder(cur.Right)
 }
 
-func main() {
+func main08() {
 	// test
 	node := TreeNode{
 		Val: 3,

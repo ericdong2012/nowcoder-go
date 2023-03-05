@@ -133,7 +133,7 @@ func levelOrder(root *TreeNode) [][]int {
 	return res
 }
 
-func main() {
+func main04() {
 	// test
 	node := TreeNode{
 		Val: 3,

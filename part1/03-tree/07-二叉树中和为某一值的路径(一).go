@@ -70,7 +70,7 @@ func hasPathSum(root *TreeNode, sum int) bool {
 	return hasPathSum(root.Left, sum) || hasPathSum(root.Right, sum)
 }
 
-func main() {
+func main07() {
 	// test
 	node := TreeNode{
 		Val: 3,

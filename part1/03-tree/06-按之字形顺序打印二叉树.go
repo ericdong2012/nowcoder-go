@@ -99,7 +99,7 @@ func reverse(ans []int) {
 	}
 }
 
-func main() {
+func main06() {
 	// test
 	node := TreeNode{
 		Val: 8,
