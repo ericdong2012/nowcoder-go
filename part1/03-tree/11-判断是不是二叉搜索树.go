@@ -14,7 +14,7 @@ https://www.nowcoder.com/practice/a69242b39baf45dea217815c7dedb52b?tpId=295&tqId
 给定一个二叉树根节点，请你判断这棵树是不是二叉搜索树。
 
 二叉搜索树: 每个节点的左子树上的所有节点均小于当前节点且右子树上的所有节点均大于当前节点。
-它或者是一棵空树，或者是具有下列性质的 二叉树 ： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点 的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值
+它或者是一棵空树，或者是具有下列性质的 二叉树 ： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值
 
 示例1
 输入：
@@ -27,8 +27,6 @@ false
 {2,1,3}
 返回值：
 true
-
-
 
 */
 
@@ -97,6 +95,7 @@ func isValidBST(root *TreeNode) bool {
 		                return False
 		        return True
 	*/
+	// 中序遍历中拿到相应的值，做判断
 	if root == nil {
 		return true
 	}
@@ -104,11 +103,13 @@ func isValidBST(root *TreeNode) bool {
 	if !isValidBST(root.Left) {
 		return false
 	}
-	// 判断右边
+	// 此时左子节点满足要求，中序 判断root.Val 跟上一次的结果(上一次的根节点是当前的左节点)
 	if root.Val < pre {
 		return false
 	}
+	// 拿到中间的值
 	pre = root.Val
+	// 判断右边
 	return isValidBST(root.Right)
 }
 

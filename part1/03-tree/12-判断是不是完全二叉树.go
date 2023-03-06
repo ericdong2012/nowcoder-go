@@ -47,11 +47,16 @@ false
 
 func isCompleteTree(root *TreeNode) bool {
 	// write code here
+	// 层序遍历的中间结果
 	stack := []*TreeNode{root}
+	//  左子树并且右子树为空，叶子节点，flag标识为true
 	flag := false
 	for stack != nil {
 		var newStack []*TreeNode
 		for _, v := range stack {
+			// 左子树并且右子树为空，叶子节点，flag标识为true 同时 v.Left != nil || v.Right != nil 前后矛盾
+			// 左子树空，右子树不为空
+			// 结果为false
 			if (flag && (v.Left != nil || v.Right != nil)) || (v.Left == nil && v.Right != nil) {
 				return false
 			}
@@ -61,8 +66,8 @@ func isCompleteTree(root *TreeNode) bool {
 			if v.Right != nil {
 				newStack = append(newStack, v.Right)
 			}
-			// 产生了叶子节点
-			if v.Left == nil || v.Right == nil {
+			// 左子树并且右子树为空，叶子节点，flag标识为true
+			if v.Left == nil && v.Right == nil {
 				flag = true
 			}
 		}
@@ -72,23 +77,27 @@ func isCompleteTree(root *TreeNode) bool {
 	return true
 }
 
-func main12() {
+func main() {
 	node := TreeNode{
-		Val: 3,
+		Val: 1,
 		Left: &TreeNode{
-			Val:   1,
-			Left:  nil,
-			Right: nil,
-		},
-		Right: &TreeNode{
-			Val: 7,
+			Val: 2,
 			Left: &TreeNode{
-				Val:   6,
+				Val:   4,
 				Left:  nil,
 				Right: nil,
 			},
 			Right: &TreeNode{
-				Val:   8,
+				Val:   5,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		Right: &TreeNode{
+			Val:  3,
+			Left: nil,
+			Right: &TreeNode{
+				Val:   7,
 				Left:  nil,
 				Right: nil,
 			},
