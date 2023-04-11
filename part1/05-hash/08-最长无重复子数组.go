@@ -12,7 +12,7 @@ https://www.nowcoder.com/practice/b56799ebfd684fb394bd315e89324fb4?tpId=117&tqId
 
 */
 
-// 09-doublepointer/07-最长无重复子数组.go
+// 09-doublepointer/最长无重复子数组.go
 func maxLength(arr []int) int {
 	//// 双指针
 	//n := len(arr)
