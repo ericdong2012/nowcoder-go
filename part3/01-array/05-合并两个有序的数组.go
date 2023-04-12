@@ -33,51 +33,56 @@ A数组为[4,5,6]，B数组为[1,2,3]，后台程序会预先将A扩容为[4,5,6
 
 func merge(A []int, m int, B []int, n int) {
 	// write code here
-	// 实际运行会报错
-	// 题目限制太多， 实际意义不到
-	index := m + n - 1
+	// 这个代码，线上跑报错
+	index := m + n
+	result := make([]int, m+n)
 	for m > 0 && n > 0 {
 		// 先比较最后一位
 		if A[m-1] >= B[n-1] {
-			A[index] = A[m-1]
+			result[index-1] = A[m-1]
 			m--
 		} else {
-			A[index] = B[n-1]
+			result[index-1] = B[n-1]
 			n--
 		}
 		index--
 	}
 	//B数组依然有剩余
-	for n > 0 {
-		A[index] = B[n-1]
+	for n > 0 && index > 0 {
+		result[index-1] = B[n-1]
 		n--
 		index--
 	}
 
-	fmt.Println(A)
+	for m > 0 && index > 0 {
+		result[index-1] = A[m-1]
+		m--
+		index--
+	}
 
-	//if m==0 || n == 0{
-	//	copy(A,B)
-	//}else {
-	//	for k:=m+n-1;k>=0;k--{
-	//		if A[m-1] > B[n-1] {
-	//			A[k]=A[m-1]
-	//			m--
-	//			if m==0 {
-	//				copy(A,B[:n])
-	//				break
-	//			}
-	//		} else {
-	//			A[k]=B[n-1]
-	//			n--
-	//			if n==0 {
-	//				break
-	//			}
-	//		}
-	//	}
-	//}
+	fmt.Println(result)
+
+	// index := m + n - 1
+	// for m > 0 && n > 0 {
+	// 	if A[m-1] >= B[n-1] {
+	// 		A[index] = A[m-1]
+	// 		m--
+	// 	} else {
+	// 		A[index] = B[n-1]
+	// 		n--
+	// 	}
+	// 	index--
+	// }
+	// //B数组依然有剩余
+	// for n > 0 {
+	// 	A[index] = B[n-1]
+	// 	n--
+	// 	index--
+	// }
+
 }
 
 func main() {
-	merge([]int{1, 2, 3}, 3, []int{2, 5, 6}, 3)
+	//merge([]int{2, 5, 6}, 3, []int{1, 2, 3}, 3)
+	merge([]int{}, 0, []int{1}, 1)
 }

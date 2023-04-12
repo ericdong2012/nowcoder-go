@@ -32,17 +32,31 @@ https://www.nowcoder.com/practice/102586387caa4afcbad6f96affce9780?tpId=117&tqId
 
 func moveZeroes(nums []int) []int {
 	// write code here
+	// 解法1
 	// 零的个数
-	x := 0
-	for i, v := range nums {
-		if v == 0 {
-			x++
-		} else if x != 0 {
-			// 例如 走到3
-			// 将前面的地方用当前非零数填充
-			nums[i-x] = nums[i]
-			// 将当前地方用0填充
-			nums[i] = 0
+	//x := 0
+	//for i, v := range nums {
+	//	if v == 0 {
+	//		x++
+	//	} else if x != 0 {
+	//		// 例如 走到3
+	//		// 将前面的地方用当前非零数填充
+	//		nums[i-x] = nums[i]
+	//		// 将当前地方用0填充
+	//		nums[i] = 0
+	//	}
+	//}
+
+	// 解法2
+	if nums == nil {
+		return nil
+	}
+
+	j := 0
+	for _, i := range nums {
+		if nums[i] != 0 {
+			nums[j], nums[i] = nums[i], nums[j]
+			j++
 		}
 	}
 

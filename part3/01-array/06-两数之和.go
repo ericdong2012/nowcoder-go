@@ -14,13 +14,15 @@ package main
 */
 
 func twoSum(nums []int, target int) []int {
-	m := make(map[int]int)
-	for i := 0; i < len(nums); i++ {
+	result := make(map[int]int)
+	for _, i := range nums {
 		another := target - nums[i]
-		if _, ok := m[another]; ok {
-			return []int{m[another], i}
+		if _, ok := result[another]; ok {
+			// 为啥temp[target - nums[i] 在前，因为之前已经存在于temp中
+			return []int{result[another], i}
+		} else {
+			result[nums[i]] = i
 		}
-		m[nums[i]] = i
 	}
-	return nil
+	return []int{}
 }

@@ -43,13 +43,14 @@ func jumpFloor(number int) int {
 	//if number < 3 {
 	//	return number
 	//}
-	a, b := 0, 1
+	step1, step2 := 0, 1
 	for i := 0; i < number; i++ {
-		c := a + b
-		a = b
-		b = c
+		//c := step1 + step2
+		//step1 = step2
+		//step2 = c
+		step1, step2 = step2, step1 + step2
 	}
-	return b
+	return step2
 }
 
 func main02() {

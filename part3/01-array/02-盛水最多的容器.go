@@ -76,7 +76,7 @@ class Solution:
         return res
 */
 
-// 双指针， 最大，最小
+// 双指针
 func maxArea(height []int) int {
 	// write code here
 	if len(height) < 2 {
@@ -85,14 +85,12 @@ func maxArea(height []int) int {
 	res := 0
 	left, right := 0, len(height)-1
 	for left <= right {
-		// 计算公式： 较小的高度 * 底边
-		capacity := min(height[left], height[right]) * (right - left)
-		// 取最大值
-		res = max(res, capacity)
 		// 指针移动
 		if height[left] <= height[right] {
+			res = max(res, height[left] * (right - left) )
 			left++
 		} else {
+			res = max(res, height[right] * (right - left) )
 			right--
 		}
 	}
@@ -100,15 +98,6 @@ func maxArea(height []int) int {
 	return res
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-
-	} else {
-		return b
-	}
-
-}
 
 func max(a, b int) int {
 	if a > b {

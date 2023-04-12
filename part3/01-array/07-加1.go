@@ -11,16 +11,26 @@ package main
 */
 
 func plusOne(digits []int) []int {
-	for i := len(digits) - 1; i >= 0; i-- {
+	// 最后一位不为9
+	if digits[len(digits)-1] != 9 {
+		digits[len(digits)-1] += 1
+		return digits
+	}
+
+	// 最后一位为9, 将最后一位置为0， 判断其他位
+	digits[len(digits)-1] = 0
+	// 倒序，从倒数第二位开始遍历
+	for i := len(digits) - 2; i >= 0; i-- {
 		digits[i]++
+		// 倒数第二位加1后不是10
 		if digits[i] != 10 {
-			// no carry
 			return digits
 		}
-		// carry
+		// 倒数第二位加1后是10，继续遍历
 		digits[i] = 0
 	}
-	// all carry
+	// 全是9, 其他位已经在上面处理过，变成0, 在最前面添加1
+	// 第一位变成1， 并在后面加上0
 	digits[0] = 1
 	digits = append(digits, 0)
 	return digits
