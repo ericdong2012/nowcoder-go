@@ -85,6 +85,7 @@ class Solution:
 
         min_index = len(s) - 1
         for ch in "abcdefghijklmnopqrstuvwxyz":
+            # 第一次索引和最后一次索引相等，说明是唯一
             i = s.find(ch)
             if i != -1 and i == s.rfind(ch):
                 min_index = min([min_index, i])

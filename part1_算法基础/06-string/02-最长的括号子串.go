@@ -42,30 +42,26 @@ step 5：循环中最后维护子串长度最大值。
 
 func longestValidParentheses(s string) int {
 	// 记录索引
-	stack := []int{}
-	count := 0
-	start := -1
+	stack := []int{-1}
+	result := 0
 	for i := 0; i < len(s); i++ {
 		if s[i] == ')' {
-			// stack为空, 记录下起始位置
-			if len(stack) == 0 {
-				start = i
+			// 移除一个
+			stack = stack[:len(stack)-1]
+			// 有元素
+			if len(stack) != 0 {
+				index := stack[len(stack)-1]
+				result = max(result, i-index)
 			} else {
-				// 移除最后的一个左括号
-				stack = stack[:len(stack)-1]
-				if len(stack) != 0 {
-					index := stack[len(stack)-1]
-					count = max(count, i-index)
-				} else {
-					count = max(count, i-start)
-				}
+				// 没有元素, 记录当前位置
+				result = max(result, i)
 			}
 		} else {
 			//  '('， 记录此时的索引
 			stack = append(stack, i)
 		}
 	}
-	return count
+	return result
 }
 
 func max(a, b int) int {

@@ -63,6 +63,7 @@ public boolean check(char[] chars, int start, int len){
 
 */
 
+// 二分思想
 func solve2(a string) int {
 	// write code here
 	n := len(a)
@@ -72,16 +73,16 @@ func solve2(a string) int {
 	res := 0
 	// 从中间往前走(中间找不到，只能往前走)
 	for i := n / 2; i > 0; i-- {
-		// 从前往中间走
+		// 从前往后走, 往中间压缩
 		for j := 0; j < n-i; j++ {
-			// 后面是 j + i
-			// abab
+			// 比如: abab， 如果 j 和 j+i 相等， 结果加1
 			if a[j] == a[j+i] {
 				res++
 			} else {
+				// 比如: abac， 如果 j 和 j+i 不等， 结果要置0，  i= 2, j= 1, 此时b 不等于c
 				res = 0
 			}
-			// 如果长度和索引相等， 结果乘以2
+			// 如果长度和索引相等， 结果乘以2, 有重复的， 且 i = n /2, 此次res已经是最大的，所以直接返回 （ abab    i=2， j=0,1 发现res == i ）
 			if res == i {
 				return res * 2
 			}

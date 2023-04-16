@@ -39,29 +39,36 @@ false
 该题和 heap&stack&queue 中的第十题一样的， 并且解法更好
 */
 func isValid(s string) bool {
-	stack := []byte{}
-	for i := 0; i < len(s); i++ {
-		switch s[i] {
-		case ')':
-			if len(stack) == 0 || stack[len(stack)-1] != '(' {
-				return false
-			}
-			stack = stack[:len(stack)-1]
-		case '}':
-			if len(stack) == 0 || stack[len(stack)-1] != '{' {
-				return false
-			}
-			stack = stack[:len(stack)-1]
-		case ']':
-			if len(stack) == 0 || stack[len(stack)-1] != '[' {
-				return false
-			}
-			stack = stack[:len(stack)-1]
+	stack := make([]rune, 0)
+	for _, c := range s {
+		switch c {
+		// 以下case 只压栈
+		case '(':
+			stack = append(stack, ')')
+		case '[':
+			stack = append(stack, ']')
+		case '{':
+			stack = append(stack, '}')
 		default:
-			stack = append(stack, s[i])
+			// s 是个“]” 等特殊情况
+			if len(stack) == 0 {
+				return false
+			}
+			// 当前字符跟col中最后一个做比较，相等则弹栈， 否则false
+			//if rune(c) == stack[len(stack)-1] {
+			//	stack = stack[:len(stack)-1]
+			//} else {
+			//	return false
+			//}
+			lastV := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			if c != lastV {
+				return false
+			}
 		}
 	}
 
+	// 全部弹栈完成，如果为空，说明是符合要求的
 	return len(stack) == 0
 }
 

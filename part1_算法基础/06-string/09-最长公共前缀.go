@@ -44,21 +44,19 @@ class Solution:
 
 */
 
+// 和选择排序 类似
 func longestCommonPrefix(strs []string) string {
-	// write code here
-	// ["abca","abc","abca","abc","abcc"]
 	if len(strs) == 0 {
 		return ""
 	}
-	for i := 0; i < len(string(strs[0])); i++ {
+
+	for i := 0; i < len(strs[0]); i++ {
 		temp := string(strs[0])[i]
 		for j := 1; j < len(strs); j++ {
-			// 如果i 和 strs[j] 长度相等(某个字符串走到头了) 或者  strs[j] 的第i位 和 strs[0]的第i位 不相等， 则strs[0] 要缩短
-			if i == len(string(strs[j])) || string(strs[j])[i] != temp {
+			if i == len(strs[j]) || string(strs[j])[i] != temp {
 				return string(strs[0])[:i]
 			}
 		}
 	}
-	// 遍历完，则说明strs[0] 就是最长公共前缀
 	return string(strs[0])
 }

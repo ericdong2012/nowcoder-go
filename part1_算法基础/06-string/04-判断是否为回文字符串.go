@@ -42,11 +42,11 @@ func judge(str string) bool {
 	// write code here
 	left, right := 0, len(str) -1
 	for left <= right {
-		if str[left] == str[right] {
+		if str[left] != str[right] {
+			return false
+		}else {
 			left ++
 			right --
-		}else {
-			return false
 		}
 	}
 	return true
