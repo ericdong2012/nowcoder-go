@@ -26,7 +26,7 @@ T ="XYZ"T="XYZ"
 
 */
 
-// 该题和09-doublepointer 中的最小覆盖子串是同一题
+// 该题和09-doublepoint 中的最小覆盖子串是同一题
 // 滑动窗口， 哈希表
 // 字母表是已知的，所以可以建立hash表
 func minWindow(S string, T string) string {
