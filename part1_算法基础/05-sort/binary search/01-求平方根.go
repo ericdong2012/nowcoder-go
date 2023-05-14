@@ -31,7 +31,7 @@ func sqrt(x int) int {
 		return x
 	}
 	mid := x / 2
-	fmt.Println(mid)
+	//fmt.Println(mid)
 	// 大于10
 	for mid*mid > x {
 		mid = mid / 2
@@ -40,6 +40,7 @@ func sqrt(x int) int {
 	for mid*mid <= x {
 		mid = mid + 1
 	}
+
 	return mid - 1
 }
 
