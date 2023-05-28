@@ -35,16 +35,26 @@ class Solution:
         # method2: 判断最右边的1
         if n == 0:
             return False
-        # n; 8     01000
-        # -n: -8   11000
+        # n; 8     0 1000
+        # -n: -8   1 1000    (1 0111 + 1)
+
+        # 7 & -7
+        # 0000 0111
+        # 1111 1001 (00000111这个结果是7的结果，然后各位取反 11111000 末尾加1 11111001这个就是-7的二进制数了)
+        # 00000111
         return n & (-n) == n
 
         # method3: 去除最右边的1
         # https://leetcode-cn.com/problems/power-of-two/solution/power-of-two-er-jin-zhi-ji-jian-by-jyd/
         # if n == 0 :
         #     return False
-        # n; 8     01000
-        # -n: -8   00100
+        # n;   8     01000
+        # n-1: 7     00100
+
+        # 7 & 6
+        # 111
+        # 110
+        # 110 不等与0
         # return n & (n -1 ) == 0
 
 

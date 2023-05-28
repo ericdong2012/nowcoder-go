@@ -10,9 +10,8 @@ https://www.nowcoder.com/practice/389fc1c3d3be4479a154f63f495abff8?tpId=117&tqId
 描述
 一个整型数组里除了两个数字只出现一次，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。
 
-数据范围：数组长度 2\le n \le 10002≤n≤1000，数组中每个数的大小 0 < val \le 10000000<val≤1000000
 要求：空间复杂度 O(1)，时间复杂度 O(n)
-提示：输出时按非降序排列。
+提示：输出时按非降序排列
 
 示例1
 输入：
@@ -66,6 +65,64 @@ func FindNumsAppearOnce(array []int) []int {
 	}
 	return []int{a, b}
 }
+
+/*
+package main
+
+import "fmt"
+
+func findSingleNumbers(arr []int) (int, int) {
+    // 存储所有数字的异或结果
+    xorResult := 0
+
+    for _, num := range arr {
+        xorResult ^= num
+    }
+
+    // 找到第一个不同的位
+    firstDiffBit := 1
+    for (xorResult & firstDiffBit) == 0 {
+        firstDiffBit <<= 1
+    }
+
+    // 根据第一个不同的位把数组分成两组，分别执行异或操作
+    a, b := 0, 0
+    for _, num := range arr {
+        if (num & firstDiffBit) == 0 {
+            a ^= num
+        } else {
+            b ^= num
+        }
+    }
+
+    return a, b
+}
+
+func main() {
+    arr := []int{2, 4, 6, 8, 10, 2, 6, 10}
+    singleNum1, singleNum2 := findSingleNumbers(arr)
+    fmt.Println(singleNum1, singleNum2)
+}
+
+*/
+
+/*
+func FindNumsAppearOnce(array []int) []int {
+	tempMap := make(map[int]int)
+	for i := 0; i < len(array); i++ {
+		tempMap[array[i]]++
+	}
+	result := []int{}
+	for k, v := range tempMap {
+		if v == 1 {
+			result = append(result, k)
+		}
+	}
+
+	return result
+}
+
+*/
 func main() {
 	once := FindNumsAppearOnce([]int{1, 4, 1, 6})
 	fmt.Println(once)

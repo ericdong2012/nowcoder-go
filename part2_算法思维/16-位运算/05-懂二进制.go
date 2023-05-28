@@ -13,7 +13,6 @@ https://www.nowcoder.com/practice/120e406db3fd46f09d55d59093f13dd8?tpId=117&tqId
 3,5
 返回值：
 2
-
 说明：
 3的二进制为11， 5的二进制为101，总共有2位不同
 
@@ -39,15 +38,33 @@ func countBitDiff(m int, n int) int {
 		            r &= (r-1)
 		            res += 1
 		        return res
-	*/
 
+	*/
+	/*
+
+	3, 5
+	011
+	101
+	110 （3^5 = 6 ）
+
+	110
+	101 (5)
+	100 4
+
+	100 4
+	011 3
+	000 break
+
+
+	*/
 	res := 0
 	//先异或，得到所有不同位 （r = m^n）
 	temp := m ^ n
 	for temp > 0 {
 		res++
-		// 消除最后一位1
+		// 消除最后一位1(其他位不一定，但是最后一位一定会变为0)
 		temp &= (temp - 1)
 	}
+
 	return res
 }

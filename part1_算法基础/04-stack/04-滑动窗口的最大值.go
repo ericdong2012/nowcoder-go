@@ -83,6 +83,7 @@ func maxInWindows(num []int, size int) []int {
 				maxValue = num[i]
 			}
 		}
+
 		res = append(res, maxValue)
 	}
 

@@ -43,13 +43,15 @@ func solve(M int, N int) string {
 		// 算余数
 		mod := M % N
 		var a byte
+		// 小于10 进制都从上面走
 		if mod <= 9 {
 			// 自动偏移
 			a = '0' + byte(mod)
 		} else {
 			a = 'A' + byte(mod-10)
 		}
-		// 大于给定进制数的，还需继续处理
+		//fmt.Println(a)
+		// 大于给定进制数的，还需继续处理, 有前后顺序, string(a) 在前，之前的结果在后
 		ret = string(a) + ret
 		// 算进制数
 		M = M / N
@@ -58,6 +60,7 @@ func solve(M int, N int) string {
 	if sign {
 		ret = "-" + ret
 	}
+
 	return ret
 }
 

@@ -12,7 +12,6 @@ https://www.nowcoder.com/practice/5d3d74c3bf7f4e368e03096bb8857871?tpId=117&tqId
 已知 arr 中只有 1 个数出现一次，其他的数都出现 k 次。
 请返回只出现了 1 次的数。
 
-
 进阶：时间复杂度 O(32n)，空间复杂度 O(1)
 
 
@@ -25,7 +24,6 @@ https://www.nowcoder.com/practice/5d3d74c3bf7f4e368e03096bb8857871?tpId=117&tqId
 示例2
 输入：
 [2,2,1],2
-
 返回值：
 1
 
@@ -48,6 +46,23 @@ func foundOnceNumber(arr []int, k int) int {
 	}
 	return res
 }
+
+/*
+func foundOnceNumber(arr []int, k int) int {
+	tempMap := make(map[int]int)
+	for i := 0; i < len(arr); i++ {
+		tempMap[arr[i]]++
+	}
+	for i, v := range tempMap {
+		if v%k != 0 {
+			return i
+		}
+	}
+
+	return -1
+}
+
+*/
 
 func main() {
 	number := foundOnceNumber([]int{5, 4, 1, 1, 5, 1, 5}, 3)

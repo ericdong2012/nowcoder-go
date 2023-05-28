@@ -66,6 +66,21 @@ func singleNumber(nums []int) int {
 	return int(ans)
 }
 
+/*
+func singleNumber(nums []int) int {
+	tempMap := make(map[int]int)
+	for i := 0; i < len(nums); i++ {
+		tempMap[nums[i]]++
+	}
+	for k, v := range tempMap {
+		if v == 1 {
+			return k
+		}
+	}
+
+	return -1
+}
+*/
 func main() {
 	number := singleNumber([]int{2, 2, 1, 2})
 	fmt.Println(number)
