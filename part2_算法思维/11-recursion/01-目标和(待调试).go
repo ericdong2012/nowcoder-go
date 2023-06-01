@@ -36,25 +36,25 @@ https://www.nowcoder.com/practice/7fc06e2162f048658252fac542fcb1e8?tpId=117&tqId
 
 */
 func findTargetSumWays(nums []int, target int) int {
-	// write code here
 	n := len(nums)
 	if n == 0 {
 		return 0
 	}
 	count := 0
-	var dfs func(idx int, rest int)
-	dfs = func(idx int, rest int) {
+	var dfs func(idx int, target int)
+	dfs = func(idx int, target int) {
 		// 索引走到最后，剩余的数为0, 个数加一， 并返回
 		if idx == n {
-			if rest == 0 {
+			if target == 0 {
 				count += 1
 			}
 			return
 		}
 		// 加号
-		dfs(idx+1, rest-nums[idx])
+		dfs(idx+1, target-nums[idx])
+		// idx = 3, target = 0 运行进入 idx = 4, target = - 2, 跳出保存的上一次的结果 idx = 3, target = 0
 		// 减号
-		dfs(idx+1, rest+nums[idx])
+		dfs(idx+1, target+nums[idx])
 	}
 	dfs(0, target)
 	return count

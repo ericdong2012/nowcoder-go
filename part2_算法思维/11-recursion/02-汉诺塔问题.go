@@ -14,20 +14,17 @@ https://www.nowcoder.com/practice/7d6cab7d435048c4b05251bf44e9f185?tpId=117&tqId
 
 给定一个 `int n` ，表示有 n 个圆盘。请返回一个 `string` 数组，其中的元素依次为每次移动的描述。描述格式为： `move from [left/mid/right] to [left/mid/right]`。
 
-数据范围：1\le n \le 161≤n≤16
-要求：时间复杂度 O(3^n)O(3
-n
- ) ， 空间复杂度 O(3^n)O(3
-n
- )
-示例1
+
+
 输入：
 2
-
 返回值：
 ["move from left to mid","move from left to right","move from mid to right"]
 
 */
+
+
+
 
 /*
 
@@ -37,10 +34,12 @@ n
 
 仅需要将其当作n-1再利用旁边另一个塔即可实现递归
 
+
+https://zhuanlan.zhihu.com/p/501020136
 汉诺塔问题的解决方案可以分为3步：
-1、把n-1个盘子从left 借助 right，搬到mid柱子上
-2、把剩下最大的那一个盘子从left搬到right柱子上
-3、把n-1个盘子从mid 借助 left，搬到right柱子上。
+1、把n-1个盘子从 left 搬到 mid柱子上, 借助right    从A移动到B
+2、把剩下最大的那一个盘子从left搬到right柱子上       从A移动到C
+3、把n-1个盘子从 mid  搬到right柱子上, 借助 left   从B移动到C
 
 有点像中序遍历
 
@@ -58,11 +57,12 @@ func hanno(n int, a, b, c string, res *[]string) {
 		// *res = append(*res, "move from " + a + " to " + c)
 		return
 	}
-	//把n-1个盘子从left借助right搬到mid上去。
+	// 要按照步骤全局看
+	//把n-1个盘子从left 搬到mid上去，借助right
 	hanno(n-1, a, c, b, res)
-	//把第n个盘子从left搬到right上。
+	//把第n个盘子从left搬到right上
 	*res = append(*res, "move from "+a+" to "+c+",")
-	//把n-1个盘子从mid借助left搬到right上去。
+	//把n-1个盘子从mid，搬到right, 借助left上去
 	hanno(n-1, b, a, c, res)
 }
 

@@ -46,6 +46,7 @@ func removeKnums(num string, k int) string {
 
 	stack := make([]byte, 0, len(num))
 	j := 0
+	// 100999 => 9
 	for i := 0; i < len(num); i++ {
 		for len(stack) >= 1 && num[i] < stack[len(stack)-1] && j < k {
 			stack = stack[:len(stack)-1]
@@ -65,7 +66,6 @@ func removeKnums(num string, k int) string {
 	if tmp == "" {
 		return "0"
 	}
-
 	return tmp
 }
 
