@@ -7,6 +7,10 @@ import "reflect"
 
 给定一个字符串 s 和一个非空字符串 p， 找出 s 中的所有 p 的 异位字符串的子串，返回这些子串的起始索引。
 
+
+https://www.nowcoder.com/practice/9ff491c910e5427fab6ae67745929085?tpId=196&tqId=40518&ru=/exam/oj
+
+
 解题思路
 这道题是一道考“滑动窗口”的题目。和第 3 题，第 76 题，第 567 题类似的。解法也是用 freq[256] 记录每个字符的出现的频次次数。
 滑动窗口左边界往右滑动的时候，划过去的元素释放次数(即次数 ++)，滑动窗口右边界往右滑动的时候，划过去的元素消耗次数(即次数 --)。
@@ -83,4 +87,24 @@ func findAnagrams(s string, p string) []int {
 	}
 
 	return result
+	/*
+	解法2：
+
+		size := len(p)
+		stack := []int{}
+		splitP := strings.Split(p, "")
+		sort.Strings(splitP)
+		ssP := strings.Join(splitP, "")
+		for i := 0; i <= len(s)-size; i++ {
+			splitS := strings.Split(string(s[i:i+size]), "")
+			sort.Strings(splitS)
+			ssS := strings.Join(splitS, "")
+			if ssS == ssP {
+				stack = append(stack, i)
+			}
+		}
+
+		return stack
+
+	*/
 }

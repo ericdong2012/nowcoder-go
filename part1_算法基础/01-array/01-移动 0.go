@@ -53,7 +53,7 @@ func moveZeroes(nums []int) []int {
 	}
 
 	j := 0
-	for _, i := range nums {
+	for i, _:= range nums {
 		// 如果nums[i] != 0 , i, j 数据位置不会更改，还在原来的位置; 等于0， j落后，等下次就会被交换
  		if nums[i] != 0 {
 			nums[j], nums[i] = nums[i], nums[j]

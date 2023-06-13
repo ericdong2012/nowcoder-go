@@ -38,6 +38,7 @@ func merge(A []int, m int, B []int, n int) {
 	result := make([]int, m+n)
 	for m > 0 && n > 0 {
 		// 先比较最后一位
+		// 注意边界问题
 		if A[m-1] >= B[n-1] {
 			result[index-1] = A[m-1]
 			m--

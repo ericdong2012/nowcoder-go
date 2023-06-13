@@ -54,13 +54,14 @@ func longestValidParentheses(s string) int {
 				result = max(result, i-index)
 			} else {
 				// 没有元素, 记录当前位置
-				result = max(result, i)
+				stack = append(stack, i)
 			}
 		} else {
 			//  '('， 记录此时的索引
 			stack = append(stack, i)
 		}
 	}
+
 	return result
 }
 

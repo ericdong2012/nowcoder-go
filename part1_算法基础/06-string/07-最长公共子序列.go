@@ -42,7 +42,7 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	for i := 1; i < len(text1)+1; i++ {
 		for j := 1; j < len(text2)+1; j++ {
 			// 如果前一个相等，当前位置的值 等于 对角线的值 + 1; 否则在左边和上边找较大值
-			// 看第一个1， 2， 3, 行列各加了一个长度，所以text1[i-1] == text2[j-1] 代表的是 当前字符相等  (a, c, e)
+			// 看第一个1， 2， 3, 行列各加了一个长度，所以text1[i-1] == text2[j-1] 代表的是 当前字符相等  (a, c, e)  否则会越界
 			if text1[i-1] == text2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
@@ -50,7 +50,7 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 			}
 		}
 	}
-
+	// len(text1) 代表的是最后一个元素
 	return dp[len(text1)][len(text2)]
 }
 

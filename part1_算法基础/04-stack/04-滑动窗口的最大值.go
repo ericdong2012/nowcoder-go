@@ -74,11 +74,12 @@ func maxInWindows(num []int, size int) []int {
 	}
 	var res []int
 	var maxValue int
-	for j := 0; j < len(num)-size+1; j++ {
+	for j := 0; j <=len(num)-size; j++ {
 		maxValue = num[j]
 		// for i := j + 1; i < len(num)-size+1; i++ {
-		// 想清楚起点，终点
-		for i := j + 1; i < j + size ; i++ {
+		// 想清楚起点，终点, 一定是加上
+		//for i := j +1 ; i < j + size ; i++ {
+		for i := j ; i < j + size ; i++ {
 			if maxValue < num[i] {
 				maxValue = num[i]
 			}

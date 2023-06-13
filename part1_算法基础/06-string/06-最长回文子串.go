@@ -63,10 +63,22 @@ func getLongestPalindrome1(A string) int {
 }
 
 func run(s string, begin, end int) int {
+	// 一个往左边走，一个往右边走，扩散
 	for begin >= 0 && end < len(s) && s[begin] == s[end] {
 		begin--
 		end++
 	}
+	// abbba
+	// begin   end
+	// 4   4
+	// 3   5
+	// 1
+
+	// 2 2
+	// 1 3
+	// 0 4
+	// -1 5
+	// 5
 	return end - begin - 1
 }
 
