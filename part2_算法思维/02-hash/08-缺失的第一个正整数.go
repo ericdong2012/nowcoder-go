@@ -32,20 +32,22 @@ https://www.nowcoder.com/practice/50ec6a5b0e4e45348544348278cdcee5?tpId=117&tqId
 */
 
 
+// 方法2
 // 排序，看首位元素
-// 如果大于等于2， 则最小的是1
-// 否则, 从1开始遍历，判断是否在数组中，不在，则该数就是最小正整数
+// 如果首位大于等于2， 则最小的是1
+// 否则, 以1为起始，最后一位为终止遍历，判断是否在数组中，不在，则该数就是最小正整数
 
 func minNumberDisappeared(nums []int) int {
-
 	// write code here
 	// 构造数据
 	temp := make([]int, 5e5)
 	// 更改temp 中的value
 	temp[0] = 1
 	for _, v := range nums {
+		// 大于0的数 添加到新数组中， 最终的结果是有的地方有1，有的没有： [0, 1, 0, 0, 1 ]
 		if v > 0 {
-			temp[v] += 1
+			//temp[v] += 1
+			temp[v] = 1
 		}
 	}
 	// 遍历第一个0
@@ -58,7 +60,7 @@ func minNumberDisappeared(nums []int) int {
 
 
 	/*
-		也不错
+		方法2
 
 	   sort.Ints(nums)
 		if nums[0] >= 2 {
@@ -79,17 +81,32 @@ func minNumberDisappeared(nums []int) int {
 		}
 		// 如果全部遍历完还没有找到，最是最大的加上1
 		return nums[len(nums)-1] + 1
+
+
+
+	func minNumberDisappeared(nums []int) int {
+		sort.Ints(nums)
+		if nums[0] >= 2 {
+			return 1
+		}
+		temp := make(map[int]int)
+		for _, v := range nums {
+			temp[v] = 1
+		}
+
+		for i := 1; i < nums[len(nums)-1]; i++ {
+			if _, ok := temp[i]; !ok {
+				return i
+			}
+		}
+
+		// 如果全部遍历完还没有找到，最是最大的加上1
+		return nums[len(nums)-1] + 1
+	}
+
 	*/
 }
 
-//func findIndex(result map[int]int, num int) int {
-//	for k, _ := range result {
-//		if k == num {
-//			return k
-//		}
-//	}
-//	return -1
-//}
 
 func main() {
 	nums := []int{1, 23, 3, 4}
