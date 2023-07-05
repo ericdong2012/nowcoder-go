@@ -50,14 +50,14 @@ func wordDiv(s string, dic []string) []string {
 	)
 	// "nownowcoder",  ["n", "now", "owcoder", "coder"]
 	dfs = func(idx int) {
-		// 当idx 到达s最后, 最后结果加上“ ”， 退出（终止条件）
+		// 退出(终止条件):  当idx 到达s最后, 最后结果加上“ ” 就是最终结果, 退出
 		if idx == len(s) {
 			ans = append(ans, strings.Join(path, " "))
 			return
 		}
-		// i 从idx 下一位开始，之所以能等于是因为 s[idx:i]  i 可以到len(s)
+		// i 从idx 下一位开始，之所以 能等于 s长度  是因为 s[idx:i]  i 可以到 len(s)
 		for i := idx + 1; i <= len(s); i++ {
-			// i - idx 在dic中时
+			// s[ i - idx] 在hash表中存在时
 			if m[s[idx:i]] {
 				// path添加一位
 				path = append(path, s[idx:i])

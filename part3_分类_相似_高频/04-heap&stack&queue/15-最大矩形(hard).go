@@ -83,6 +83,7 @@ def maximalRectangle(self , matrix: List[List[int]]) -> int:
 在确定第一个元素面积后，第一个元素就可以无视了，用白块表示。
 
 */
+
 //func maximalRectangle(matrix [][]int) (result int) {
 //	// len(matrix[0]) 列长度
 //	if len(matrix) == 0 || len(matrix[0]) == 0 {
@@ -133,9 +134,10 @@ def maximalRectangle(self , matrix: List[List[int]]) -> int:
 	最简单的暴力方法就是枚举每一列，每一列的高度就是矩形的高度 h。随后从这根柱子开始向两侧延伸，直到遇到高度小于h的柱子，就确定了矩形的左右边界，左右边界之间的宽度计为w，
 	对应的面积为 w×h。最后取这些列的最大值，就可以得到该行的最大面积，然后遍历所有行，就可以得到这个数组的最大面积
 */
+
 func maximalRectangle(matrix [][]int) int {
 	ans := 0
-	// 保存某行的列数据
+	// 初始化， 长度某行的列长度
 	height := make([]int, len(matrix[0]))
 	// 行
 	for _, row := range matrix {

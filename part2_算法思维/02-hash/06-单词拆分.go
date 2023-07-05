@@ -41,7 +41,7 @@ https://www.nowcoder.com/practice/bb40e0aae84a4491a35f93b322516cb5?tpId=196&tqId
 
 */
 
-func wordDiv(s string, dic []string) []string {
+func wordDiv(s string, dic []string) bool {
 	// 对标的 dic 建立hash表， 并初始化
 	m := make(map[string]bool)
 	for _, v := range dic {
@@ -72,7 +72,8 @@ func wordDiv(s string, dic []string) []string {
 		}
 	}
 	dfs(0)
-	return ans
+	// 此处和单词拆分2 不同
+	return len(ans) > 0
 }
 
 func main() {

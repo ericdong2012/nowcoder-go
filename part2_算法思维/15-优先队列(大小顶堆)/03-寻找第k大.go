@@ -3,9 +3,7 @@ package _5_优先队列_大小顶堆_
 /*
 https://www.nowcoder.com/practice/e016ad9b7f0b45048c58a9f27ba618bf
 
-
 有一个整数数组，请你根据快速排序的思路，找出数组中第 k 大的数。
-
 给定一个整数数组 a ,同时给定它的大小n和要找的 k ，请返回第 k 大的数(包括重复的元素，不用去重)，保证答案存在。
 
 
@@ -23,29 +21,32 @@ https://www.nowcoder.com/practice/e016ad9b7f0b45048c58a9f27ba618bf
 说明：
 去重后的第3大是8，但本题要求包含重复的元素，不用去重，所以输出9
 
-
 */
 
+// 方式1： 直接排序， 取第k个
+// 方式2： 快排(分治)
 func findKth(a []int, n int, K int) int {
 	return qsort(a, 0, n-1, K)
 }
 
 func qsort(nums []int, left, right, k int) int {
-	if right > left {
-		// 分区
+	// 会有重复值
+	if right >= left {
+		// 分区，找索引
 		pos := partition(nums, left, right)
 		// 递归
+		// 最终结果 找到第k大， 根据索引找到对应的值
 		if pos == len(nums)-k {
-			// 最终结果
 			return nums[pos]
+			// 如果它右边的元素比k−1大，说明第k大在其左边，直接二分法进入左边
 		} else if pos > len(nums)-k {
 			return qsort(nums, left, pos-1, k)
+			// 如果它左边的元素比k−1少，说明第k大在其右边，直接二分法进入右边
 		} else {
 			return qsort(nums, pos+1, right, k)
 		}
 	} else {
-		// 左边大于右边
-		return nums[left]
+		return -1
 	}
 }
 
@@ -59,10 +60,9 @@ func partition(nums []int, left, right int) int {
 		for left < right && pivot < nums[right] {
 			right--
 		}
+		// 将num调整顺序 小的在前，大的在后
 		nums[left], nums[right] = nums[right], nums[left]
-		// left++
-		// right--
 	}
-	// nums[left] = pivot
+	// 返回 k 附近的索引
 	return left
 }
