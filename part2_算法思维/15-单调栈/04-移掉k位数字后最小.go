@@ -6,8 +6,9 @@ import (
 )
 
 /*
-https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=196&tqId=39412&ru=/exam/oj
+移除K位数字 后最小
 
+https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=196&tqId=39412&ru=/exam/oj
 
 给定一个以字符串表示的数字 num 和一个数字 k ，从 num 中移除 k 位数字，使得剩下的数字最小。如果可以删除全部数字，则结果为 0。
 1.num仅有数字组成
@@ -38,6 +39,7 @@ https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=196&tqId
 
 */
 
+// 通过此方法搜索，还有一道类似的题，解法类似
 func removeKnums(num string, k int) string {
 	// write code here
 	if len(num) <= k {
@@ -45,27 +47,24 @@ func removeKnums(num string, k int) string {
 	}
 
 	stack := make([]byte, 0, len(num))
-	j := 0
-	// 100999 => 9
 	for i := 0; i < len(num); i++ {
-		for len(stack) >= 1 && num[i] < stack[len(stack)-1] && j < k {
+		for len(stack) > 0 && num[i] < stack[len(stack)-1] && k > 0 {
 			stack = stack[:len(stack)-1]
-			j++
+			k--
 		}
 		stack = append(stack, num[i])
 	}
-	if j < k {
-		stack = stack[:len(stack)-(k-j)]
+
+	if k != 0 && len(stack) >= k {
+		stack = stack[:len(stack)-k]
 	}
 
 	tmp := string(stack)
+	tmp = strings.TrimLeft(tmp, "0")
 	if len(tmp) == 0 {
 		return "0"
 	}
-	tmp = strings.TrimLeft(tmp, "0")
-	if tmp == "" {
-		return "0"
-	}
+
 	return tmp
 }
 

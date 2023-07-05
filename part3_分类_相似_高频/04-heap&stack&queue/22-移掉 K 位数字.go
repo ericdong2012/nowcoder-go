@@ -6,7 +6,7 @@ import (
 )
 
 /*
-NC219 移掉 K 位数字
+NC219 移除K位数字
 https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=117&tqId=39423&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=581,582,586&title=
 
 
@@ -35,8 +35,6 @@ https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=117&tqId
 "9"
 
 */
-
-
 
 /*
 class Solution:
@@ -67,7 +65,7 @@ func removeKnums(num string, k int) string {
 	stack := []string{}
 	for _, v := range num {
 		// stack不为空，k不为0, 当前值小于栈中最后一个，则移除最后一个
-		for len(stack) != 0 && k != 0 && string(v) < string(stack[len(stack)-1]) {
+		for len(stack) != 0 && k != 0 && string(v) < stack[len(stack)-1] {
 			stack = stack[:len(stack)-1]
 			k--
 		}
@@ -75,13 +73,14 @@ func removeKnums(num string, k int) string {
 		if len(stack) == 0 && v == '0' {
 			continue
 		}
+
 		stack = append(stack, string(v))
 	}
 	// k还没有找完，并且stack长度大于k, 需要从stack中截取
-	if k != 0 && len(stack)-k >= 0 {
-		stack = stack[len(stack)-k+1:]
+	if k != 0 && len(stack) >= k {
+		stack = stack[:len(stack)-k]
 	}
-	// 如果stack 为空，包含k!=0 的情况
+	// 如果 stack 为空，包含k!=0 的情况
 	if len(stack) == 0 {
 		stack = append(stack, "0")
 	}
