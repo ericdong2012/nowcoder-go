@@ -65,6 +65,7 @@ func helper(nd *TreeNode, res *[]int) {
 	helper(nd.Left, res)
 	helper(nd.Right, res)
 }
+
 func main01() {
 	// test
 	node := TreeNode{
