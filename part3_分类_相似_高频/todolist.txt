@@ -1,3 +1,13 @@
+合计：180道
+
+预计时间：14天-21天
+
+目标： 题目比较全，追求常见的题，不追求难，3/4 道题为好，一天的量
+
+todo:
+面试必刷top101
+https://www.nowcoder.com/exam/oj
+
 part1:
     1-linkedlist
         套路：
