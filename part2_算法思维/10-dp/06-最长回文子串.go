@@ -54,15 +54,15 @@ func getLongestPalindrome1(A string) int {
 	for i := len(A) - 1; i >= 0; i-- {
 		// 两种情况：可能是类似 aba 的字符串，也可能是类似 abba 的情况
 		// 偶数
-		left := run(A, i, i)
+		left := run2(A, i, i)
 		// 奇数
-		right := run(A, i, i+1)
-		maxLen = max1(maxLen, max1(left, right))
+		right := run2(A, i, i+1)
+		maxLen = max2(maxLen, max2(left, right))
 	}
 	return maxLen
 }
 
-func run(s string, begin, end int) int {
+func run2(s string, begin, end int) int {
 	for begin >= 0 && end < len(s) && s[begin] == s[end] {
 		begin--
 		end++
@@ -70,7 +70,7 @@ func run(s string, begin, end int) int {
 	return end - begin - 1
 }
 
-func max1(a, b int) int {
+func max2(a, b int) int {
 	if a < b {
 		return b
 	} else {
