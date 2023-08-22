@@ -1,6 +1,7 @@
 package _3_hash
 
 /*
+
 题⽬⼤意
 给出 2 个字符串 s 和 t，如果 t 中的字⺟在 s 中都存在，输出 true，否则输出 false
 
@@ -11,6 +12,7 @@ package _3_hash
 可，有⾮ 0 的数都输出 false
 
 */
+
 // 解法⼀
 func isAnagram(s string, t string) bool {
 	hash := map[rune]int{}
@@ -25,6 +27,12 @@ func isAnagram(s string, t string) bool {
 			return false
 		}
 	}
+
+	//for _, v := range s {
+	//	if _, ok := hash[v]; !ok {
+	//		return false
+	//	}
+	//}
 	return true
 }
 

@@ -10,6 +10,9 @@ https://www.nowcoder.com/practice/09fbfb16140b40499951f55113f2166c?tpId=117&tqId
 实现函数 int sqrt(int x).
 计算并返回 x 的平方根（向下取整）
 
+
+https://connect.applecross.link/clash/930835/mLieDowiymML
+
 示例1
 输入：
 2

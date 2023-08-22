@@ -27,16 +27,17 @@ https://www.nowcoder.com/practice/09fbfb16140b40499951f55113f2166c?tpId=117&tqId
 
 func sqrt(x int) int {
 	// write code here
+	// x = 25
 	if x == 0 || x == 1 {
 		return x
 	}
 	mid := x / 2
 	//fmt.Println(mid)
-	// 大于10
+
 	for mid*mid > x {
 		mid = mid / 2
 	}
-	// 小于10
+
 	for mid*mid <= x {
 		mid = mid + 1
 	}
