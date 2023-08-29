@@ -69,6 +69,7 @@ func solve2(a string) int {
 	}
 	res := 0
 	// 从中间往前走(中间找不到，再往前走缩小窗口)
+	// i 不能等于0， 否则后面 a[j] == a[j+i]  一直成立
 	for i := n / 2; i > 0; i-- {
 		// 从前往后走
 		for j := 0; j < n-i; j++ {

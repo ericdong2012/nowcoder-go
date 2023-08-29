@@ -33,20 +33,20 @@ https://www.nowcoder.com/practice/3e1fd3d19fb0479d94652d49c7e1ead1?tpId=196&tqId
 */
 
 func shortestSubarray(nums []int, target int) int {
-	l, h := 0, 0
+	res := math.MaxInt32
+	l, r := 0, 0
 	sum := 0
-	length := math.MaxInt32
-	for h < len(nums) {
-		sum += nums[h]
+	for r < len(nums) {
+		sum += nums[r]
 		for sum >= target {
-			length = min2(length, h-l+1)
+			res = min2(res, r-l+1)
 			sum -= nums[l]
 			l++
 		}
-		h++
+		r++
 	}
 	if l != 0 {
-		return length
+		return res
 	} else {
 		return -1
 	}

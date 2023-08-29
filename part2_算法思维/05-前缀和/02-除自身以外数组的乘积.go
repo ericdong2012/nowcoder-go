@@ -30,10 +30,12 @@ res[3]=1*2*3=6
 func timesExceptSelf(nums []int) []int {
 	// write code here
 	l, r := make([]int, len(nums)), make([]int, len(nums))
-	for k, _ := range nums {
-		l[k]++
-		r[k]++
-	}
+	l[0] = 1
+	r[len(nums)-1] = 1
+	//for k, _ := range nums {
+	//	l[k]++
+	//	r[k]++
+	//}
 	for i := 1; i < len(nums); i++ {
 		l[i] = l[i-1] * nums[i-1]
 	}
@@ -41,6 +43,7 @@ func timesExceptSelf(nums []int) []int {
 	for j := len(nums) - 2; j >= 0; j-- {
 		r[j] = r[j+1] * nums[j+1]
 	}
+
 	res := make([]int, len(nums))
 	for k, _ := range nums {
 		res[k] = l[k] * r[k]
