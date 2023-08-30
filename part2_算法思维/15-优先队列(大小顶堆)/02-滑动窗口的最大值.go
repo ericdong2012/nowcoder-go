@@ -1,5 +1,7 @@
 package _5_优先队列_大小顶堆_
 
+
+// 可以和part1/04-stack/滑动窗口的最大值 对比(用的单调栈)
 func maxValue(temp []int) int {
 	result := temp[0]
 	for i := 0; i < len(temp); i++ {

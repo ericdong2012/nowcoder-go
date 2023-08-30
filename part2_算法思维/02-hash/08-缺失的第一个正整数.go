@@ -44,9 +44,8 @@ func minNumberDisappeared(nums []int) int {
 	// 更改temp 中的value
 	temp[0] = 1
 	for _, v := range nums {
-		// 大于0的数 添加到新数组中， 最终的结果是有的地方有1，有的没有： [0, 1, 0, 0, 1 ]
+		// 大于0的数 添加到新数组中，小于等于0的自动过滤， 最终的结果是有的地方有1，有的没有： [1, 1, 0, 0, 1， 。。。。]
 		if v > 0 {
-			//temp[v] += 1
 			temp[v] = 1
 		}
 	}

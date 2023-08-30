@@ -6,26 +6,26 @@ import "fmt"
 https://www.nowcoder.com/practice/fe9099e5308042a8af2f7aabdb3719fe
 
 描述
-所有的 DNA 序列都是由 'A' , ‘C’ , 'G' , 'T' 字符串组成的，例如 'ACTGGGC' 。
-请你实现一个函数找出所有的目标子串，目标子串的定义是，长度等于10 ，且在 DNA 序列中出现次数超过 1 次的子串（允许两个子串有重合的部分，如下面的示例2所示）。
+所有的 DNA 序列都是由 'A' , ‘C’ , 'G' , 'T' 字符串组成的，例如 'ACTGGGC'
+请你实现一个函数找出所有的目标子串，目标子串的定义是:  长度等于10 ，且在 DNA 序列中出现次数超过 1 次的子串（允许两个子串有重合的部分）。
 （注：返回的所有目标子串的顺序必须与原DNA序列的顺序一致，如下面的示例1所示）
 
 保证序列中只出现 'A' , 'C' , 'G' , 'T'
 
 示例1
-输入：
+输入:
 "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
-返回值：
+返回值:
 ["AAAAACCCCC","CCCCCAAAAA"]
 
-说明：
+说明:
 "AAAAACCCCC"和"CCCCCAAAAA"长度等于 10 且在DNA序列中分别出现了 2 次。
-不能返回["CCCCCAAAAA","AAAAACCCCC"]，因为在原DNA序列中，"AAAAACCCCC"要比"CCCCCAAAAA"先出现。
+不能返回["CCCCCAAAAA","AAAAACCCCC"],  因为在原DNA序列中，"AAAAACCCCC"要比"CCCCCAAAAA"先出现。
 
 示例2
-输入：
+输入:
 "AAAAAAAAAAA"
-返回值：
+返回值:
 ["AAAAAAAAAA"]
 
 */
@@ -45,14 +45,24 @@ func repeatedDNA(DNA string) []string {
 		temp[str]++
 	}
 	res := []string{}
+	// 本来可以这样写
+	/*
+		for k, v := range hash {
+			if v > 1 {
+				result = append(result, k)
+			}
+		}
+	*/
+	// 但是题目要求， 在原DNA序列中，"AAAAACCCCC"要比"CCCCCAAAAA"先出现
 	for i := 0; i <= len(DNA)-10; i++ {
-		// 长度为10
 		str := DNA[i : i+10]
 		if temp[str] > 1 {
 			res = append(res, str)
+			// 防止特例，只有一个字母
 			delete(temp, str)
 		}
 	}
+
 	return res
 }
 

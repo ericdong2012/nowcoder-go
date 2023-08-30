@@ -2,7 +2,6 @@ package _3_hash
 
 import (
 	"fmt"
-	"strings"
 )
 
 /*
@@ -47,33 +46,45 @@ func wordDiv(s string, dic []string) bool {
 	for _, v := range dic {
 		m[v] = true
 	}
-	var (
-		ans  []string // 最终结果
-		path []string // 中间结果
-		dfs  func(idx int)
-	)
-	// "nownowcoder",  ["n", "now", "owcoder", "coder"]
-	dfs = func(idx int) {
-		// 当 idx 到达s最后, 最后结果加上“ ”,  退出（终止条件）
-		if idx == len(s) {
-			ans = append(ans, strings.Join(path, " "))
-			return
-		}
-		// i 从 idx 下一位开始, i之所以能等于是因为 s[idx:i]  i可以到len(s)
-		for i := idx + 1; i <= len(s); i++ {
-			// i - idx 在dic中时
-			if m[s[idx:i]] {
-				// path添加一位
-				path = append(path, s[idx:i])
-				dfs(i)
-				// path去掉最后一位
-				path = path[:len(path)-1]
+	dp := make([]bool, len(s)+1)
+	dp[0] = true
+	for i := 1; i <= len(s); i++ {
+		for j := 0; j < i; j++ {
+			if dp[j] && m[s[j:i]] {
+				dp[i] = true
 			}
 		}
 	}
-	dfs(0)
-	// 此处和单词拆分2 不同
-	return len(ans) > 0
+
+	return dp[len(s)]
+
+	//var (
+	//	ans  []string // 最终结果
+	//	path []string // 中间结果
+	//	dfs  func(idx int)
+	//)
+	//// "nownowcoder",  ["n", "now", "owcoder", "coder"]
+	//dfs = func(idx int) {
+	//	// 当 idx 到达s最后, 最后结果加上“ ”,  退出（终止条件）
+	//	if idx == len(s) {
+	//		ans = append(ans, strings.Join(path, " "))
+	//		return
+	//	}
+	//	// i 从 idx 下一位开始, i之所以能等于是因为 s[idx:i]  i可以到len(s)
+	//	for i := idx + 1; i <= len(s); i++ {
+	//		// i - idx 在dic中时
+	//		if m[s[idx:i]] {
+	//			// path添加一位
+	//			path = append(path, s[idx:i])
+	//			dfs(i)
+	//			// path去掉最后一位
+	//			path = path[:len(path)-1]
+	//		}
+	//	}
+	//}
+	//dfs(0)
+	//// 此处和单词拆分2 不同
+	//return len(ans) > 0
 }
 
 func main() {

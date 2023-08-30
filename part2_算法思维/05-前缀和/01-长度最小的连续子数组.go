@@ -28,9 +28,9 @@ https://www.nowcoder.com/practice/10dd5f8c5d984aa3bd69788d86aaef23?tpId=196&tqId
 
 func minSubarray(nums []int, target int) int {
 	// write code here
-	left, right := 0, 0
 	res := len(nums)
-	curSum := nums[0]
+	left, right := 0, 0
+	curSum := 0
 	for right < len(nums) {
 		curSum += nums[right]
 		for curSum >= target {

@@ -35,10 +35,18 @@ func GetLeastNumbers_Solution( input []int ,  k int ) []int {
 	if len(input) < k && k == 0 {
 		return []int{}
 	}
-	for i:= 0; i < k ; i++{
-		for k:=len(input) -1 ; k> i ; k-- {
-			if input[k] < input[k-1] {
-				input[k] , input[k-1] = input[k-1], input[k]
+	//for i:= 0; i < k ; i++{
+	//	for k:=len(input) -1 ; k> i ; k-- {
+	//		if input[k] < input[k-1] {
+	//			input[k] , input[k-1] = input[k-1], input[k]
+	//		}
+	//	}
+	//}
+
+	for i:= 0; i < len(input); i ++ {
+		for j:= i+1 ; j < len(input); j++ {
+			if input[i] > input[j] {
+				input[i], input[j] = input[j], input[i]
 			}
 		}
 	}

@@ -53,11 +53,13 @@ func temperatures(dailyTemperatures []int) []int {
 
 	for i := 0; i < len(dailyTemperatures); i++ {
 		for j := i + 1; j < len(dailyTemperatures); j++ {
+			// 在后面，找到一个比当前大的， 记录索引，相差的距离
 			if dailyTemperatures[j] > dailyTemperatures[i] {
 				res[i] = j - i
 				break
 			}
-			if (j == len(dailyTemperatures) -1 ) && dailyTemperatures[j] <= dailyTemperatures[i] {
+			// 如果走到了最后, 则 记录索引，0
+			if (j == len(dailyTemperatures) -1 )  {
 				res[i] = 0
 				break
 			}

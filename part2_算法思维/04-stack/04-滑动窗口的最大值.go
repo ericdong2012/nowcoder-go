@@ -41,6 +41,7 @@ https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=117&tqId
 
 /*
 双向队列, 单调队列
+可一个和part1 中
 */
 
 func maxInWindows(num []int, size int) []int {
@@ -94,13 +95,13 @@ func maxInWindows(num []int, size int) []int {
 	//}
 	//
 	//return res
-
 	n := len(num)
-	// 单调栈，存的是索引
+	// 单调栈，存的是索引(数据较大的索引)
 	deque := make([]int, 0)
 	// 结果
 	res := make([]int, 0)
 	for i := 0; i < n; i++ {
+		// depue 中存的是数据较大的索引, 否则一直缩短
 		for len(deque) > 0 && num[deque[len(deque)-1]] < num[i] {
 			deque = deque[:len(deque)-1]
 		}
@@ -109,6 +110,7 @@ func maxInWindows(num []int, size int) []int {
 		if deque[0]+size <= i {
 			deque = deque[1:]
 		}
+		// 满足了一个滑动窗口
 		if i+1 >= size {
 			res = append(res, num[deque[0]])
 		}

@@ -1,5 +1,7 @@
 package _5_单调栈
 
+import "fmt"
+
 /*
 直方图最大矩形
 
@@ -25,6 +27,7 @@ https://www.nowcoder.com/practice/bfaac4eebe5947af80912d1bcfcf2baa
 
 */
 
+// 和接雨水，盛水最多的容器 比较看
 func largestRectangleArea(height []int) int {
 	// 单调栈 单调递增，出栈时计算最大面积
 	if len(height) < 1 {
@@ -33,23 +36,23 @@ func largestRectangleArea(height []int) int {
 	if len(height) == 1 {
 		return height[0]
 	}
+
 	height = append(height, 0)
+	// 装索引
 	stack := make([]int, 0)
 	stack = append(stack, -1) // 最边上设置为-1保证不能出栈 保证栈非空
+	// 结果
 	res := 0
 	// [3,4,7,8,1,2]
 	for i := 0; i < len(height); i++ {
-		// 出栈逻辑,  前一个值 大于当前值,  开始降序
+		// 出栈逻辑,  前一个值 大于当前值,  说明开始降序
 		// 出栈时计算最大面积  其中宽度 当前索引 - 栈中倒数第二个值 - 1
 		for stack[len(stack)-1] != -1 && height[stack[len(stack)-1]] > height[i] {
-			//hei := height[stack[len(stack)-1]]
-			//wid := i - stack[len(stack)-2] - 1
-			//res = max(res, hei*wid)
-			//stack = stack[:len(stack)-1]
-
 			hei := height[stack[len(stack)-1]]
+			// 当前索引 - 前一个索引 - 1
 			stack = stack[:len(stack)-1]
-			wid := i - stack[len(stack)-1] - 1
+			// 想清楚这里, 调试看看
+			wid := i - (stack[len(stack)-1] + 1)
 			res = max(res, hei*wid)
 		}
 		// 入栈 入下标
@@ -65,4 +68,9 @@ func max(a, b int) int {
 	}
 
 	return b
+}
+
+func main() {
+	area := largestRectangleArea([]int{3, 4, 7, 8, 1, 2})
+	fmt.Println(area)
 }

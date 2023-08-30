@@ -11,12 +11,12 @@ https://leetcode-cn.com/problems/power-of-two/
 示例 1:
 输入: 1
 输出: true
-解释: 2^0 = 1
+解释: 2^0= 1
 
 示例 2:
 输入: 16
 输出: true
-解释: 2^4 = 16
+解释: 2^4= 16
 
 示例 3:
 输入: 218
@@ -41,20 +41,21 @@ class Solution:
         # 7 & -7
         # 0000 0111
         # 1111 1001 (00000111这个结果是7的结果，然后各位取反 11111000 末尾加1 11111001这个就是-7的二进制数了)
-        # 00000111
+        # 0000 0111
         return n & (-n) == n
 
         # method3: 去除最右边的1
         # https://leetcode-cn.com/problems/power-of-two/solution/power-of-two-er-jin-zhi-ji-jian-by-jyd/
         # if n == 0 :
         #     return False
-        # n;   8     01000
-        # n-1: 7     00100
 
-        # 7 & 6
-        # 111
-        # 110
-        # 110 不等与0
+        # 8      01000
+        # 7      00111
+        # 8 & 7  00000
+
+        # 7      111
+        # 6      110
+        # 7 & 6  110 不等与0
         # return n & (n -1 ) == 0
 
 
