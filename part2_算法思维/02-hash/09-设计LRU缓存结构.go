@@ -20,7 +20,6 @@ https://www.nowcoder.com/practice/5dfded165916435d9defb053c63f1e84?tpId=117&tqId
 4.函数set和get必须以O(1)的方式运行
 5.为了方便区分缓存里key与value，下面说明的缓存里key用""号包裹
 
-
 示例1
 输入：
 ["set","set","get","set","get","set","get","get","get"],[[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]],2
@@ -42,6 +41,7 @@ output=s.get(4);//因为get(4)操作，缓存更新，缓存是{"4"=4，"3"=3}�
 
 */
 
+// https://blog.csdn.net/chenbaoke/article/details/42780895
 /*
 hash + 双链表
 
@@ -52,7 +52,6 @@ set操作有三种情况：
 	3.当容量不足， 修改tail指针指向的元素值，然后通过索引，修改hash的key，最后把tail指针放到双链表头部（删除尾部，添加到头部）
 
 */
-
 
 type element struct {
 	key   int
@@ -69,7 +68,7 @@ type Solution struct {
 	size     int
 }
 
-func Constructor(capacity int) Solution {
+func New(capacity int) Solution {
 	return Solution{
 		cache:    make(map[int]*list.Element),
 		ll:       list.New(),
@@ -77,8 +76,6 @@ func Constructor(capacity int) Solution {
 		size:     0,
 	}
 }
-
-//https://blog.csdn.net/chenbaoke/article/details/42780895
 
 func (this *Solution) get(key int) int {
 	if e, ok := this.cache[key]; ok {
@@ -92,26 +89,25 @@ func (this *Solution) get(key int) int {
 }
 
 func (this *Solution) set(key int, value int) {
-	// 1、如果记录已经存在，那么刷新其值,
-	// 2、如果不存在， 判断LRU长度是否达到最大值， 如果长度没有达到最大值，直接插入
-	// 3、如果达到最大值，移除末尾元素
+	// 1、如果记录已经存在，那么将其移动前面，刷新值(值可能有变化)
+	// 2、如果不存在， 判断LRU长度是否达到最大值, 如果长度没有达到最大值, 插入元素到头部
+	// 3、如果达到最大值，移除末尾元素, 插入元素到头部
 	if e, ok := this.cache[key]; ok {
 		this.ll.MoveToFront(e)
 		kv := e.Value.(*element)
 		kv.value = value
 	} else {
 		if this.size == this.capacity {
-			// 获取最后一个元素
+			// 获取最后一个元素， 从list移除
 			tail := this.ll.Back()
-			// 移除
 			this.ll.Remove(tail)
+			// 从cache中移除
 			kv := tail.Value.(*element)
-			// 从内存中移除
 			delete(this.cache, kv.key)
 			// 长度减一
 			this.size--
 		}
-		// 未达到长度， 将元素放到头部; cache记录 key, e ; 长度+1
+		// 未达到长度， 将元素放到list头部; cache记录 key, e ; 长度+1
 		e := this.ll.PushFront(&element{key: key, value: value})
 		this.cache[key] = e
 		this.size++

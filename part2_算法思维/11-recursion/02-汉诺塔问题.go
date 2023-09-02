@@ -23,9 +23,6 @@ https://www.nowcoder.com/practice/7d6cab7d435048c4b05251bf44e9f185?tpId=117&tqId
 
 */
 
-
-
-
 /*
 
 1   可以直接移动
@@ -58,12 +55,24 @@ func hanno(n int, a, b, c string, res *[]string) {
 		return
 	}
 	// 要按照步骤全局看
-	//把n-1个盘子从left 搬到mid上去，借助right
+	// 把n-1个盘子从left，借助right，搬到mid上去
+	// c, b 交换
 	hanno(n-1, a, c, b, res)
 	//把第n个盘子从left搬到right上
-	*res = append(*res, "move from "+a+" to "+c+",")
-	//把n-1个盘子从mid，搬到right, 借助left上去
+	*res = append(*res, "move from "+a+" to "+c+"\n")
+	// 把n-1个盘子从mid， 借助left, 搬到right
 	hanno(n-1, b, a, c, res)
+
+	/*
+		[move from left to right
+		 move from left to mid
+		 move from right to mid
+		 move from left to right
+		 move from mid to left
+		 move from mid to right
+		 move from left to right
+		]
+	*/
 }
 
 func main04() {

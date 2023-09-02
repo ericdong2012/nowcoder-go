@@ -48,7 +48,7 @@ func findMedianinTwoSortedAray(arr1 []int, arr2 []int) int {
 	r1 := len(arr1) - 1
 	l2 := 0
 	r2 := len(arr2) - 1
-
+	// 长度一样, 以任意一个为主
 	for l1 < r1 {
 		pos := (r1 - l1) % 2
 		mid1 := (l1 + r1) / 2

@@ -30,7 +30,10 @@ https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=117&tqId
 
 */
 
+// 头在前，尾在后
 var stack1 []int
+
+// 尾在前，头在后
 var stack2 []int
 
 func Push1(node int) {
@@ -44,17 +47,20 @@ func Pop1() int {
 		stack2 = stack2[:len(stack2)-1]
 		return tmp
 	}
-	// 如果stack1 存在
+	// 如果stack2为空， stack1 存在
 	if len(stack1) != 0 {
+		// 获取stack1 头部的元素
 		tmp := stack1[0]
-		// 将stack1中的元素从尾部取出，添加到stack头部
+		// 将stack1中的元素从尾部取出，添加到stack2中，作为头部
 		for i := len(stack1) - 1; i > 0; i-- {
 			stack2 = append(stack2, stack1[i])
 		}
+		// 清空stack1
 		stack1 = []int{}
+		// 返回stack1 头部的元素
 		return tmp
 	}
-	// 如果stack1 不存在
+	// 如果stack1， stack2 都不存在
 	return -1
 }
 

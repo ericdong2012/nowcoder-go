@@ -28,22 +28,22 @@ https://www.nowcoder.com/practice/c9addb265cdf4cdd92c092c655d164ca?tpId=117&tqId
 func generateParenthesis(n int) []string {
 	res := []string{}
 	// lRemain是左括号使用次数，rRemain是右括号使用次数
-	var dfs func(lRemain int, rRemain int, path string)
-	dfs = func(lRemain int, rRemain int, path string) {
+	var dfs func(path string, lRemain int, rRemain int)
+	dfs = func(path string, lRemain int, rRemain int) {
 		// n 是括号对数的单位
-		if 2*n == len(path) {
+		if len(path) == 2*n {
 			res = append(res, path)
 			return
 		}
 		if lRemain < n {
-			dfs(lRemain+1, rRemain, path+"(")
+			dfs(path+"(", lRemain+1, rRemain)
 		}
 		// 左括号使用次数大于右括号使用次数(保证了左括号在前) 并且 右括号还有剩余，此时可以使用右括号
 		if lRemain > rRemain && rRemain < n {
-			dfs(lRemain, rRemain+1, path+")")
+			dfs(path+")", lRemain, rRemain+1)
 		}
 	}
-	dfs(0, 0, "")
+	dfs("", 0, 0)
 	return res
 }
 

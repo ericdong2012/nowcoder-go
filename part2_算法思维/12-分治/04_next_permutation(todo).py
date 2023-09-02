@@ -91,7 +91,6 @@ class Solution:
         # 找到最前都没有， 比如： [4，3，2，1] ， 反转
         if i > 0:
             # step2: 从后往前找，找nums[k] > nums[i-1], 找到较大数，交换nums[i - 1], nums[k]
-
             k = n - 1
             while nums[i - 1] >= nums[k] :
                 k -= 1

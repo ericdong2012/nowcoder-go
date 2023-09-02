@@ -47,6 +47,7 @@ func findTargetSumWays(nums []int, target int) int {
 		if idx == n {
 			if target == 0 {
 				count += 1
+				// return
 			}
 			return
 		}
