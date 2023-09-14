@@ -23,7 +23,6 @@ https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=117&tqId
    1, 2, 3, 4, 5, 6, 8, 9, 10, 12      7,11,13,14
 
    传参是个数，结果是最后的那个值
-
 */
 
 func GetUglyNumber(index int) int {
@@ -116,7 +115,6 @@ func GetUglyNumber(index int) int {
 			num[3] = 4, i=1, j=1, k=1
 
 			num[4] = min(4,6,10) = 4 , i=2, j=1, k=1
-
 		*/
 	}
 

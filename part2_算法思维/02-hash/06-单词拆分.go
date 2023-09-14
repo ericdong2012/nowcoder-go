@@ -13,25 +13,25 @@ https://www.nowcoder.com/practice/bb40e0aae84a4491a35f93b322516cb5?tpId=196&tqId
 
 示例1
 输入：
-"nowcoder",["now","coder","no","wcoder"]
+"nowcoder", ["now","coder","no","wcoder"]
 返回值：
 ["no wcoder", "now coder"]
 
 示例2
 输入：
-"nowcoder",["now","wcoder"]
+"nowcoder", ["now","wcoder"]
 返回值：
 []
 
 示例3
 输入：
-"nowcoder",["nowcoder"]
+"nowcoder", ["nowcoder"]
 返回值：
 ["nowcoder"]
 
 示例4
 输入：
-"nownowcoder",["now","coder"]
+"nownowcoder", ["now", "coder"]
 返回值：
 ["now now coder"]
 
