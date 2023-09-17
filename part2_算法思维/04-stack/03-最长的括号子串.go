@@ -63,35 +63,36 @@ func longestValidParentheses(s string) int {
 	//}
 	//
 	//return res
-
-	// dp
-	/*
-		dp[i]表示以i结尾最长合法字符串。如果s[i]=='('时该字符串一定不合法；当s[i]==')'时，假设存在解，那么该右括号与其对应的左括号之间的字符串一定是合法的。因此对于i-1的位置，以i-1结尾的合法字符串的开头下标为i - dp[i - 1]，当其前一个位置s[i - 1 - dp[i - 1]] == '('时，可以与s[i]进行匹配，dp[i]更新为dp[i - 1] + 2。
-		此时还需要注意，如果在与当前右括号匹配的左括号的前一个位置(i - 1 - dp[i - 1]) - 1，以该处为结尾的最长合法字符串不为0，也需要加到结果上。例如()()
-	*/
-	dp := make([]int, len(s))
-	maxValue := 0
-	// 起始点是1
-	for i := 1; i < len(s); i++ {
-		if s[i] == ')' {
-			preIndex := i - 1 - dp[i-1]
-			if preIndex >= 0 && s[preIndex] == '(' {
-				dp[i] = dp[i-1] + 2
-				if preIndex-1 >= 0 {
-					dp[i] += dp[preIndex-1]
-				}
-			}
-		}
-		maxValue = max(maxValue, dp[i])
+	if len(s) <= 1 {
+		return 0
 	}
+	// 用来存索引，需要有个元素，不然会报错 ， 比如: )....
+	stack := []int{-1}
+	result := 0
+	for i := 0; i < len(s); i++ {
+		if s[i] == ')' {
+			// 先弹栈
+			stack = stack[:len(stack)-1]
+			// 有元素
+			if len(stack) != 0 {
+				result = max(result, i-stack[len(stack)-1])
+			} else {
+				// 没有元素
+				stack = append(stack, i)
+			}
+		} else {
+			stack = append(stack, i)
+		}
 
-	return maxValue
+	}
+	return result
 }
 
 func max(a int, b int) int {
 	if a > b {
 		return a
 	}
+
 	return b
 }
 

@@ -49,14 +49,16 @@ func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return ""
 	}
-
-	for i := 0; i < len(strs[0]); i++ {
-		temp := string(strs[0])[i]
-		for j := 1; j < len(strs); j++ {
-			if i == len(strs[j]) || string(strs[j])[i] != temp {
-				return string(strs[0])[:i]
+	// ["abca","abc","abca","abc","a"]
+	for k, v := range strs[0] {
+		temp := string(v)
+		for i := 1; i < len(strs); i++ {
+			// k 走到某个字符串的最后 或者 当前字符 不等于 某个字符串的当前字符
+			if k == len(strs[i]) || temp != string(strs[i][k]) {
+				return string(strs[0])[:k]
 			}
 		}
 	}
+
 	return string(strs[0])
 }

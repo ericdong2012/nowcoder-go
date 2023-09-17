@@ -32,33 +32,38 @@ false
 
 */
 func isValid(s string) bool {
-	col := make([]rune, 0)
+	stack := make([]rune, 0)
 
 	for _, c := range s {
 		switch c {
 		// 以下case 只压栈
 		case '(':
-			col = append(col, ')')
+			stack = append(stack, ')')
 		case '[':
-			col = append(col, ']')
+			stack = append(stack, ']')
 		case '{':
-			col = append(col, '}')
+			stack = append(stack, '}')
 		default:
 			// s 是个“]” 等特殊情况
-			if len(col) == 0 {
+			if len(stack) == 0 {
 				return false
 			}
 			// 当前字符跟col中最后一个做比较，相等则弹栈， 否则false
-			if rune(c) == col[len(col)-1] {
-				col = col[:len(col)-1]
-			} else {
+			//if rune(c) == col[len(col)-1] {
+			//	col = col[:len(col)-1]
+			//} else {
+			//	return false
+			//}
+			lastV := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			if c != lastV {
 				return false
 			}
 		}
 	}
 
 	// 全部弹栈完成，如果为空，说明是符合要求的
-	return len(col) == 0
+	return len(stack) == 0
 }
 
 func main() {

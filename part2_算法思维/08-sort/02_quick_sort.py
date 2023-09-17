@@ -53,35 +53,29 @@ def quick_sort(array):
 
 
 # func quickSort(arr []int) []int {
-# 	if len(arr) < 2  {
+# 	if len(arr) <= 1 {
 # 		return arr
 # 	}
 #
-# 	pivot := arr[len(arr) / 2]
-# 	small_than_pivot := func () []int{
-# 		result := []int{}
-# 		for _, v := range arr {
-# 			if v < pivot {
-# 				result = append(result, v)
-# 			}
+# 	pivot := arr[0]
+# 	left := make([]int, 0)
+# 	right := make([]int, 0)
+#   # 此处i=1 是重点，不然会超时
+# 	for i := 1; i < len(arr); i++ {
+# 		if arr[i] < pivot {
+# 			left = append(left, arr[i])
+# 		} else {
+# 			right = append(right, arr[i])
 # 		}
-# 		return result
 # 	}
 #
-# 	big_than_pivot := func () []int{
-# 		result := []int{}
-# 		for _, v := range arr {
-# 			if v > pivot {
-# 				result = append(result, v)
-# 			}
-# 		}
-# 		return result
-# 	}
-# 	res := []int{}
-# 	res = append(res, small_than_pivot()...)
-# 	res = append(res, pivot)
-# 	res = append(res, big_than_pivot()...)
-# 	return res
+# 	left = quickSort(left)
+# 	right = quickSort(right)
+#
+# 	left = append(left, pivot)
+# 	left = append(left, right...)
+#
+# 	return left
 # }
 
 

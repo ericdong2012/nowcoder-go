@@ -27,11 +27,12 @@ https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=295&tqId
 
 func jumpFloor(number int) int {
 	// write code here
-	a, b := 0, 1
+	step1, step2 := 0, 1
 	for i := 0; i < number; i++ {
-		c := a + b
-		a = b
-		b = c
+		//c := step1 + step2
+		//step1 = step2
+		//step2 = c
+		step1, step2 = step2, step1 + step2
 	}
-	return b
+	return step2
 }

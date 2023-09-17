@@ -29,9 +29,6 @@ abab为最长的重复字符子串，长度为4
 0
 说明：
 该字符串没有重复字符子串
-
-
-
 */
 
 /*
@@ -64,25 +61,27 @@ public boolean check(char[] chars, int start, int len){
 */
 
 // 二分思想
+// 可以将两个字符串想像成两个连续的滑动窗口，并假设这个滑动窗口最大是字符串长度的一半，通过比较两个窗口的内容是否相同
+// 不相同的时候不断从左向右平移，完了之后，还是不相同，这时候就将窗口的大小调小一点，直到找到一个相同的，这个时候窗口的长度×2 就是最大字符串的大小
 func solve2(a string) int {
-	// write code here
 	n := len(a)
 	if n < 2 {
 		return n
 	}
 	res := 0
-	// 从中间往前走(中间找不到，只能往前走)
+	// 从中间往前走(中间找不到，再往前走缩小窗口)
+	// i 不能等于0， 否则后面 a[j] == a[j+i]  一直成立
 	for i := n / 2; i > 0; i-- {
-		// 从前往后走, 往中间压缩
+		// 从前往后走
 		for j := 0; j < n-i; j++ {
-			// 比如: abab， 如果 j 和 j+i 相等， 结果加1
+			// 比如: abab,  如果 j 和 j+i 相等,    结果加1
 			if a[j] == a[j+i] {
 				res++
 			} else {
-				// 比如: abac， 如果 j 和 j+i 不等， 结果要置0，  i= 2, j= 1, 此时b 不等于c
+				// 比如: abac, 如果 j 和 j+i 不等，结果要置0 (当 i= 2, j= 1, 此时 b 不等于c)
 				res = 0
 			}
-			// 如果长度和索引相等， 结果乘以2, 有重复的， 且 i = n /2, 此次res已经是最大的，所以直接返回 （ abab    i=2， j=0,1 发现res == i ）
+			// 如果长度和索引相等， 说明有重复的， 而此时 i = n /2, res已经是最大的, res * 2 直接返回 （ 比如: abab , i=2, j= 1  发现res == i ）
 			if res == i {
 				return res * 2
 			}
@@ -91,7 +90,6 @@ func solve2(a string) int {
 
 	return res
 }
-
 func main() {
 	i := solve2("ababc")
 	fmt.Println(i)

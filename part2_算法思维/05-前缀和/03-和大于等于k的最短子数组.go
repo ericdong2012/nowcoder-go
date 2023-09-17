@@ -33,9 +33,18 @@ https://www.nowcoder.com/practice/3e1fd3d19fb0479d94652d49c7e1ead1?tpId=196&tqId
 */
 
 func shortestSubarray(nums []int, target int) int {
+	// 记录长度
 	res := math.MaxInt32
+	// 左右指针， 可以理解为 r快指针，l慢指针
 	l, r := 0, 0
+	// 中间结果，与 target 做比较
 	sum := 0
+	// [2,1,2,3], 5
+	/*
+	2，1，2
+	1，2，3
+	2，3
+	*/
 	for r < len(nums) {
 		sum += nums[r]
 		for sum >= target {
@@ -51,6 +60,7 @@ func shortestSubarray(nums []int, target int) int {
 		return -1
 	}
 }
+
 func min2(x, y int) int {
 	if x < y {
 		return x

@@ -5,7 +5,7 @@ import "sort"
 /*
 题⽬⼤意
 
-给你两个数组，arr1 和 arr2，
+给你两个数组，arr1 和 arr2
 arr2 中的元素各不相同
 arr2 中的每个元素都出现在 arr1 中
 对 arr1 中的元素进⾏排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的
@@ -58,7 +58,7 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 	//
 	//return arr1
 
-	// 对arr2 做hash
+	// 对arr2 做hash, arr2 中数据各不相同
 	index := make(map[int]int)
 	for i, v := range arr2 {
 		index[v] = i
@@ -70,20 +70,32 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 			notIn = append(notIn, v)
 		}
 	}
-	//	对arr1中数，计数
+	//	对arr1中数，计数, 关键步骤
 	count := make(map[int]int)
-	for _, v := range arr2 {
-		count[v]++
+	for _, v := range arr1 {
+		if _, ok := index[v]; ok {
+			count[v]++
+		}
 	}
 
 	// 处理结果
+	// 写法1
+	//res := []int{}
+	//for v, _ := range index {
+	//	temp := []int{}
+	//	for i:= 0 ; i < count[v]; i ++ {
+	//		temp = append(temp, v)
+	//	}
+	//	res = append(res, temp...)
+	//}
+
+	// 写法2
 	res := []int{}
-	for v, _ := range index {
-		temp := []int{}
-		for i:= 0 ; i < count[v]; i ++ {
-			temp = append(temp, v)
+	for _, v := range arr2 {
+		for count[v] > 0 {
+			res = append(res, v)
+			count[v]--
 		}
-		res = append(res, temp...)
 	}
 
 	// 将剩余的排序，并添加进结果中

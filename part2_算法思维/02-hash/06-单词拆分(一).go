@@ -8,8 +8,7 @@ import (
 https://www.nowcoder.com/practice/bb40e0aae84a4491a35f93b322516cb5?tpId=196&tqId=39340&ru=/exam/oj
 
 描述
-给定一个字符串 s 和一个字符串数组 dic, 在字符串 s 的任意位置添加任意多个空格后得到的字符串集合是给定字符串数组 dic 的子集（即拆分后的字符串集合中的所有字符串都在 dic 数组中），你可以以任意顺序 返回所有这些可能的拆分方案。
-
+给定一个字符串 s 和一个字符串数组 dic, 在字符串的任意位置拆分任意次后得到的字符串集合 是否 是给定字符串数组的子集。（即拆分后的字符串集合中的所有字符串都在 dic 数组中），
 
 示例1
 输入：
@@ -21,27 +20,28 @@ https://www.nowcoder.com/practice/bb40e0aae84a4491a35f93b322516cb5?tpId=196&tqId
 输入：
 "nowcoder", ["now","wcoder"]
 返回值：
-[]
+[] / false
 
 示例3
 输入：
 "nowcoder", ["nowcoder"]
 返回值：
-["nowcoder"]
+["nowcoder"]  / true
 
 示例4
 输入：
 "nownowcoder", ["now", "coder"]
 返回值：
-["now now coder"]
+["now now coder"]  / true
 
 说明：
 你可以重复使用 dic 数组中的字符串
 
 */
 
+// 单词拆分一
 func wordDiv(s string, dic []string) bool {
-	// 对标的 dic 建立hash表， 并初始化
+	//对标的 dic 建立hash表， 并初始化
 	m := make(map[string]bool)
 	for _, v := range dic {
 		m[v] = true
@@ -58,6 +58,8 @@ func wordDiv(s string, dic []string) bool {
 
 	return dp[len(s)]
 
+
+	// 单词拆分 二
 	//var (
 	//	ans  []string // 最终结果
 	//	path []string // 中间结果

@@ -46,10 +46,12 @@ class Solution:
         # write code here
         dict = {}
         for i in range(len(strings)):
-            if strings[i] not in dict:
-                dict[strings[i]] = 1
-            else:
-                dict[strings[i]] += 1
+#             if strings[i] not in dict:
+#                 dict[strings[i]] = 1
+#             else:
+#                 dict[strings[i]] += 1
+
+            temp[strings[i] +=1
         return [sorted(dict.items(), key=lambda x: (-x[1], x[0]))[:k]]
 
 

@@ -46,20 +46,19 @@ func longestValidParentheses(s string) int {
 	result := 0
 	for i := 0; i < len(s); i++ {
 		if s[i] == ')' {
-			// 移除一个
+			// 先弹栈
 			stack = stack[:len(stack)-1]
 			// 有元素
 			if len(stack) != 0 {
-				index := stack[len(stack)-1]
-				result = max(result, i-index)
+				result = max(result, i-stack[len(stack)-1])
 			} else {
-				// 没有元素, 记录当前位置
-				result = max(result, i)
+				// 没有元素
+				stack = append(stack, i)
 			}
 		} else {
-			//  '('， 记录此时的索引
 			stack = append(stack, i)
 		}
+
 	}
 	return result
 }

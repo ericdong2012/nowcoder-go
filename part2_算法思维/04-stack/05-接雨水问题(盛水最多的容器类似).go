@@ -75,6 +75,8 @@ func maxWater(arr []int) int64 {
 	left, right := 0, len(arr)-1
 	var maxL, maxR int
 	for left <= right {
+		// [3,1,2,5,2,4] 看运行过程，总结规律，再验证特例/边界 情况
+		// 找左边右边较大值, 一边结果一直在增加，当找到最大值，条件反转(走到另一个if条件中)，另一边结果一直增加, 直到left, right走到一起，即最大值的地方，跳出循环
 		maxL = max1(maxL, arr[left])
 		maxR = max1(maxR, arr[right])
 		if arr[left] <= arr[right] {

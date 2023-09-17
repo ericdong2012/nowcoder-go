@@ -45,76 +45,48 @@ https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=117&tqId
 */
 
 func maxInWindows(num []int, size int) []int {
-	// write code here
-	//l := len(num)
-	//if l == 0 || size == 0 || size > l {
-	//	return nil
-	//}
-	//
-	////  定义返回的结果集
+	//n := len(num)
+	//// 单调栈，存的是索引(数据较大的索引)
+	//deque := make([]int, 0)
+	//// 结果
 	//res := make([]int, 0)
-	////  单调队列
-	////  定义从大到小排序
-	//list := make([]int, 0)
-	//
-	////  窗口右移，判断单调队列第一个元素是否等于被移除的元素值
-	////  等于被移除的元素值，则单调队列第一个元素也移除
-	//pop := func(val int) {
-	//	if list[0] == val {
-	//		list = list[1:]
+	//for i := 0; i < n; i++ {
+	//	// depue 中存的是数据较大的索引, 否则一直缩短
+	//	for len(deque) > 0 && num[deque[len(deque)-1]] < num[i] {
+	//		deque = deque[:len(deque)-1]
+	//	}
+	//	deque = append(deque, i)
+	//	// 判断头部节点是否还在滑动窗口内
+	//	if deque[0]+size <= i {
+	//		deque = deque[1:]
+	//	}
+	//	// 满足了一个滑动窗口
+	//	if i+1 >= size {
+	//		res = append(res, num[deque[0]])
 	//	}
 	//}
-	//
-	////  向单调队列压入一个数据
-	////  单调队列:  大于等于左边元素 或者 小于等于右边元素，当前是从大到小的队列
-	//push := func(val int) {
-	//	for len(list) != 0 && list[len(list)-1] < val {
-	//		// 删除最后一个元素
-	//		list = list[:len(list)-1]
-	//	}
-	//	// 再压入数据
-	//	list = append(list, val)
-	//}
-	//
-	////  前size个元素进入单调队列
-	//for i := 0; i < size; i++ {
-	//	push(num[i])
-	//}
-	////  前size个元素为第一个窗口，res保存第一个窗口最大值list[0]
-	//res = append(res, list[0])
-	//
-	////  处理后续元素
-	//for i := size; i < len(num); i++ {
-	//	// 处理窗口左侧被移除时 是否也需要从单调队列移除
-	//	pop(num[i-size])
-	//	// 处理当前窗口右侧新增的元素
-	//	push(num[i])
-	//
-	//	// 取单调队列最大的元素值
-	//	res = append(res, list[0])
-	//}
-	//
 	//return res
-	n := len(num)
-	// 单调栈，存的是索引(数据较大的索引)
-	deque := make([]int, 0)
-	// 结果
-	res := make([]int, 0)
-	for i := 0; i < n; i++ {
-		// depue 中存的是数据较大的索引, 否则一直缩短
-		for len(deque) > 0 && num[deque[len(deque)-1]] < num[i] {
-			deque = deque[:len(deque)-1]
-		}
-		deque = append(deque, i)
-		// 判断头部节点是否还在滑动窗口内
-		if deque[0]+size <= i {
-			deque = deque[1:]
-		}
-		// 满足了一个滑动窗口
-		if i+1 >= size {
-			res = append(res, num[deque[0]])
-		}
+
+	// 选择排序的变换
+	if size > len(num) || size == 0 {
+		return nil
 	}
+	var res []int
+	var maxValue int
+	for j := 0; j <=len(num)-size; j++ {
+		maxValue = num[j]
+		// for i := j + 1; i < len(num)-size+1; i++ {
+		// 想清楚起点，终点, 一定是加上
+		//for i := j +1 ; i < j + size ; i++ {
+		for i := j ; i < j + size ; i++ {
+			if maxValue < num[i] {
+				maxValue = num[i]
+			}
+		}
+
+		res = append(res, maxValue)
+	}
+
 	return res
 }
 

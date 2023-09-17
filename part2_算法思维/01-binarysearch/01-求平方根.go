@@ -34,15 +34,16 @@ func sqrt(x int) int {
 		return x
 	}
 	mid := x / 2
-	fmt.Println(mid)
-	// 大于10
+	//fmt.Println(mid)
+
 	for mid*mid > x {
 		mid = mid / 2
 	}
-	// 小于10
+
 	for mid*mid <= x {
 		mid = mid + 1
 	}
+
 	return mid - 1
 }
 

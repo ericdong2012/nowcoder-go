@@ -69,7 +69,8 @@ func search(nums []int, target int) int {
 
 	// 例如 【1, 2, 4, 4, 4, 6】  4   上述拿到的不一定是最小的索引， 所以还需要处理
 	minV := stack[0]
-	for i := 0; i < len(stack); i++ {
+	//for i := 0; i < len(stack); i++ {
+	for i := 1; i < len(stack); i++ {
 		if stack[i] <= minV {
 			minV = stack[i]
 		}

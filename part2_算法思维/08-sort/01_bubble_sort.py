@@ -13,8 +13,7 @@ def bubblesort(list):
 
 # func  bubbleSort(list []int) []int {
 # 	for i:=0 ; i < len(list); i++ {
-# 		minI := i
-# 		for j:=1 ; j < len(list ) ; j++ {
+# 		for j:= i+1 ; j < len(list ) ; j++ {
 # 			if list[i] > list[j] {
 # 			 	list[i], list[j] = list[j], list[i]
 # 			 }

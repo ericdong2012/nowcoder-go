@@ -21,10 +21,10 @@ res[i]=nums[1]×nums[2]×......×nums[i−1]×nums[i+1]......×nums[n]
 [24,12,8,6]
 
 说明：
-res[0]=2*3*4=24
-res[1]=1*3*4=12
-res[2]=1*2*4=8
-res[3]=1*2*3=6
+res[0]=1* 2*3*4=24
+res[1]=1* 1*3*4=12
+res[2]=1*2* 1*4=8
+res[3]=1*2*3 * 1 =6
 */
 
 func timesExceptSelf(nums []int) []int {
@@ -32,10 +32,15 @@ func timesExceptSelf(nums []int) []int {
 	l, r := make([]int, len(nums)), make([]int, len(nums))
 	l[0] = 1
 	r[len(nums)-1] = 1
-	//for k, _ := range nums {
-	//	l[k]++
-	//	r[k]++
-	//}
+	/*
+	l: 1, 1, 1 * 2, 1 * 2 * 3
+	r: (从右往左) 1*4*3*2, 1*4*3, 1*4, 1
+
+	res[0]=1 * 2*3*4=24
+	res[1]=1 * 1*3*4=12
+	res[2]=1*2 * 1*4=8
+	res[3]=1*2*3 * 1 =6
+	*/
 	for i := 1; i < len(nums); i++ {
 		l[i] = l[i-1] * nums[i-1]
 	}
