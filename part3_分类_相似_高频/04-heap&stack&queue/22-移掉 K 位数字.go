@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 /*
@@ -62,21 +61,26 @@ class Solution:
 */
 func removeKnums(num string, k int) string {
 	// write code here
-	stack := []string{}
-	for _, v := range num {
-		// stack不为空，k不为0, 当前值小于栈中最后一个，则移除最后一个
-		for len(stack) != 0 && k != 0 && string(v) < stack[len(stack)-1] {
+	stack := make([]byte, 0, len(num))
+	for i := 0; i < len(num); i++ {
+		// stack不为空，k不为0, 当前值小于栈中最后一个(其实是前一个元素)，则移除栈中最后一个(弹栈); 因为题目要移除后结果最小，所有要找大的数
+		// 单调栈
+		// "1432219",3
+		// stack: [1219]
+		for len(stack) > 0 && k > 0 && num[i] < stack[len(stack)-1]  {
 			stack = stack[:len(stack)-1]
 			k--
 		}
-		// 如果栈中没有元素并且当前值为‘0’, 则继续(比如：某个数字后一堆0)
-		if len(stack) == 0 && v == '0' {
+		// 剪枝
+		// 如果栈中没有元素并且当前值为‘0’, 则继续(比如：某个数字后一堆0)  比如: 100999
+		if len(stack) == 0 && num[i] == '0' {
 			continue
 		}
 
-		stack = append(stack, string(v))
+		stack = append(stack, num[i])
 	}
-	// k还没有找完，并且stack长度大于k, 需要从stack中截取
+
+	// k还没有找完，并且stack长度大于k, 需要从stack中截取, 舍弃后面的数据
 	if k != 0 && len(stack) >= k {
 		stack = stack[:len(stack)-k]
 	}
@@ -84,7 +88,7 @@ func removeKnums(num string, k int) string {
 	if len(stack) == 0 {
 		return "0"
 	}
-	return strings.Join(stack, "")
+	return string(stack)
 }
 
 func main() {
