@@ -82,7 +82,7 @@ func removeKnums(num string, k int) string {
 	}
 	// 如果 stack 为空，包含k!=0 的情况
 	if len(stack) == 0 {
-		stack = append(stack, "0")
+		return "0"
 	}
 	return strings.Join(stack, "")
 }

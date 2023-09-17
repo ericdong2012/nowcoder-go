@@ -30,10 +30,8 @@ https://www.nowcoder.com/practice/7fc06e2162f048658252fac542fcb1e8?tpId=117&tqId
 */
 
 /*
-
 方式一： 递归
 方式二： 动态规划   0-1背包问题
-
 */
 func findTargetSumWays(nums []int, target int) int {
 	n := len(nums)
@@ -43,7 +41,7 @@ func findTargetSumWays(nums []int, target int) int {
 	count := 0
 	var dfs func(idx int, target int)
 	dfs = func(idx int, target int) {
-		// 索引走到最后，剩余的数为0, 个数加一， 并返回
+		// 索引走到最后，剩余的数为0, 个数加一， 返回
 		if idx == n {
 			if target == 0 {
 				count += 1

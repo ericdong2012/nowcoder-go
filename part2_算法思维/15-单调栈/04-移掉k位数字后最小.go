@@ -39,7 +39,7 @@ https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=196&tqId
 
 */
 
-// 通过此方法搜索，还有一道类似的题，解法类似
+// 通过此方法搜索，还有一道类似的题，解法类似（一样）
 func removeKnums(num string, k int) string {
 	// write code here
 	if len(num) <= k {
@@ -49,7 +49,7 @@ func removeKnums(num string, k int) string {
 	stack := make([]byte, 0, len(num))
 	for i := 0; i < len(num); i++ {
 		//stack不为空，k不为0, 当前值小于栈中最后一个，则移除最后一个
-		for len(stack) > 0 && num[i] < stack[len(stack)-1] && k > 0 {
+		for len(stack) > 0 && k > 0 && num[i] < stack[len(stack)-1]  {
 			stack = stack[:len(stack)-1]
 			k--
 		}
@@ -68,6 +68,7 @@ func removeKnums(num string, k int) string {
 	}
 
 	tmp := string(stack)
+	// 清除前导0
 	tmp = strings.TrimLeft(tmp, "0")
 	if len(tmp) == 0 {
 		return "0"
