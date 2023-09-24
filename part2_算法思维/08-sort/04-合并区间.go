@@ -65,8 +65,8 @@ func merge(intervals []*Interval) []*Interval {
 			res = append(res, intervals[i])
 		}
 	}
-	return res
 
+	return res
 	// 思想很好，但是会超时
 	//if len(intervals) == 0 {
 	//	return nil

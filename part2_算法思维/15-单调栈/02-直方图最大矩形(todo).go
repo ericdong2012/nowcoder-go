@@ -4,7 +4,6 @@ import "fmt"
 
 /*
 直方图最大矩形
-
 https://www.nowcoder.com/practice/bfaac4eebe5947af80912d1bcfcf2baa
 
 给定一个数组heights，长度为n，height[i]是在第i点的高度，那么height[i]表示的直方图，能够形成的最大矩形是多少?
@@ -36,7 +35,7 @@ func largestRectangleArea(height []int) int {
 	if len(height) == 1 {
 		return height[0]
 	}
-
+	// 该处非常重要，height 是一个升序的序列，下面的逻辑按照降序执行的，没法进入，最终结果会是0, 所以加入0， 让序列能降序
 	height = append(height, 0)
 	// 装索引
 	stack := make([]int, 0)
@@ -45,13 +44,13 @@ func largestRectangleArea(height []int) int {
 	res := 0
 	// [3,4,7,8,1,2]
 	for i := 0; i < len(height); i++ {
-		// 出栈逻辑,  前一个值 大于当前值,  说明开始降序
-		// 出栈时计算最大面积  其中宽度 当前索引 - 栈中倒数第二个值 - 1
+		// 出栈逻辑, 前一个值 大于当前值, 说明开始降序
+		// 出栈时计算最大面积, 其中宽度 = 当前索引 - 栈中倒数第二个值 - 1
 		for stack[len(stack)-1] != -1 && height[stack[len(stack)-1]] > height[i] {
 			hei := height[stack[len(stack)-1]]
-			// 当前索引 - 前一个索引 - 1
 			stack = stack[:len(stack)-1]
 			// 想清楚这里, 调试看看
+			// 当前索引 - ( 前前一个索引 + 1 ),  比如 [2, 4, 0] , i = 2, 计算 0, 4 区间的面积时，wid = 2 - ( 0 + 1 ) =  1 (因为宽度都是1)
 			wid := i - (stack[len(stack)-1] + 1)
 			res = max(res, hei*wid)
 		}

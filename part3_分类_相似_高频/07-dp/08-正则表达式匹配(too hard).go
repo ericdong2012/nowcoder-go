@@ -7,14 +7,14 @@ NC122 正则表达式匹配
 https://www.nowcoder.com/practice/28970c15befb4ff3a264189087b99ad4?tpId=117&tqId=37780&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=591&title=
 
 描述
-请实现一个函数用来匹配包括'.'和'*'的正则表达式。
+请实现一个函数用来匹配包括'.'和'*'的正则表达式
 1.模式中的字符'.'表示任意一个字符
-2.模式中的字符'*'表示它前面的字符可以出现任意次（包含0次）。
+2.模式中的字符'*'表示它前面的字符可以出现任意次（包含0次）
 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配
 
 数据范围:
-1.str 只包含从 a-z 的小写字母。
-2.pattern 只包含从 a-z 的小写字母以及字符 . 和 *，无连续的 '*'。
+1.str 只包含从 a-z 的小写字母
+2.pattern 只包含从 a-z 的小写字母以及字符 . 和 *，无连续的 '*'
 
 示例1
 输入：
@@ -30,7 +30,7 @@ true
 返回值：
 true
 说明：
-因为这里 c 为 0 个，a被重复一次， * 表示零个或多个a。 因此可以匹配字符串 "aad"。
+因为这里 c 为 0 个，a被重复一次， * 表示零个或多个a。 因此可以匹配字符串 "aad"
 
 示例3
 输入：
@@ -45,6 +45,7 @@ true
 "aaab","a*a*a*c"
 返回值：
 false
+
 */
 
 /*
@@ -61,6 +62,7 @@ step 3：（状态转移） 然后分别遍历str与pattern的每个长度，开
 因此有转移方程 dp[i][j] = dp[i−1][j] ∣∣ dp[i][j−2]
 
 不满足上述条件，只能不匹配，让前一个字符出现0次，dp[i][j]=dp[i][j−2]
+
 */
 
 // 画图看几个大的地方，几个关键的值，上下左右，对角线，i-2
@@ -83,7 +85,7 @@ func match(str string, pattern string) bool {
 			  d 0
 
 			  dp[i][j] = dp[i-1][j-1]
-			  dp[i][j] = dp[i-1][j] | dp[i][j-2]   纵 和 横
+			  dp[i][j] = dp[i-1][j] || dp[i][j-2]   纵 和 横
 
 			*/
 			if pattern[j-1] != '*' {
@@ -93,11 +95,11 @@ func match(str string, pattern string) bool {
 				}
 			} else {
 				// 有 '*' 的情况下
+
 				// * 当做0使用( 把前面字符消除掉 ) 横向，也适用于i==0
 				if j > 1 {
 					dp[i][j] = dp[i][j-2]
 				}
-
 				// * 当做1次或者多次用(前面的字符出现1次或者多次)
 				// i>0 && j >1 后续用在i-1, j-2
 				// dp[i-1][j]  前一位匹配

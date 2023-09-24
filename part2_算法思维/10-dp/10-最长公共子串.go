@@ -6,12 +6,12 @@ import (
 )
 
 /*
-BM66 最长公共子串
+BM66 最长公共子串   顺序是连续的
 https://www.nowcoder.com/practice/f33f5adc55f444baa0e0ca87ad8a6aac?tpId=295&tqId=991150&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Ftab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295
 
 
 描述
-给定两个字符串str1和str2,输出两个字符串的最长公共子串
+给定两个字符串str1和str2, 输出两个字符串的最长公共子串
 题目保证str1和str2的最长公共子串存在且唯一。
 
 要求： 空间复杂度 O(n^2)，时间复杂度 O(n^2)
@@ -43,7 +43,6 @@ class Solution:
 
 
 动态规划
-
 step 1：我们可以用dp[i][j]dp[i][j]dp[i][j]表示在str1中以第iii个字符结尾在str2中以第jjj个字符结尾时的公共子串长度，
 step 2：遍历两个字符串填充dp数组，转移方程为：如果遍历到的该位两个字符相等，则此时长度等于两个前一位长度+1，dp[i][j]=dp[i−1][j−1]+1dp[i][j] = dp[i - 1][j - 1] + 1dp[i][j]=dp[i−1][j−1]+1，如果遍历到该位时两个字符不相等，则置为0，因为这是子串，必须连续相等，断开要重新开始。
 step 3：每次更新dp[i][j]dp[i][j]dp[i][j]后，我们维护最大值，并更新该子串结束位置。
@@ -100,16 +99,18 @@ func LCS(str1 string, str2 string) string {
 	if len(str1) < len(str2) {
 		str1, str2 = str2, str1
 	}
-	pos := 0
+
 	res := ""
+	pos := 0
 	for i := 0; i < len(str1); i++ {
+		// 非固定的滑动窗口
 		if strings.Contains(str2, str1[i-pos:i+1]) {
 			res = str1[i-pos : i+1]
 			pos += 1
 		}
 	}
-	return res
 
+	return res
 }
 
 func main10() {

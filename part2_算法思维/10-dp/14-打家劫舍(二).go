@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-BM79 打家劫舍(二)
+BM79 打家劫舍(二)  房间是圆形的
 https://www.nowcoder.com/practice/a5c127769dd74a63ada7bff37d9c5815?tpId=295&tqId=2285837&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Ftab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295
 
 
@@ -64,26 +64,29 @@ https://www.nowcoder.com/practice/a5c127769dd74a63ada7bff37d9c5815?tpId=295&tqId
 // 加了一个限制条件，首位不能同时偷
 // 偷第一家，不偷最后一家，控制点在于i < n,   dp[1] = nums[0]
 // 不偷第一家，偷最后一家, 控制点在于i <= n， dp1[1] = 0
+// 最终比较两种情况的大小
 func rob1(nums []int) int {
 	n := len(nums)
 	// 因为下方 dp[i-1] 要保证有值，所以dp[1] 得有值，dp 长度设置为n + 1
 	dp := make([]int, n+1)
-	// 偷第一家，不偷最后一家，控制点在于i < n
+	// 偷第一家，不偷最后一家，控制点在于i < n， dp[1] = nums[0]
 	dp[1] = nums[0]
 	for i := 2; i < n; i++ {
-		// 偷(前一个不偷) 和 不偷(前一个被偷， 前一个数字num[i-1]加上前一个偷的结果dp[i-2]) 比较下最大值
+		// 偷(前一个不偷) 和 不偷(前一个被偷， 当前num[i-1]加上前一个偷的结果dp[i-2]) 比较下最大值
 		dp[i] = max9(dp[i-1], nums[i-1]+dp[i-2])
 	}
 	// dp[n-1] 不偷最后一家
 	res := dp[n-1]
 
+
 	dp1 := make([]int, n+1)
-	// 不偷第一家，偷最后一家, 控制点在于i <= n
+	// 不偷第一家，偷最后一家, 控制点在于i <= n， 	dp1[1] = 0
 	dp1[1] = 0
 	for i := 2; i <= n; i++ {
 		// 不偷 和 偷（前一个数字num[i-1]加上前一个偷的结果dp[i-2]） 比较下最大值
 		dp1[i] = max9(dp1[i-1], nums[i-1]+dp1[i-2])
 	}
+	// 比较两种情况的大小
 	return max9(res, dp1[n])
 }
 

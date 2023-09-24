@@ -11,7 +11,7 @@ https://www.nowcoder.com/practice/8daa4dff9e36409abba2adbe413d6fae?tpId=295&tqId
 描述
 给定一个二叉树，确定他是否是一个完全二叉树。
 
-完全二叉树的定义：若二叉树的深度为h，除第h 层外，其它各层的结点数都达到最大个数，第 h 层所有的叶子结点都连续集中在最左边，这就是完全二叉树。（第 h 层可能包含 [1~2h] 个节点）
+完全二叉树的定义：若二叉树的深度为h，除第  h 层外，其它各层的结点数都达到最大个数，第 h 层所有的叶子结点都连续集中在最左边，这就是完全二叉树。（第 h 层可能包含 [1~2h] 个节点）
 
 首先我们需要知道什么是完全二叉树：叶子节点只能出现在最下层和次下层，且最下层的叶子节点集中在树的左部。需要注意的是，满二叉树肯定是完全二叉树，而完全二叉树不一定是满二叉树。
 
@@ -54,9 +54,9 @@ func isCompleteTree(root *TreeNode) bool {
 	for stack != nil {
 		var newStack []*TreeNode
 		for _, v := range stack {
-			// 左子树并且右子树为空，叶子节点，flag标识为true 同时 v.Left != nil || v.Right != nil 前后矛盾
-			// 左子树空，右子树不为空
-			// 结果为false
+			// 情形1: 左子树并且右子树为空，叶子节点，flag标识为true 同时 v.Left != nil || v.Right != nil, 因为false = true, 必定 v.Left == nil &&  v.Right == nil
+			// 情形2: 左子树空 并且 右子树不为空, 因为 最下层的叶子节点集中在树的左部
+			// 上述两种情形 结果为false
 			if (flag && (v.Left != nil || v.Right != nil)) || (v.Left == nil && v.Right != nil) {
 				return false
 			}

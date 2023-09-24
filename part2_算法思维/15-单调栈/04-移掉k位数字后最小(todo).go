@@ -7,7 +7,6 @@ import (
 
 /*
 移除K位数字 后最小
-
 https://www.nowcoder.com/practice/0fe685c8272d40f1b9785fedd2499c1c?tpId=196&tqId=39412&ru=/exam/oj
 
 给定一个以字符串表示的数字 num 和一个数字 k ，从 num 中移除 k 位数字，使得剩下的数字最小。如果可以删除全部数字，则结果为 0。
@@ -58,9 +57,10 @@ func removeKnums(num string, k int) string {
 		}
 		// 剪枝
 		// 如果栈中没有元素并且当前值为‘0’, 则继续(比如：某个数字后一堆0)  比如: 100999
-		if len(stack) == 0 && num[i] == '0' {
-			continue
-		}
+		// 此处不是必须
+		//if len(stack) == 0 && num[i] == '0' {
+		//	continue
+		//}
 
 		stack = append(stack, num[i])
 	}

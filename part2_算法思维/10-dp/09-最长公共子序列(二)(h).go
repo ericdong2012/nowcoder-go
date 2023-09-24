@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-BM65 最长公共子序列(二)
+BM65 最长公共子序列(二)  顺序可以是非连续的，但是顺序要一致，要将数据保存下来
 https://www.nowcoder.com/practice/6d29638c85bb4ffd80c020fe244baf11?tpId=295&tqId=991075&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Ftab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295
 
 描述
@@ -102,6 +102,19 @@ class Solution:
 */
 
 func LCS2(s1 string, s2 string) string {
+	/*
+		   1 A 2 C 3 D 4 B 5 6
+		B
+		1
+		D
+		2
+		3
+		A
+		4
+		5
+		6
+		A
+	*/
 	if len(s2) == 0 {
 		return "-1"
 	}
@@ -111,14 +124,20 @@ func LCS2(s1 string, s2 string) string {
 		t = ""
 		for j := 0; j < len(s2); j++ {
 			t1 = dp[j]
+			// 执行到最后， dp的最后一位是所有复合要求的字符
+			// 字符相等
 			if s2[j] == s1[i] {
-				dp[j] = t + string(s1[i])
+				dp[j] = t + string(s2[j])
 			} else {
-				// 此处长度比较妙，如果当前长度小于前一个长度，会将当前长度更新
-				// 1，1，1，1，1，1，1 。。。
+				// 如果当前长度小于前一个长度，会将当前长度更新, 此处更新比较妙
+				// 调试看
+				// 1, 1, 1, 1, 1, 1, 1 。。。
 				// 1, 1, 1A, 1A, 1A ...
-				// 1. 12 ,1A, 1A, 1A ...
-				// 1. 123,123, 123, 123...
+				// 1, 12 ,1A, 1A, 1A ...
+				// ...
+				// 1, 123, 123, 123, 123...
+
+				// j > 0 是因为 有dp[j-1]
 				if j > 0 && len(dp[j]) < len(dp[j-1]) {
 					dp[j] = dp[j-1]
 				}
@@ -126,7 +145,7 @@ func LCS2(s1 string, s2 string) string {
 			t = t1
 		}
 	}
-	// 如果最后一位是空 == dp[len(dp) - 1 ]
+	// 如果最后一位是空 == dp[ len(dp) - 1 ]
 	if dp[len(s2)-1] == "" {
 		return "-1"
 	}

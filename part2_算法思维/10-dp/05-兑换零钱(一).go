@@ -77,5 +77,6 @@ func min2(a, b int) int {
 
 func main05() {
 	money := minMoney([]int{5, 2, 3}, 20)
+	//money := minMoney([]int{5, 2, 3}, 11)  // 3
 	fmt.Println(money)
 }

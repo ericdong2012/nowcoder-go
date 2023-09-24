@@ -28,7 +28,6 @@ A数组为[4,5,6]，B数组为[1,2,3]，后台程序会预先将A扩容为[4,5,6
 [1,2,3],[2,5,6]
 返回值：
 [1,2,2,3,5,6]
-
 */
 
 func merge(A []int, m int, B []int, n int) {
@@ -61,25 +60,6 @@ func merge(A []int, m int, B []int, n int) {
 	}
 
 	fmt.Println(result)
-
-	// index := m + n - 1
-	// for m > 0 && n > 0 {
-	// 	if A[m-1] >= B[n-1] {
-	// 		A[index] = A[m-1]
-	// 		m--
-	// 	} else {
-	// 		A[index] = B[n-1]
-	// 		n--
-	// 	}
-	// 	index--
-	// }
-	// //B数组依然有剩余
-	// for n > 0 {
-	// 	A[index] = B[n-1]
-	// 	n--
-	// 	index--
-	// }
-
 }
 
 func main() {

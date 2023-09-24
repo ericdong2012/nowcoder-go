@@ -34,13 +34,12 @@ https://www.nowcoder.com/practice/c5fbf7325fbd4c0ea3d0c3ea6bc6cc79?tpId=295&tqId
 10
 说明：
 最优方案是偷第2个房间
+
 */
 
 /*
 思路1： dp
 思路2： 比较奇偶位的和大小 其实不行， 不一定下一个非得偷奇数或者偶数，还是一个大小问题
-        // 5，2，3，7
-		// 5，2，3，2
 */
 func max8(a, b int) int {
 	if a > b {
@@ -50,19 +49,28 @@ func max8(a, b int) int {
 }
 
 func rob(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	if len(nums) == 2 {
+		return max8(nums[0], nums[1])
+	}
+
 	n := len(nums)
 	dp := make([]int, n+1)
 	dp[1] = nums[0]
 	for i := 2; i <= n; i++ {
 		// 5，2，3，7
-		// 5，2，3，2
-		// 不偷  +  偷（前一个数字num[i-1]加上更前一个偷的结果dp[i-2]） 比较较大值
+		// 0  5，5，8，12   （首尾偷）
+		// 不偷(当前不偷，前一个偷了，保持前一个数据不变)  +  偷（当前偷，当前num[i-1]加上更前一个偷的结果dp[i-2]）    比较较大值
 		dp[i] = max8(dp[i-1], nums[i-1]+dp[i-2])
 	}
 	return dp[n]
 }
 
 func main17() {
-	i := rob([]int{5, 2, 3, 7})
+	//i := rob([]int{5, 2, 3, 7})
+	i := rob([]int{1, 3, 6})
 	fmt.Println(i)
 }

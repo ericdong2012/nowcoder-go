@@ -49,6 +49,8 @@ https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=295&tqId
 中序： [3, 2 , 4, 1, 6, 5, 7]
 根节点： 1
 
+
+
 	   1
   左        右
   2         5
@@ -70,15 +72,14 @@ func reConstructBinaryTree(pre []int, vin []int) *TreeNode {
 	if len(pre) == 0 || len(vin) == 0 {
 		return nil
 	}
-	// 找到根节点的值
+	// 根节点的值 就是pre[0]
 	root := &TreeNode{Val: pre[0]}
-	// 根据根节点找到在中序遍历中的索引
+	// 找到根节点在中序遍历中的索引, 此处就是分界线
 	idx := findIndex(vin, pre[0])
-	// 先重建左边的树
+	// 先重建左边的树 [2, 3, 4] [3, 2, 4]
 	root.Left = reConstructBinaryTree(pre[1:idx+1], vin[:idx])
-	// 重建右节点
+	// 重建右节点  [5, 6, 7]  [6, 5, 7]
 	root.Right = reConstructBinaryTree(pre[idx+1:], vin[idx+1:])
-
 
 	return root
 }

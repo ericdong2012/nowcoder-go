@@ -9,7 +9,8 @@ https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=295&tqId
 
 描述
 输入一棵节点数为 n 二叉树，判断该二叉树是否是平衡二叉树。
-平衡二叉树（Balanced Binary Tree），具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是平衡二叉树。  https://zhuanlan.zhihu.com/p/56066942
+平衡二叉树（Balanced Binary Tree）：
+它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是平衡二叉树。  https://zhuanlan.zhihu.com/p/56066942
 
 示例1
 输入：
@@ -71,12 +72,14 @@ func IsBalanced_Solution(pRoot *TreeNode) bool {
 	if pRoot == nil {
 		return true
 	}
-	// 判断左右子树的高度差 是否小于1
-	if abs(getMaxDepth(pRoot.Left)-getMaxDepth(pRoot.Right)) <= 1 {
+	if !IsBalanced_Solution(pRoot.Left) {
 		return false
 	}
-	// 递归判断当前节点的左右
-	return  IsBalanced_Solution(pRoot.Left) && IsBalanced_Solution(pRoot.Right)
+	if !IsBalanced_Solution(pRoot.Right) {
+		return false
+	}
+	// 判断左右子树的高度差 是否小于1
+	return abs(getMaxDepth(pRoot.Left)-getMaxDepth(pRoot.Right)) <= 1
 }
 
 // 获取左子树或者右子树的深度

@@ -93,6 +93,7 @@ class Solution:
         p
         *
         .
+
         """
         memo = dict()  # 备忘录
 
@@ -109,13 +110,13 @@ class Solution:
 
             # 匹配 *
             # 如果j未到p中倒数第二个字符，并且p的下一个字符是*
-            # 结果等于纵向往下走2个字符或者横向走一个字符并且当前字符在s[i] 中 或者是 .
-            # dp(2,2)
+            # 结果等于纵向往下走2个字符 或者  横向走一个字符并且当前字符在s[i]中 或者 是 .
+            # 比如: dp(2,2)
             if j <= len(p) - 2 and p[j + 1] == '*':
                 # 通配符'*'匹配了0次， return dp(i, j + 2)
                 # 通配符'*'匹配了多次，return dp(i + 1, j)
                 ans = dp(i, j + 2) or first and dp(i + 1, j)
-            # 匹配, 或者其他字符, 比如: dp(1, 1), dp(2,2)
+            # 匹配. 或者 其他字符, 比如: dp(1, 1), dp(2, 2)
             else:
                 ans = first and dp(i + 1, j + 1)
 
