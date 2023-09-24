@@ -99,9 +99,7 @@ class Solution:
 
 s = Solution()
 print(s.isMatch(s="acdcb", p="a*c?b"))
-
 print(s.isMatch(s="adceb", p="*a*b"))
-
 print(s.isMatch(s="aa", p="a"))
 
 

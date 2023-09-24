@@ -126,7 +126,6 @@ class Solution:
 
         return dp(0, 0)
 
-
 s = Solution()
 print(s.isMatch(s="mississippi", p="mis*is*p*."))
 print(s.isMatch(s="aab", p="c*a*b"))
