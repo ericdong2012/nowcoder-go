@@ -44,14 +44,14 @@ from typing import List
 class Solution:
     def topKstrings(self, strings: List[str], k: int) -> List[List[str]]:
         # write code here
-        temp = {}
+        temp = defaultdict(int)
         for i in range(len(strings)):
 #             if strings[i] not in dict:
 #                 dict[strings[i]] = 1
 #             else:
 #                 dict[strings[i]] += 1
               temp[strings[i] +=1
-        return [sorted(temp.items(), key=lambda x: (-x[1], x[0]))[:k]]
+        return sorted(temp.items(), key=lambda x: (-x[1], x[0]))[:k]
 
 
 if __name__ == '__main__':

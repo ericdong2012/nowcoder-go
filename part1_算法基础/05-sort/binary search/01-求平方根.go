@@ -24,18 +24,17 @@ https://www.nowcoder.com/practice/09fbfb16140b40499951f55113f2166c?tpId=117&tqId
 
 */
 
-
 func sqrt(x int) int {
 	// write code here
+	// 需要注意的是时间复杂度
 	// x = 25
 	if x == 0 || x == 1 {
 		return x
 	}
 	mid := x / 2
-	//fmt.Println(mid)
-
 	for mid*mid > x {
-		mid = mid / 2
+		mid = mid / 2 // 4ms
+		//mid = mid - 1   // 400ms
 	}
 
 	for mid*mid <= x {

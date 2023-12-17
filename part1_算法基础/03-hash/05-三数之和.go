@@ -10,7 +10,7 @@ NC54 三数之和
 https://www.nowcoder.com/practice/345e2ed5f81d4017bbb8cc6055b0b711?tpId=117&tqId=37751&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=590&title=
 
 描述
-给出一个有n个元素的数组S，S中是否有元素a,b,c满足a+b+c=0 找出数组S中所有满足条件的三元组。
+给出一个有n个元素的数组S，S中是否有元素a,b,c满足 a+b+c=0 找出数组S中所有满足条件的三元组。
 
 
 注意：
@@ -144,16 +144,19 @@ func threeSum(nums []int) [][]int {
 	resultMap := make(map[[3]int]struct{})
 	for i := 0; i < len(nums)-2; i++ {
 		for j := i + 1; j < len(nums)-1; j++ {
+			// k 是 从 j + 1 的一个索引
 			k := sort.SearchInts(nums[j+1:], -nums[i]-nums[j])
-			if k < len(nums[j+1:]) && nums[i]+nums[j]+nums[j+k+1] == 0 {
-				resultMap[[3]int{nums[i], nums[j], nums[j+k+1]}] = struct{}{}
+			//if k >=0 && nums[i]+nums[j]+nums[j+1+k] == 0 {
+			if k < len(nums[j+1:]) && nums[i]+nums[j]+nums[j+1+k] == 0 {
+				resultMap[[3]int{nums[i], nums[j], nums[j+1+k]}] = struct{}{}
 			}
 		}
 	}
 
 	result := [][]int{}
 	for k := range resultMap {
-		result = append(result, append([]int{}, k[0], k[1], k[2]))
+		result = append(result, []int{k[0], k[1], k[2]})
+		//result = append(result, append([]int{}, k[0], k[1], k[2]))
 	}
 	return result
 }

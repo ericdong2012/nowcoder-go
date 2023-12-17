@@ -39,6 +39,7 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	for i := range dp {
 		dp[i] = make([]int, len(text2)+1)
 	}
+
 	for i := 1; i < len(text1)+1; i++ {
 		for j := 1; j < len(text2)+1; j++ {
 			// 如果前一个相等，当前位置的值 等于 对角线的值 + 1; 否则在左边和上边找较大值

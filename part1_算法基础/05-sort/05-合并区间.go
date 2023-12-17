@@ -34,6 +34,13 @@ type Interval struct {
 	End   int
 }
 
+func max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}
+
 func merge(intervals []*Interval) []*Interval {
 	if len(intervals) == 0 {
 		return nil
@@ -54,14 +61,17 @@ func merge(intervals []*Interval) []*Interval {
 			[10, 30] [20, 25]
 
 			[10, 30] [40, 50]
+
+			不可能的情况： (前面已经排过序了， [8, 60] 一定会在前面)
+		    [10, 20] [8, 60]
 		*/
 
 		// 有交叉
 		if res[len(res)-1].End >= intervals[i].Start {
 			// 只需更新原有的，不需要删除或者添加
 			res[len(res)-1].End = max(res[len(res)-1].End, intervals[i].End)
+		// 无交叉
 		} else {
-			// 无交叉
 			res = append(res, intervals[i])
 		}
 	}
@@ -92,11 +102,4 @@ func merge(intervals []*Interval) []*Interval {
 	//}
 	//
 	//return intervals
-}
-
-func max(a, b int) int {
-	if a < b {
-		return b
-	}
-	return a
 }

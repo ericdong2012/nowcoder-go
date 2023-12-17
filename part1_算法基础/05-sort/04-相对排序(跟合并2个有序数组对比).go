@@ -70,7 +70,7 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 			notIn = append(notIn, v)
 		}
 	}
-	//	对arr1中数，计数, 关键步骤
+	// 对arr1中数，计数, 关键步骤
 	count := make(map[int]int)
 	for _, v := range arr1 {
 		if _, ok := index[v]; ok {
@@ -101,7 +101,6 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 	// 将剩余的排序，并添加进结果中
 	sort.Ints(notIn)
 	res = append(res, notIn...)
-
 	return res
 }
 

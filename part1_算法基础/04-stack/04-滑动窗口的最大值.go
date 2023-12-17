@@ -68,14 +68,15 @@ func maxInWindows(num []int, size int) []int {
 	//}
 	//return res
 
-	// 选择排序的变换
+	// 选择排序的变换, 只是要固定长度
 	if size > len(num) || size == 0 {
 		return nil
 	}
 	var res []int
-	var maxValue int
-	for j := 0; j <=len(num)-size; j++ {
-		maxValue = num[j]
+	// 1. 要固定长度， 最后的等于号不要忘
+	// 2. 内部起点，终点要想清楚
+	for j := 0; j <= len(num)-size; j++ {
+		maxValue := num[j]
 		// for i := j + 1; i < len(num)-size+1; i++ {
 		// 想清楚起点，终点, 一定是加上
 		//for i := j +1 ; i < j + size ; i++ {

@@ -25,6 +25,7 @@ https://www.nowcoder.com/practice/45fd68024a4c4e97a8d6c45fc61dc6ad?tpId=117&tqId
 
 func longestValidParentheses(s string) int {
 	// write code here
+	// 方法1：
 	//stack := make([]rune, 0)
 	//count := 0
 	//for i := 0; i < len(s); i++ {
@@ -40,78 +41,30 @@ func longestValidParentheses(s string) int {
 	//
 	//return count
 
-	//if len(s) == 0 {
-	//	return 0
-	//}
-	//stack := make([]int, len(s)+1)
-	//top := 0
-	//stack[top] = -1
-	//res := 0
-	//for i := 0; i < len(s); i++ {
-	//	if s[i] == '(' {
-	//		top++
-	//		stack[top] = i
-	//	} else {
-	//		top--
-	//		if top == -1 {
-	//			top++
-	//			stack[top] = i
-	//		} else {
-	//			res = max(res, i-stack[top])
-	//		}
-	//	}
-	//}
-	//
-	//return res
-
-	// dp
-	/*
-		dp[i]表示以i结尾最长合法字符串。如果s[i]=='('时该字符串一定不合法；当s[i]==')'时，假设存在解，那么该右括号与其对应的左括号之间的字符串一定是合法的。因此对于i-1的位置，以i-1结尾的合法字符串的开头下标为i - dp[i - 1]，当其前一个位置s[i - 1 - dp[i - 1]] == '('时，可以与s[i]进行匹配，dp[i]更新为dp[i - 1] + 2。
-		此时还需要注意，如果在与当前右括号匹配的左括号的前一个位置(i - 1 - dp[i - 1]) - 1，以该处为结尾的最长合法字符串不为0，也需要加到结果上。例如()()
-	*/
-
-	// 动态规划
-	//dp := make([]int, len(s))
-	//maxValue := 0
-	//// 起始点是1
-	//for i := 1; i < len(s); i++ {
-	//	if s[i] == ')' {
-	//		preIndex := i - 1 - dp[i-1]
-	//		if preIndex >= 0 && s[preIndex] == '(' {
-	//			dp[i] = dp[i-1] + 2
-	//			if preIndex-1 >= 0 {
-	//				dp[i] += dp[preIndex-1]
-	//			}
-	//		}
-	//	}
-	//	maxValue = max(maxValue, dp[i])
-	//}
-	//
-	//return maxValue
-
-	//栈
+	// 方法2：(方法1 更容易懂)
+	// 栈
 	if len(s) <= 1 {
 		return 0
 	}
-	// 用来存索引，需要有个元素，不然会报错 )(
+	// 用来存索引，需要有个元素，不然会报错 比如:  )(
 	stack := []int{-1}
 	result := 0
 	for i := 0; i < len(s); i++ {
 		if s[i] == ')' {
-			// 先弹栈
+			// todo: 先弹栈 （为什么先弹栈, 过程还是比较绕的， ‘()’ 通过断点调试，思考该过程）
 			stack = stack[:len(stack)-1]
 			// 有元素
 			if len(stack) != 0 {
 				result = max(result, i-stack[len(stack)-1])
 			} else {
-				// 没有元素
+				// 没有元素, 只有之前添加的 -1
 				stack = append(stack, i)
 			}
 		} else {
 			stack = append(stack, i)
 		}
-
 	}
+
 	return result
 }
 
@@ -119,11 +72,11 @@ func max(a int, b int) int {
 	if a > b {
 		return a
 	}
+
 	return b
 }
 
 func main() {
-	parentheses := longestValidParentheses(
-		"())")
+	parentheses := longestValidParentheses("())")
 	fmt.Println(parentheses)
 }

@@ -71,13 +71,13 @@ func solve2(a string) int {
 	// 从中间往前走(中间找不到，再往前走缩小窗口)
 	// i 不能等于0， 否则后面 a[j] == a[j+i]  一直成立
 	for i := n / 2; i > 0; i-- {
-		// 从前往后走
+		// 从前往后走, 最多到 n - i
 		for j := 0; j < n-i; j++ {
-			// 比如: abab,  如果 j 和 j+i 相等,    结果加1
+			// 比如: ababa,  如果 j 和 j+i 相等, 结果加1
 			if a[j] == a[j+i] {
 				res++
 			} else {
-				// 比如: abac, 如果 j 和 j+i 不等，结果要置0 (当 i= 2, j= 1, 此时 b 不等于c)
+				// 如果 j 和 j+i 不等，结果要置0 (比如: abac, 当 i= 2, j= 1, 此时 b 不等于 c)
 				res = 0
 			}
 			// 如果长度和索引相等， 说明有重复的， 而此时 i = n /2, res已经是最大的, res * 2 直接返回 （ 比如: abab , i=2, j= 1  发现res == i ）
@@ -86,7 +86,6 @@ func solve2(a string) int {
 			}
 		}
 	}
-
 	return res
 }
 
