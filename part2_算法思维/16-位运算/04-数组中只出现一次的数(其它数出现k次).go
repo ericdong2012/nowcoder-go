@@ -54,7 +54,7 @@ func foundOnceNumber(arr []int, k int) int {
 		tempMap[arr[i]]++
 	}
 	for i, v := range tempMap {
-		if v%k != 0 {
+		if v % k != 0 {
 			return i
 		}
 	}

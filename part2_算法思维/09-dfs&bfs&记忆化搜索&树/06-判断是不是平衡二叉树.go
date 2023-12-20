@@ -72,6 +72,7 @@ func IsBalanced_Solution(pRoot *TreeNode) bool {
 	if pRoot == nil {
 		return true
 	}
+	// {1,2,3,4,#,#,5,6}  防止单侧层级不满足要求
 	if !IsBalanced_Solution(pRoot.Left) {
 		return false
 	}

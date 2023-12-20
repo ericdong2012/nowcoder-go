@@ -61,6 +61,8 @@ func shortestSubarray(nums []int, target int) int {
 	}
 }
 
+
+
 func min2(x, y int) int {
 	if x < y {
 		return x

@@ -150,9 +150,9 @@ func dfs2(root *TreeNode) int {
 	// 只有在最大贡献值大于 0 时，才会选取对应子节点
 	left := max(dfs(root.Left), 0)
 	right := max(dfs(root.Right), 0)
-	// 统计出现的最大路径和 =  左子树的最大深度加右子树的最大深度加本节点，  如果其中有负值，该路线会被舍弃掉
+	// 统计出现的最终的最大路径和 =  左子树的最大深度加右子树的最大深度加本节点，  如果其中有负值，该路线会被舍弃掉
 	res = max(res, root.Val + left + right)
-	// 返回当前节点的最大路径
+	// 返回[当前节点]的最大路径, 返回值是为了上面迭代能继续
 	num := max(left, right) + root.Val
 	return num
 }

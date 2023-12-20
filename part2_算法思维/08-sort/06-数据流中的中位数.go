@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 /*
 NC131 数据流中的中位数
 https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=117&tqId=37807&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=581,582,586&title=
@@ -54,13 +56,14 @@ func Insert(num int) {
 
 	a = append(a, num)
 	// 排序  看似只是简单的处理了相邻的两个数据，后一个比前一个小，交换数据， 知道后一个比前一个大
-	for i := aLen; i > 0; i-- {
-		if a[i] < a[i-1] {
-			a[i], a[i-1] = a[i-1], a[i]
-			continue
-		}
-		break
-	}
+	//for i := aLen; i > 0; i-- {
+	//	if a[i] < a[i-1] {
+	//		a[i], a[i-1] = a[i-1], a[i]
+	//		continue
+	//	}
+	//	break
+	//}
+	sort.Ints(a)
 }
 func GetMedian() float64 {
 	if cnt%2 == 0 {

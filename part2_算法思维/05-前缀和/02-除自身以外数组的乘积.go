@@ -56,3 +56,22 @@ func timesExceptSelf(nums []int) []int {
 
 	return res
 }
+
+// 对于大量数据，可能时间复杂度会高一些
+//func timesExceptSelf(nums []int ) []int {
+//	res := make([]int, len(nums))
+//	for i := 0; i < len(nums); i++ {
+//		temp := 1
+//		for j:=0 ; j < i ; j++ {
+//			temp *= nums[j]
+//		}
+//
+//		for k:= i+1; k < len(nums); k++ {
+//			temp *= nums[k]
+//		}
+//
+//		res[i] = temp
+//	}
+//
+//	return res
+//}

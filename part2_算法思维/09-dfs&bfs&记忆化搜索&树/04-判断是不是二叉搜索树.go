@@ -38,26 +38,7 @@ true
 
 var pre = math.MinInt64
 
-func isValidBST(root *TreeNode) bool {
-	// 方式一: 递归  二叉树的递归，则是将某个节点的左子树、右子树看成一颗完整的树，那么对于子树的访问或者操作就是对于原树的访问或者操作的子问题，因此可以自我调用函数不断进入子树
-	/*
-	   pre = -sys.maxsize - 1
-	   def isValidBST(self , root: TreeNode) -> bool:
-	       if not root:
-	           return True
-	       # 先进入左子树
-	       if not self.isValidBST(root.left):
-	           return False
-	       if(root.val <= self.pre):
-	           return False
-	       # 更新最值
-	       self.pre = root.val
-	       # 再进入右子树
-	       if not self.isValidBST(root.right):
-	           return False
-	       return True
-	*/
-
+func isValidBST1(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
@@ -91,6 +72,31 @@ func isValidBST(root *TreeNode) bool {
 			step 5：最后由右子树的后面节点决定。
 	*/
 
+
+}
+
+
+// 更好的解法
+func isValidBST( root *TreeNode ) bool {
+	// write code here
+	if root == nil {
+		return true
+	}
+
+	left , right := math.MinInt32, math.MaxInt32
+	return helper04(root, left, right)
+}
+
+func helper04(root *TreeNode, left, right int) bool {
+	if root == nil {
+		return true
+	}
+
+	if root.Val < left || root.Val > right {
+		return false
+	}
+
+	return helper04(root.Left, left, root.Val) && helper04(root.Right, root.Val, right)
 }
 
 func main11() {
