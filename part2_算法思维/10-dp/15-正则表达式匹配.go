@@ -16,7 +16,7 @@ part3_分类\07-dp\08-正则表达式匹配(too hard).go
 
 数据范围:
 1.str 只包含从 a-z 的小写字母
-2.pattern 只包含从 a-z 的小写字母以及字符 . 和 *，无连续的 '*'
+2.pattern 只包含从 a-z 的小写字母以及字符 . 和 *，  无连续的 '*'
 
 示例1
 输入：
@@ -61,53 +61,57 @@ false
   a 0 0 0 0 1 0
   d 0 0 0 0 0 1
 
+
+15, 16是一道题，但是解法不同，15是常规解法，16是备忘录解法
+
 */
 
-func match(s string, p string) bool {
-	// write code here
-	m, n := len(s), len(p)
-	// dp[i][j] 代表字符串 s 的前 i 个字符和 p 的前 j 个字符能否匹配。
-	// 由于 dp[0][0] 代表的是空字符的状态， 因此 dp[i][j] 对应的添加字符是 s[i - 1] 和 p[j - 1] 。
-	dp := make([][]bool, m+1)
-	for i := 0; i < len(dp); i++ {
-		dp[i] = make([]bool, n+1)
-	}
-	dp[0][0] = true //代表两个空字符串能够匹配。
-	// 初始化首行
-	// 首行 s 为空字符串，因此当 p 的偶数位为 * 时才能够匹配（即让 p 的奇数位出现 0 次，保持 p 是空字符串）。因此，循环遍历字符串 p ，步长为 2（即只看偶数位）。
-	for j := 2; j <= n; j += 2 {
-		dp[0][j] = dp[0][j-2] && p[j-1] == '*'
-	}
+// 解法1
+//func match(s string, p string) bool {
+//	// write code here
+//	m, n := len(s), len(p)
+//	// dp[i][j] 代表字符串 s 的前 i 个字符和 p 的前 j 个字符能否匹配。
+//	// 由于 dp[0][0] 代表的是空字符的状态， 因此 dp[i][j] 对应的添加字符是 s[i - 1] 和 p[j - 1] 。
+//	dp := make([][]bool, m+1)
+//	for i := 0; i < len(dp); i++ {
+//		dp[i] = make([]bool, n+1)
+//	}
+//	dp[0][0] = true //代表两个空字符串能够匹配。
+//	// 初始化首行
+//	// 首行 s 为空字符串，因此当 p 的偶数位为 * 时才能够匹配（即让 p 的奇数位出现 0 次，保持 p 是空字符串）。因此，循环遍历字符串 p ，步长为 2（即只看偶数位）。
+//	for j := 2; j <= n; j += 2 {
+//		dp[0][j] = dp[0][j-2] && p[j-1] == '*'
+//	}
+//
+//	for i := 1; i <= m; i++ {
+//		for j := 1; j <= n; j++ {
+//			if p[j-1] == '*' {
+//				// 通配符'*'匹配了0次， return dp(i, j + 2)
+//				// 通配符'*'匹配了多次，return dp(i + 1, j)
+//				// 通配符'*' 和 '.'匹配了多次， return dp(i + 1, j)
+//				if dp[i][j-2] {
+//					dp[i][j] = true
+//				} else if dp[i-1][j] && s[i-1] == p[j-2] {
+//					dp[i][j] = true
+//				} else if dp[i-1][j] && p[j-2] == '.' {
+//					dp[i][j] = true
+//				}
+//			} else {
+//				// 匹配 .  或者 其他字符相等   dp[i][j] = dp[i-1][j-1]
+//				if dp[i-1][j-1] && s[i-1] == p[j-1] {
+//					dp[i][j] = true
+//				} else if dp[i-1][j-1] && p[j-1] == '.' {
+//					dp[i][j] = true
+//				}
+//			}
+//		}
+//	}
+//	return dp[m][n]
+//}
 
-	for i := 1; i <= m; i++ {
-		for j := 1; j <= n; j++ {
-			if p[j-1] == '*' {
-				// 通配符'*'匹配了0次， return dp(i, j + 2)
-				// 通配符'*'匹配了多次，return dp(i + 1, j)
-				// 通配符'*' 和 '.'匹配了多次， return dp(i + 1, j)
-				if dp[i][j-2] {
-					dp[i][j] = true
-				} else if dp[i-1][j] && s[i-1] == p[j-2] {
-					dp[i][j] = true
-				} else if dp[i-1][j] && p[j-2] == '.' {
-					dp[i][j] = true
-				}
-			} else {
-				// 匹配 .  或者 其他字符相等   dp[i][j] = dp[i-1][j-1]
-				if dp[i-1][j-1] && s[i-1] == p[j-1] {
-					dp[i][j] = true
-				} else if dp[i-1][j-1] && p[j-1] == '.' {
-					dp[i][j] = true
-				}
-			}
-		}
-	}
-	return dp[m][n]
-}
 
-
-/*
-func match(str string, pattern string) bool {
+// 解法2
+func match2(str string, pattern string) bool {
 	m := len(str)
 	n := len(pattern)
 	dp := make([][]bool, m+1)
@@ -133,14 +137,15 @@ func match(str string, pattern string) bool {
 		for j := 1; j <= n; j++ {
 			if pattern[j-1] == '*' {
 				dp[i][j] = dp[i][j] || dp[i][j-2]
+				// 有 .  或者 字符串相等
 				if same(i, j-1) {
 					dp[i][j] = dp[i][j] || dp[i-1][j]
 				}
-			} else if same(i, j) {
+			} else if same(i, j) {   // 有. 或者 字符串相等
 				dp[i][j] = dp[i][j] || dp[i-1][j-1]
 			}
 		}
 	}
 	return dp[m][n]
 }
-*/
+

@@ -101,6 +101,8 @@ class Solution:
 空间复杂度：O(n^2)，辅助二维数组dp与栈空间最大为O(n^2)
 */
 
+
+// 跟背包问题，兑换零钱问题 是一类解决方案
 func LCS2(s1 string, s2 string) string {
 	/*
 		   1 A 2 C 3 D 4 B 5 6

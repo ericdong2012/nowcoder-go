@@ -65,6 +65,8 @@ class Solution:
 
 */
 
+
+// 当前用的是索引，可以用前面string中的解法，直接用栈
 func longestValidParentheses(s string) int {
 	// 栈
 	res := 0

@@ -36,6 +36,14 @@ https://www.nowcoder.com/practice/3911a20b3f8743058214ceaa099eeb45?tpId=295&tqId
 /*
 三数之和的升级版
 背包问题简化版
+最长公共子序列(二) 也是背包问题
+
+背包问题：
+https://blog.csdn.net/qq_22328011/article/details/124138071
+
+coin:
+https://blog.csdn.net/nettee/article/details/106935507
+
 */
 func minMoney(arr []int, aim int) int {
 	// write code here

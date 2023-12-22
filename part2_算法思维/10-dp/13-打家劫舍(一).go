@@ -37,10 +37,6 @@ https://www.nowcoder.com/practice/c5fbf7325fbd4c0ea3d0c3ea6bc6cc79?tpId=295&tqId
 
 */
 
-/*
-思路1： dp
-思路2： 比较奇偶位的和大小 其实不行， 不一定下一个非得偷奇数或者偶数，还是一个大小问题
-*/
 func max8(a, b int) int {
 	if a > b {
 		return a
@@ -59,15 +55,33 @@ func rob(nums []int) int {
 
 	n := len(nums)
 	dp := make([]int, n+1)
-	dp[1] = nums[0]
+	dp[0] = 0
+	dp[1] = nums[0]    // dp[1] = nums[0]  代表可以偷头
+	// i <=n  是为了能走到最后，偷尾， 对应的当前值是 nums[i-1] (细品)
 	for i := 2; i <= n; i++ {
 		// 5，2，3，7
-		// 0  5，5，8，12   （首尾偷）
+		// 0, 5，5，8，8/9/12   （首尾偷）
 		// 不偷(当前不偷，前一个偷了，保持前一个数据不变)  +  偷（当前偷，当前num[i-1]加上更前一个偷的结果dp[i-2]）    比较较大值
 		dp[i] = max8(dp[i-1], nums[i-1]+dp[i-2])
 	}
 	return dp[n]
 }
+
+// 原来的想法(没有问题，但是头尾同时偷应该怎么表示没有考虑清楚)
+//func rob(nums []int) int {
+//	if len(nums) < 2 {
+//		return nums[0]
+//	}
+//
+//	dp := make([]int, len(nums))
+//	dp[0] = nums[0]
+//	dp[1] = nums[1]
+//	for i := 2; i < len(nums); i++ {
+//		// 问题在于首尾同时偷这种情况没有考虑进去  5, 2, 3, 7
+//		dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+//	}
+//	return dp[len(nums)-1]
+//}
 
 func main17() {
 	//i := rob([]int{5, 2, 3, 7})

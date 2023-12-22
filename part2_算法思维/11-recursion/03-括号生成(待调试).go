@@ -25,28 +25,49 @@ https://www.nowcoder.com/practice/c9addb265cdf4cdd92c092c655d164ca?tpId=117&tqId
 */
 
 // 和层序遍历很像
+//func generateParenthesis(n int) []string {
+//	res := []string{}
+//	// lRemain是左括号使用次数，rRemain是右括号使用次数
+//	var dfs func(path string, lRemain int, rRemain int)
+//	dfs = func(path string, lRemain int, rRemain int) {
+//		// n 是括号对数的单位
+//		if len(path) == 2*n {
+//			res = append(res, path)
+//			return
+//		}
+//		if lRemain < n {
+//			dfs(path+"(", lRemain+1, rRemain)
+//		}
+//		// 左括号使用次数大于右括号使用次数(保证了左括号在前) 并且 右括号还有剩余，此时可以使用右括号
+//		if lRemain > rRemain && rRemain < n {
+//			dfs(path+")", lRemain, rRemain+1)
+//		}
+//	}
+//	dfs("", 0, 0)
+//	return res
+//}
+
+//解法2
 func generateParenthesis(n int) []string {
-	res := []string{}
-	// lRemain是左括号使用次数，rRemain是右括号使用次数
-	var dfs func(path string, lRemain int, rRemain int)
-	dfs = func(path string, lRemain int, rRemain int) {
-		// n 是括号对数的单位
-		if len(path) == 2*n {
-			res = append(res, path)
-			return
-		}
-		if lRemain < n {
-			dfs(path+"(", lRemain+1, rRemain)
-		}
-		// 左括号使用次数大于右括号使用次数(保证了左括号在前) 并且 右括号还有剩余，此时可以使用右括号
-		if lRemain > rRemain && rRemain < n {
-			dfs(path+")", lRemain, rRemain+1)
-		}
-	}
-	dfs("", 0, 0)
+	var res []string
+	generate(&res, "", n, n)
 	return res
 }
 
+func generate(res *[]string, temp string, left, right int) {
+	if left == 0 && right == 0 {
+		*res = append(*res, temp)
+		return
+	}
+
+	if left > 0 {
+		generate(res, temp+"(", left-1, right)
+	}
+
+	if right > left {
+		generate(res, temp+")", left, right-1)
+	}
+}
 func main07() {
 	parenthesis := generateParenthesis(3)
 	fmt.Println(parenthesis)

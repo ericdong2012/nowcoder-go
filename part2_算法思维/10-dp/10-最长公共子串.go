@@ -104,6 +104,7 @@ func LCS(str1 string, str2 string) string {
 	pos := 0
 	for i := 0; i < len(str1); i++ {
 		// 非固定的滑动窗口
+		// 双指针 + 中心扩散， 将头部固定，尾部不断扩张
 		if strings.Contains(str2, str1[i-pos:i+1]) {
 			res = str1[i-pos : i+1]
 			pos += 1

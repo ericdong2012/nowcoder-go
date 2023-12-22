@@ -59,18 +59,18 @@ func hanno(n int, a, b, c string, res *[]string) {
 	// c, b 交换
 	hanno(n-1, a, c, b, res)
 	//把第n个盘子从left搬到right上
-	*res = append(*res, "move from "+a+" to "+c+"\n")
+	*res = append(*res, "move "+fmt.Sprintf("%d", n)+" from "+a+" to "+c+"\n")
 	// 把n-1个盘子从mid， 借助left, 搬到right
 	hanno(n-1, b, a, c, res)
 
 	/*
-		[move from left to right
-		 move from left to mid
-		 move from right to mid
-		 move from left to right
-		 move from mid to left
-		 move from mid to right
-		 move from left to right
+		[move 1 from left to right
+		 move 2 from left to mid
+		 move 1 from right to mid
+		 move 3 from left to right
+		 move 1 from mid to left
+		 move 2 from mid to right
+		 move 1 from left to right
 		]
 	*/
 }
