@@ -32,8 +32,8 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	// 移动间隔
 	interval := 1
 	for interval < n {
-		// 如果是2个链表，0,1 merge完成后，跳出
-		// 如果是3个链表，0,1 merge完成后，跳出, interval = 2, 再次进入 0, 2 merge
+		// 如果是2个链表，0,1 merge完成后，跳出内层，外层
+		// 如果是3个链表，0,1 merge完成后，跳出内层, interval = 2, 再次进入内层， 0, 2 merge
 		// 如果是4个链表，0,1 merge完成后  2，3 merge, 跳出, 0, 2 merge
 		for i := 0; i < n-interval; i += interval * 2 {
 			lists[i] = merge2Lists(lists[i], lists[i+interval])

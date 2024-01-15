@@ -76,6 +76,7 @@ func longestValidParentheses(s string) int {
 			// 有元素
 			if len(stack) != 0 {
 				result = max(result, i-stack[len(stack)-1])
+				//result +=2
 			} else {
 				// 没有元素
 				stack = append(stack, i)

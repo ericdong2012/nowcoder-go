@@ -53,6 +53,9 @@ func minCostClimbingStairs(cost []int) int {
 		// 当前的消费 = 上一步或者上两步花费的较小值 + 当前的花费
 		dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
 	}
+	//for i:=0 ; i < n -2 ; i ++ {
+	//	dp[i] = min(cost[i+1], cost[i+2]) + cost[i]
+	//}
 	return min(dp[n-1], dp[n-2])
 	//n := len(cost)
 	//dp := make([]int, n+1)

@@ -41,7 +41,7 @@ https://www.nowcoder.com/practice/bb40e0aae84a4491a35f93b322516cb5?tpId=196&tqId
 
 // 单词拆分一
 func wordDiv(s string, dic []string) bool {
-	//对标的 dic 建立hash表， 并初始化
+	// 对标的 dic 建立hash表， 并初始化
 	m := make(map[string]bool)
 	for _, v := range dic {
 		m[v] = true
@@ -57,8 +57,6 @@ func wordDiv(s string, dic []string) bool {
 	}
 
 	return dp[len(s)]
-
-
 	// 单词拆分 二
 	//var (
 	//	ans  []string // 最终结果

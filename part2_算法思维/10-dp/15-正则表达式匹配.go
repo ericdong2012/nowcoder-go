@@ -64,6 +64,18 @@ false
 
 15, 16是一道题，但是解法不同，15是常规解法，16是备忘录解法
 
+参考解法
+https://www.nowcoder.com/questionTerminal/45327ae22b7b413ea21df13ee7d6429c
+
+如果 pattern[j] == str[i] || pattern[j] == '.', 此时dp[i][j] = dp[i-1][j-1];
+如果 pattern[j] == '*'
+    分两种情况:
+    1: 如果pattern[j-1] != str[i] && pattern[j-1] != '.', 此时dp[i][j] = dp[i][j-2] //a*匹配0次
+    2: 如果pattern[j-1] == str[i] || pattern[j-1] == '.'
+        此时 dp[i][j] = dp[i][j-2] // a*匹配0次
+        或者 dp[i][j] = dp[i][j-1] // a*匹配1次
+        或者 dp[i][j] = dp[i-1][j] // a*匹配多次
+
 */
 
 // 解法1
@@ -138,10 +150,10 @@ func match2(str string, pattern string) bool {
 			if pattern[j-1] == '*' {
 				dp[i][j] = dp[i][j] || dp[i][j-2]
 				// 有 .  或者 字符串相等
-				if same(i, j-1) {
-					dp[i][j] = dp[i][j] || dp[i-1][j]
+				if same(i-1, j-2) {
+					dp[i][j] = dp[i][j] || dp[i-1][j] ||  dp[i][j-1]
 				}
-			} else if same(i, j) {   // 有. 或者 字符串相等
+			} else if same(i-1, j-1) {   // 有. 或者 字符串相等
 				dp[i][j] = dp[i][j] || dp[i-1][j-1]
 			}
 		}
