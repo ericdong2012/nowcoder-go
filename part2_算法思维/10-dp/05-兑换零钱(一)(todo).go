@@ -72,7 +72,6 @@ func minMoney(arr []int, aim int) int {
 	} else {
 		return dp[aim]
 	}
-
 }
 
 func min2(a, b int) int {

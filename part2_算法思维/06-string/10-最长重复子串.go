@@ -90,6 +90,7 @@ func solve2(a string) int {
 
 	return res
 }
+
 func main() {
 	i := solve2("ababc")
 	fmt.Println(i)

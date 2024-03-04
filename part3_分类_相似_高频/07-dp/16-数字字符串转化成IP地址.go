@@ -33,6 +33,7 @@ https://www.nowcoder.com/practice/ce73540d47374dbe85b3125f57727e1e?tpId=295&tqId
 "000256"
 返回值：
 "[]"
+
 */
 
 /*
@@ -101,14 +102,14 @@ func restoreIpAddresses(s string) []string {
 	n := len(s)
 	// 从1开始
 	i := 1
-	// 第二位
+	// 第一位
 	// i < 4 && i < n-2 是因为第一位最长三位，后面三个数字最短也要3位，预留
 	for i < 4 && i < n-2 {
+		// 第二位
 		j := i + 1
-		// 第三位
 		for j < i+4 && j < n-1 {
+			// 第三位
 			k := j + 1
-			// 第四位
 			for k < j+4 && k < n {
 				// 判断最后一位长度， 如果预留给第四位的大于4， 则k要往前走
 				if n-k >= 4 {

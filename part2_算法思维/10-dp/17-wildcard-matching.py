@@ -103,4 +103,40 @@ print(s.isMatch(s="adceb", p="*a*b"))
 print(s.isMatch(s="aa", p="a"))
 
 
+"""
+func match2(str string, pattern string) bool {
+	str = " " + str
+	pattern = " " + pattern
+	m := len(str)
+	n := len(pattern)
+
+	dp := make([][]bool, m)
+	for i := 0; i < m; i++ {
+		dp[i] = make([]bool, n)
+	}
+
+	dp[0][0] = true
+	for i := 1; i < n; i++ {
+		dp[0][i] = dp[0][i-1] && pattern[i] == '*'
+	}
+
+
+	for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			if pattern[j] == '*' {
+				dp[i][j] = dp[i][j-1] || dp[i-1][j]
+			} else if (str[i] == pattern[j] || pattern[j] == '?' ){
+				dp[i][j] = dp[i-1][j-1]
+			}
+		}
+
+	}
+
+	return dp[m-1][n-1]
+}
+
+
+
+"""
+
 

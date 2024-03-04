@@ -82,7 +82,7 @@ func max4(a, b int) int {
 }
 
 func main12() {
-	//lis := LIS([]int{6, 3, 1, 5, 2, 3, 7})
-	lis := LIS([]int{3, 5, 7, 1, 2, 4, 6, 3, 8, 9, 5, 6})
+	lis := LIS([]int{6, 3, 1, 5, 2, 3, 7})
+	//lis := LIS([]int{3, 5, 7, 1, 2, 4, 6, 3, 8, 9, 5, 6})
 	fmt.Println(lis)
 }

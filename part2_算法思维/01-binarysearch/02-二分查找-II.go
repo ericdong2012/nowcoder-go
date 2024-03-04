@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 /*
+
 NC105 二分查找-II
 https://www.nowcoder.com/practice/4f470d1d3b734f8aaf2afb014185b395?tpId=117&tqId=37829&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=5058&title=
 
@@ -29,6 +30,7 @@ https://www.nowcoder.com/practice/4f470d1d3b734f8aaf2afb014185b395?tpId=117&tqId
 [1,1,1,1,1],1
 返回值：
 0
+
 */
 
 func search(nums []int, target int) int {

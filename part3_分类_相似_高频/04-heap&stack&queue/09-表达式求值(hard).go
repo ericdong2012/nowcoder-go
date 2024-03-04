@@ -30,6 +30,7 @@ https://www.nowcoder.com/practice/c215ba61c8b1443b996351df929dc4d4?tpId=117&tqId
 */
 
 /*
+
 终极版的计算器
 
 写一个支持+ - *三种符号的运算器，其中优先级+ - 是一级，*更高一级， 支持括号运算
@@ -130,8 +131,8 @@ func solve(s string) int {
 	//return result
 
 	// write code here
-	stack := make([]int, 0)
 	data := []byte(s)
+	stack := make([]int, 0)
 	//operation := '+'  // 这种写法声明的int32
 	var operation byte = '+'
 	number := 0
@@ -159,7 +160,7 @@ func solve(s string) int {
 			// 算内层括号里面的
 			number = solve(s[start : i])
 		}
-		// '+'/ '-' / '*'
+		// '+'  '-'  '*'
 		if data[i] < '0' || data[i] > '9' || i == len(data)-1 {
 			switch operation {
 			case '+':

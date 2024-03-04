@@ -86,6 +86,7 @@ func longestValidParentheses(s string) int {
 		}
 
 	}
+
 	return result
 }
 

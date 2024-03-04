@@ -42,7 +42,7 @@ func minmumNumberOfHost(startEnd [][]int) int {
 	// write code here
 	starts := make([]int, len(startEnd))
 	ends := make([]int, len(startEnd))
-	// 将startend 中元素的头和尾分别摘出来
+	// 将startEnd 中元素的头和尾分别摘出来
 	for i := 0; i < len(startEnd); i++ {
 		starts[i] = startEnd[i][0]
 		ends[i] = startEnd[i][1]
@@ -55,7 +55,7 @@ func minmumNumberOfHost(startEnd [][]int) int {
 	for left := 0; left < len(startEnd); left++ {
 		// 新开始的节目大于上一轮结束的时间，主持人不变
 		// [1,3] [1,3] [1,3]
-		// [1,3] [2, 5] [3, 5]
+		// [1,3] [2,5] [3,5]
 		if starts[left] >= ends[right] {
 			right++
 		} else {
@@ -67,8 +67,8 @@ func minmumNumberOfHost(startEnd [][]int) int {
 }
 
 func main() {
-	//host := minmumNumberOfHost([][]int{{1, 2}, {5, 6}, {2, 3}})
+	host := minmumNumberOfHost([][]int{{1, 3}, {2, 5}, {3, 5}})
 	//[2147483646,2147483647],[-2147483648,-2147483647],[2147483646,2147483647],[-2147483648,-2147483647],[2147483646,2147483647],[-2147483648,-2147483647],[2147483646,2147483647],[-2147483648,-2147483647],[2147483646,2147483647],[-2147483648,-2147483647]
-	host := minmumNumberOfHost([][]int{{2147483646, 2147483647}, {-2147483648, -2147483647}, {2147483646, 2147483647}, {-2147483648, -2147483647}, {2147483646, 2147483647}, {-2147483648, -2147483647}})
+	//host := minmumNumberOfHost([][]int{{2147483646, 2147483647}, {-2147483648, -2147483647}, {2147483646, 2147483647}, {-2147483648, -2147483647}, {2147483646, 2147483647}, {-2147483648, -2147483647}})
 	fmt.Println(host)
 }

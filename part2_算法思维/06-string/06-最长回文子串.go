@@ -59,6 +59,7 @@ func getLongestPalindrome1(A string) int {
 		right := run(A, i, i+1)
 		maxLen = max1(maxLen, max1(left, right))
 	}
+
 	return maxLen
 }
 

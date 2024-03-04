@@ -85,15 +85,13 @@ func maxArea(height []int) int {
 
 	res := 0
 	left, right := 0, len(height)-1
-	for i, _ := range height {
-		maxL := max(res, height[i]*(i-left))
-		maxR := max(res, height[i]*(right-i))
-		if maxL <= maxR {
+	for left <= right {
+		if height[left] <= height[right] {
+			res = max(res, height[left]*(right-left))
 			left++
-			res = maxR
 		} else {
+			res = max(res, height[right]*(right-left))
 			right--
-			res = maxL
 		}
 	}
 
@@ -110,6 +108,7 @@ func max(a, b int) int {
 }
 
 func main() {
-	area := maxArea([]int{1, 7, 3, 2, 4, 5, 8, 2, 7})
+	//area := maxArea([]int{1, 7, 3, 2, 4, 5, 8, 2, 7})
+	area := maxArea([]int{1,8,6,2,5,4,8,3,7})
 	fmt.Println(area)
 }

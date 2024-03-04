@@ -68,7 +68,7 @@ type Solution struct {
 	size     int
 }
 
-func New(capacity int) Solution {
+func Constructor(capacity int) Solution {
 	return Solution{
 		cache:    make(map[int]*list.Element),
 		ll:       list.New(),

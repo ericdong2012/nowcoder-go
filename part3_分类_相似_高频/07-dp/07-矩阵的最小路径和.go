@@ -45,6 +45,7 @@ func minPathSum(matrix [][]int) int {
 				continue
 			}
 			// 当前位置 = min(上边, 左边)
+			// 逆向看
 			matrix[i][j] += min3(matrix[i-1][j], matrix[i][j-1])
 		}
 	}

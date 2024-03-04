@@ -64,10 +64,10 @@ func solve1(s string, t string) string {
 	var carry int
 	for i >= 0 || j >= 0 {
 		var n1, n2 int
-		// 每个数位数不同，位数走完，需要用0填充
 		if i >= 0 {
 			n1 = int(s[i] - '0')
 		} else {
+			// 每个数位数不同，位数走完，需要用0填充
 			n1 = 0
 		}
 
@@ -76,7 +76,7 @@ func solve1(s string, t string) string {
 		} else {
 			n2 = 0
 		}
-
+        // 某一位的两数相加得到的值
 		temp := n1 + n2 + carry
 		// 超过10才有进位
 		carry = temp / 10

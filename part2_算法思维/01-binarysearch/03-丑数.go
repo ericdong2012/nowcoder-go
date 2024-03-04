@@ -26,6 +26,7 @@ https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=117&tqId
 */
 
 func GetUglyNumber(index int) int {
+
 	// write code here
 	// 最小堆
 	/*

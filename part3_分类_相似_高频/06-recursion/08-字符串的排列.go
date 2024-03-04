@@ -25,7 +25,6 @@ https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=117&tqId
 "ab"
 返回值：
 ["ab","ba"]
-
 说明：
 返回["ba","ab"]也是正确的
 
@@ -106,6 +105,7 @@ func dfs(strs []string, index int, result *[]string) {
 		strs[i], strs[index] = strs[index], strs[i]
 		dfs(strs, index+1, result)
 	}
+
 	for i := len(strs) - 1; i > index; i-- {
 		strs[i], strs[index] = strs[index], strs[i]
 	}
