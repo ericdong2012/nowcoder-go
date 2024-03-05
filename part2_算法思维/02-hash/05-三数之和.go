@@ -153,7 +153,8 @@ func threeSum(nums []int) [][]int {
 
 	result := [][]int{}
 	for k := range resultMap {
-		result = append(result, append([]int{}, k[0], k[1], k[2]))
+		//result = append(result, append([]int{}, k[0], k[1], k[2]))
+		result = append(result, []int{k[0], k[1], k[2]})
 	}
 	return result
 }
