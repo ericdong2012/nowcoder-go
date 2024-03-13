@@ -30,7 +30,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	}
 	interval := 1
 	for interval < n {
-		// 如果是2个 0,1 merge即可
+		// 如果是2个  0,1 merge即可
 		// 如果是3个，0,1 merge完成后，  跳出然后 0，2 merge  所以是interval * 2
 		// 如果是4个，0,1 merge完成后   2，3 merge, 跳出 0,2 merge
 		for i := 0; i < n-interval; i += interval * 2 {
@@ -41,6 +41,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	return lists[0]
 }
 
+// 2个升序链表的排序
 func merge2Lists(l1, l2 *ListNode) *ListNode {
 	// 边界处理
 	if l1 == nil {

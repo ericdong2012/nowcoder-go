@@ -12,7 +12,7 @@ https://www.nowcoder.com/practice/b3b59248e61f499482eaba636305474b?tpId=196&tqId
 
 */
 
-// 合并两个有序 数组类似， 先将两个有序数组合并，  最后加上中间数判断即可
+// 合并两个有序数组(double pointer)类似， 先将两个有序数组合并，  最后加上中间数判断即可
 func Median(nums1 []int, nums2 []int) float64 {
 
 	m := len(nums1)

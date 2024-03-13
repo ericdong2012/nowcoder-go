@@ -77,8 +77,10 @@ func reConstructBinaryTree(pre []int, vin []int) *TreeNode {
 	// 找到根节点在中序遍历中的索引, 此处就是分界线
 	idx := findIndex(vin, pre[0])
 	// 先重建左边的树 [2, 3, 4] [3, 2, 4]
+	// 前序的左边  和  中序的左边
 	root.Left = reConstructBinaryTree(pre[1:idx+1], vin[:idx])
 	// 重建右节点  [5, 6, 7]  [6, 5, 7]
+	// 前序的右边  和  中序的右边
 	root.Right = reConstructBinaryTree(pre[idx+1:], vin[idx+1:])
 
 	return root

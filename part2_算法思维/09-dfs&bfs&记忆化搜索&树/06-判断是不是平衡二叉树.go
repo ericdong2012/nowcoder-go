@@ -84,6 +84,7 @@ func IsBalanced_Solution(pRoot *TreeNode) bool {
 }
 
 // 获取左子树或者右子树的深度
+// 不是通过算树的深度，而是直接迭代
 func getMaxDepth(pRoot *TreeNode) int {
 	if pRoot == nil {
 		return 0

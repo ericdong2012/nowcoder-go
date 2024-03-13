@@ -50,3 +50,21 @@ func min(a, b int) int {
 	}
 	return b
 }
+/*
+最大连续子数组
+
+int MaxSumOfSub5(){
+    int res=-INF,sum=nums[0];
+    for(int i=2;i<=cnt;i++){
+        if(sum<0){
+            sum=nums[i];
+        }else{
+            sum+=nums[i];
+        }
+        res=max(res,sum);
+    }
+    return res;
+}
+
+
+*/

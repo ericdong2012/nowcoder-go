@@ -31,22 +31,21 @@ class Solution:
         if n < 2: return nums
 
         # [4,5,3,1,2,6]
-        # step1: 找满足nums[i - 1] <  nums[i] 的序列，记录i, 找到较小数,  注意： nums[i-1] 才是找到的数
-        # 从后往前找，直到 nums[i - 1] < nums[i]
+        # step1: 从后往前找 找满足nums[i - 1] <  nums[i] 的序列，记录i, 找到较小数（前面是降序， 突然变升序）,  注意： nums[i-1] 才是找到的数
         i = n - 1
         while i > 0 and nums[i - 1] >= nums[i]:
             i -= 1
         # i > 0, 在中间找到了合适的数
         if i > 0:
-            # step2: 从后往前找，找nums[k] > nums[i-1], 找到较大数，交换nums[i - 1], nums[k]
+            # step2: 从后往前找，找nums[k] > nums[i-1], 找到较大数
             k = n - 1
             while nums[i - 1] >= nums[k] :
                 k -= 1
             # print(k)
+            # step3: 交换 nums[i - 1], nums[k]
             nums[i - 1], nums[k] = nums[k], nums[i - 1]
 
-        # 找到最前都没有， 比如： [4，3，2，1] , 反转
-        # step3: 反转
+        # 找到最前都没有（i=0）， 比如： [4，3，2，1] , 反转
         reverse(nums, i, n - 1)
         return nums
 

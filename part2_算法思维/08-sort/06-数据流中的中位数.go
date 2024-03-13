@@ -47,13 +47,7 @@ var a []int
 var cnt int
 
 func Insert(num int) {
-	aLen := len(a)
 	cnt++
-	if aLen == 0 {
-		a = append(a, num)
-		return
-	}
-
 	a = append(a, num)
 	// 排序  看似只是简单的处理了相邻的两个数据，后一个比前一个小，交换数据， 知道后一个比前一个大
 	//for i := aLen; i > 0; i-- {

@@ -74,6 +74,7 @@ https://www.nowcoder.com/practice/9ff491c910e5427fab6ae67745929085?tpId=196&tqId
 */
 
 // 解法3
+// 没有用排序，用的是hash
 func findWord(s string, p string) []int {
 	length := len(p)
 	target := [26]int{}

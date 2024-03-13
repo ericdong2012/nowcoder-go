@@ -63,17 +63,14 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 	for i, v := range arr2 {
 		index[v] = i
 	}
-	// 拿到不在arr2中的arr1中数
+	//对arr1中数，计数, 关键步骤
+	count := make(map[int]int)
+	//拿到不在arr2中的arr1中数
 	notIn := []int{}
 	for _, v := range arr1 {
 		if _, ok := index[v]; !ok {
 			notIn = append(notIn, v)
-		}
-	}
-	//	对arr1中数，计数, 关键步骤
-	count := make(map[int]int)
-	for _, v := range arr1 {
-		if _, ok := index[v]; ok {
+		} else {
 			count[v]++
 		}
 	}

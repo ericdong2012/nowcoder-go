@@ -31,7 +31,7 @@ https://www.nowcoder.com/practice/7fc06e2162f048658252fac542fcb1e8?tpId=117&tqId
 
 /*
 方式一： 递归
-方式二： 动态规划   0-1背包问题
+方式二： 动态规划   0-1背包问题  兑换零钱
 */
 func findTargetSumWays(nums []int, target int) int {
 	n := len(nums)

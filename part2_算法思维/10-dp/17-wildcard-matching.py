@@ -102,7 +102,7 @@ print(s.isMatch(s="acdcb", p="a*c?b"))
 print(s.isMatch(s="adceb", p="*a*b"))
 print(s.isMatch(s="aa", p="a"))
 
-
+# 和15题的不同， “*” 的定义不一样
 """
 func match2(str string, pattern string) bool {
 	str = " " + str

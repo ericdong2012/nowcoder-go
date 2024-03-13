@@ -75,6 +75,7 @@ func solve2(a string) int {
 		// 从前往后走
 		for j := 0; j < n-i; j++ {
 			// 比如: abab,  如果 j 和 j+i 相等,    结果加1
+			// j + i 自动带上的滑动窗口   妙
 			if a[j] == a[j+i] {
 				res++
 			} else {

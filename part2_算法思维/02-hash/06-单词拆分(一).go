@@ -46,17 +46,17 @@ func wordDiv(s string, dic []string) bool {
 	for _, v := range dic {
 		m[v] = true
 	}
-	dp := make([]bool, len(s)+1)
-	dp[0] = true
+	stack := make([]bool, len(s)+1)
+	stack[0] = true
 	for i := 1; i <= len(s); i++ {
 		for j := 0; j < i; j++ {
-			if dp[j] && m[s[j:i]] {
-				dp[i] = true
+			if stack[j] && m[s[j:i]] {
+				stack[i] = true
 			}
 		}
 	}
 
-	return dp[len(s)]
+	return stack[len(s)]
 	// 单词拆分 二
 	//var (
 	//	ans  []string // 最终结果
