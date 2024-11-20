@@ -39,7 +39,7 @@ https://www.nowcoder.com/practice/50ec6a5b0e4e45348544348278cdcee5?tpId=117&tqId
 
 func minNumberDisappeared(nums []int) int {
 	// write code here
-	// 构造数据
+	// 构造数据, 生成一个长度是5e5, 值为0的数组
 	temp := make([]int, 5e5)
 	// 更改temp 中的value
 	temp[0] = 1
@@ -49,7 +49,7 @@ func minNumberDisappeared(nums []int) int {
 			temp[v] = 1
 		}
 	}
-	// 遍历第一个0
+	// 遍历第一个0， 说明该值在原有nums中不存在
 	for k, v := range temp {
 		if v == 0  {
 			return k
@@ -59,30 +59,7 @@ func minNumberDisappeared(nums []int) int {
 
 
 	/*
-		方法2
-
-	   sort.Ints(nums)
-		if nums[0] >= 2 {
-			return 1
-		}
-		temp := make(map[int]bool, nums[len(nums)-1])
-		for i := 0; i < len(nums); i++ {
-			temp[nums[i]] = true
-		}
-
-		// 从1 到nums 中的最大数
-		for i := 1; i <= nums[len(nums)-1]; i++ {
-			if _, ok := temp[i]; ok {
-				continue
-			} else {
-				return i
-			}
-		}
-		// 如果全部遍历完还没有找到，最是最大的加上1
-		return nums[len(nums)-1] + 1
-
-
-
+	方法2
 	func minNumberDisappeared(nums []int) int {
 		sort.Ints(nums)
 		if nums[0] >= 2 {
@@ -99,7 +76,7 @@ func minNumberDisappeared(nums []int) int {
 			}
 		}
 
-		// 如果全部遍历完还没有找到，最是最大的加上1
+		// 如果全部遍历完还没有找到，最大的加上1
 		return nums[len(nums)-1] + 1
 	}
 

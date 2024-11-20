@@ -41,7 +41,7 @@ func findTargetSumWays(nums []int, target int) int {
 	count := 0
 	var dfs func(idx int, target int)
 	dfs = func(idx int, target int) {
-		// 索引走到最后，剩余的数为0, 个数加一， 返回
+		// 索引走到最后，剩余的数为0(和为target), 个数加一， 返回
 		if idx == n {
 			if target == 0 {
 				count += 1

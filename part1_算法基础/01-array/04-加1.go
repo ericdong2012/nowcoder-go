@@ -29,8 +29,7 @@ func plusOne(digits []int) []int {
 		// 倒数第二位加1后是10，继续遍历
 		digits[i] = 0
 	}
-	// 全是9, 其他位已经在上面处理过，变成0, 在最前面添加1
-	// 第一位变成1， 并在后面加上0
+	// 全是9, 其他位已经在上面处理过，变成0, 在最前面添加1, 并在后面加上0
 	digits[0] = 1
 	digits = append(digits, 0)
 	return digits

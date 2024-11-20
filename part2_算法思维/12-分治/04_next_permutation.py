@@ -55,16 +55,20 @@ print(s.nextPermutation([1, 2, 4, 3, 6, 2]))
 
 # go 解法
 """
+和最短无序连续子数组 类似
+
 func nextPermutation(nums []int)  []int{
 	n := len(nums)
 	if n < 2 {
 		return nums
 	}
+    // 找降序临界点
 	i:= n -1
 	for i > 0 && nums[i-1] >= nums[i] {
 		i--
 	}
 
+    // 找降序临界点前一个点比他大的
 	if i > 0 {
 		j := n -1
 		for j >0 && nums[i-1] >= nums[j] {
@@ -73,6 +77,8 @@ func nextPermutation(nums []int)  []int{
 		nums[j], nums[i-1] = nums[i-1], nums[j]
 	}
 
+    // 将降序临界点后面的反转
+    // 找到最前都没有（i=0）， 比如： [4，3，2，1] , 反转
 	reverse(nums[i:])
 	return nums
 }

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-BM65 最长公共子序列(二)  顺序可以是非连续的，但是顺序要一致，要将数据保存下来
+BM65 最长公共子序列(二)  可以是非连续的，但是顺序要一致，要将[数据/字符串]保存下来
 https://www.nowcoder.com/practice/6d29638c85bb4ffd80c020fe244baf11?tpId=295&tqId=991075&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Ftab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295
 
 描述
@@ -79,7 +79,7 @@ class Solution:
             #来自于上方向
             elif dp[i][j] == dp[i][j - 1]:
                 j = j - 1
-            #来自于左上方向
+            #来自于左上方向(对角线)，字符相等
             elif dp[i][j] > dp[i - 1][j - 1]:
                 i = i - 1
                 j = j - 1
@@ -103,48 +103,41 @@ class Solution:
 
 
 // 跟背包问题，兑换零钱问题 是一类解决方案
+// 和单词拆分  对比看看
+// 上面python解法，思路很容易理解
 func LCS2(s1 string, s2 string) string {
-	/*
-		   1 A 2 C 3 D 4 B 5 6
-		B
-		1
-		D
-		2
-		3
-		A
-		4
-		5
-		6
-		A
-	*/
 	if len(s2) == 0 {
 		return "-1"
 	}
 	dp := make([]string, len(s2))
-	var t, t1 string
+	// 两个变量，分别用来保存符合条件的s1和s2的部分字符串
+	var t1, t2 string
 	for i := 0; i < len(s1); i++ {
-		t = ""
+		t1 = ""
 		for j := 0; j < len(s2); j++ {
-			t1 = dp[j]
+			t2 = dp[j]
 			// 执行到最后， dp的最后一位是所有复合要求的字符
-			// 字符相等
+			// 字符相等， 才添加
+			// t1是之前相等的字符
 			if s2[j] == s1[i] {
-				dp[j] = t + string(s2[j])
+				dp[j] = t1 + string(s2[j])
 			} else {
-				// 如果当前长度小于前一个长度，会将当前长度更新, 此处更新比较妙
+				// 如果当前长度小于前一个长度，会将当前长度更新, 此处更新比较妙，看下面的部分调试结果
 				// 调试看
-				// 1, 1, 1, 1, 1, 1, 1 。。。
-				// 1, 1, 1A, 1A, 1A ...
-				// 1, 12 ,1A, 1A, 1A ...
+				// 1, 1, 1,  1, 1,  ...
+				// 1, 1, 1A, 1A, 1A  ...
+				// 1, 12 ,1A, 1A, 1A  ...
 				// ...
-				// 1, 123, 123, 123, 123...
+				// 1, 123, 123, 123, 123 ...
+				// ...
 
-				// j > 0 是因为 有dp[j-1]
+				// j > 0 是因为有dp[j-1]
+				// 字符不相等，后一个比前一个长度小，将后一个更新
 				if j > 0 && len(dp[j]) < len(dp[j-1]) {
 					dp[j] = dp[j-1]
 				}
 			}
-			t = t1
+			t1 = t2
 		}
 	}
 	// 如果最后一位是空 == dp[ len(dp) - 1 ]

@@ -56,11 +56,11 @@ func minMoney(arr []int, aim int) int {
 	for i := 1; i <= aim; i++ {
 		dp[i] = aim + 1
 	}
-	// dp 要凑的钱
+	// dp 要凑的钱, 最小是1， 最大是aim
 	for i := 1; i < aim+1; i++ {
 		// arr 面值(每种面值的货币都要枚举)
 		for j := 0; j < len(arr); j++ {
-			// 如果面值 小于 要凑的钱, 在相等的时候，dp[i-arr[j]] = 0 ， 而面值最小为1元，所以在最后加上1
+			// 如果面值 小于 要凑的钱, 在相等的时候, dp[i-arr[j]] = 0, 而面值最小为1元, 所以在最后加上1
 			if arr[j] <= i {
 				dp[i] = min2(dp[i], dp[i-arr[j]] + 1)
 			}

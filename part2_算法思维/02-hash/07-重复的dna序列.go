@@ -53,7 +53,7 @@ func repeatedDNA(DNA string) []string {
 			}
 		}
 	*/
-	// 但是题目要求， 在原DNA序列中，"AAAAACCCCC"要比"CCCCCAAAAA"先出现
+	// 但是题目要求， 在原DNA序列中，"AAAAACCCCC"要比"CCCCCAAAAA"先出现，所以再遍历原有的字符串， 而不是直接遍历hash
 	for i := 0; i <= len(DNA)-10; i++ {
 		str := DNA[i : i+10]
 		if temp[str] > 1 {

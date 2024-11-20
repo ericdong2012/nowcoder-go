@@ -19,7 +19,7 @@ func EntryNodeOfLoop(pHead *ListNode) *ListNode{
 		slow = slow.Next
 		fast = fast.Next.Next
 		if fast == slow {
-			// 2. 此时相遇，通过数学分析从相遇节点到入口节点的距离 == 从头节点到入口节点的距离， 所以 让慢指针回到表头，此时快慢执行继续往下走，但快慢指针再相遇就是入口处
+			// 2. 此时相遇，通过数学分析从相遇节点到入口节点的距离 == 从头节点到入口节点的距离， 所以 让慢指针回到表头，此时快慢执行继续往下走，快慢指针再相遇就是入口处
 			slow = pHead
 			for fast != slow {
 				fast = fast.Next

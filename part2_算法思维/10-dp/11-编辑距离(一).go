@@ -88,6 +88,7 @@ func editDistance(str1 string, str2 string) int {
 	for i := 0; i < m+1; i++ {
 		dp[i] = make([]int, n+1)
 	}
+	// 思考为啥要这样初始化: 因为修改一个要 +1
 	// 第0列初始化
 	for i := 1; i < m+1; i++ {
 		dp[i][0] = dp[i-1][0] + 1

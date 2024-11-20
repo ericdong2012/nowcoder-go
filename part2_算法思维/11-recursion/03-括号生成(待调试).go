@@ -68,6 +68,7 @@ func generate(res *[]string, temp string, left, right int) {
 		generate(res, temp+")", left, right-1)
 	}
 }
+
 func main07() {
 	parenthesis := generateParenthesis(3)
 	fmt.Println(parenthesis)

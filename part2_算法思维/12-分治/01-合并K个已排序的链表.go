@@ -23,26 +23,26 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// 和 合并两个有序数组， 合并区间对比
+
+// part2_算法思维/18-linkedlist/05-合并k个已排序的链表.go
+// 和 合并两个有序数组， 合并区间对比、
+// 主要思想就是 迭代
 func mergeKLists(lists []*ListNode) *ListNode {
-	n := len(lists)
-	if n == 0 {
+	if len(lists) == 0 {
 		return nil
 	}
-	// 移动间隔
-	interval := 1
-	for interval < n {
-		// 如果是2个链表，0,1 merge完成后，跳出内层，外层
-		// 如果是3个链表，0,1 merge完成后，跳出内层, interval = 2, 再次进入内层， 0, 2 merge
-		// 如果是4个链表，0,1 merge完成后  2，3 merge, 跳出, 0, 2 merge
-		for i := 0; i < n-interval; i += interval * 2 {
-			lists[i] = merge2Lists(lists[i], lists[i+interval])
-		}
-		interval *= 2
+
+	if len(lists) == 1 {
+		return lists[0]
+	}
+	// 将最前面的两个先合并
+	cur := merge2Lists(lists[0], lists[1])
+	// 将后面的和前面的合并
+	for i := 2; i < len(lists); i++ {
+		cur = merge2Lists(cur, lists[i])
 	}
 
-	// 返回链表头部
-	return lists[0]
+	return cur
 }
 
 func merge2Lists(l1, l2 *ListNode) *ListNode {

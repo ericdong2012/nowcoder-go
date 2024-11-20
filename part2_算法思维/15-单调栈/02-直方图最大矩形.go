@@ -27,6 +27,7 @@ https://www.nowcoder.com/practice/bfaac4eebe5947af80912d1bcfcf2baa
 */
 
 // 和接雨水，盛水最多的容器 比较看
+// 和移掉K位数字后最小     对比看
 func largestRectangleArea(height []int) int {
 	// 单调栈 单调递增，出栈时计算最大面积
 	if len(height) < 1 {
@@ -35,23 +36,32 @@ func largestRectangleArea(height []int) int {
 	if len(height) == 1 {
 		return height[0]
 	}
-	// 该处非常重要，height 是一个升序的序列，下面的逻辑按照降序执行的，没法进入，最终结果会是0, 所以加入0， 让序列能降序
+	// 加0作用是弹出栈所有的元素。
 	height = append(height, 0)
 	// 装索引
 	stack := make([]int, 0)
-	stack = append(stack, -1) // 最边上设置为-1保证不能出栈 保证栈非空
+	//stack = append(stack, -1) // 最边上设置为-1保证不能出栈 保证栈非空
 	// 结果
 	res := 0
 	// [3,4,7,8,1,2]
 	for i := 0; i < len(height); i++ {
-		// 出栈逻辑, 前一个值 大于当前值, 说明开始降序
-		// 出栈时计算最大面积, 其中宽度 = 当前索引 - 栈中倒数第二个值 - 1
-		for stack[len(stack)-1] != -1 && height[stack[len(stack)-1]] > height[i] {
+		// 出栈逻辑, 前一个值 大于 当前值, 说明开始降序
+		// 反复的进入该循环，计算最大值
+		for len(stack) != 0 && height[stack[len(stack)-1]] > height[i] {
+			// 最难理解的地方
+			// 高度是前一个的，不停往前走
 			hei := height[stack[len(stack)-1]]
+			// 先弹栈，看看左边还有没有
 			stack = stack[:len(stack)-1]
-			// 想清楚这里, 调试看看
-			// 当前索引 - ( 前前一个索引 + 1 ),  比如 [2, 4, 0] , i = 2, 计算 0, 4 区间的面积时，wid = 2 - ( 0 + 1 ) =  1 (因为宽度都是1)
-			wid := i - (stack[len(stack)-1] + 1)
+			wid := 0
+			if len(stack) == 0 {
+				wid = i
+			} else {
+				// 当前存在比弹出的还小的， 所以左边界是更矮的那个索引加1
+				// 宽度 = i- 左边界
+				wid = i - (stack[len(stack)-1] + 1)
+			}
+
 			res = max(res, hei*wid)
 		}
 		// 入栈 入下标

@@ -32,6 +32,7 @@ https://www.nowcoder.com/practice/3e1fd3d19fb0479d94652d49c7e1ead1?tpId=196&tqId
 
 */
 
+// 和 最短无序连续子数组 ， 和为k的连续子数组   对比
 func shortestSubarray(nums []int, target int) int {
 	// 记录长度
 	res := math.MaxInt32

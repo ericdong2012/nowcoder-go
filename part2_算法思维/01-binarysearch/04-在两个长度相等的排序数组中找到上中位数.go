@@ -64,4 +64,11 @@ func findMedianinTwoSortedAray(arr1 []int, arr2 []int) int {
 		}
 	}
 	return Min(arr1[l1], arr2[l2])
+
+
+    // 方式三：
+	/*
+		从后往前排， 大的先放进去， 然后依次比较， 最终完成排序， 最后取出第 n/2 -1 个
+
+	*/
 }

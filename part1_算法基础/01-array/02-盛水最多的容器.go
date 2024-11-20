@@ -77,6 +77,7 @@ class Solution:
 */
 
 // 双指针
+// 可以断点调试下，看看运行结果
 func maxArea(height []int) int {
 	// write code here
 	if len(height) < 2 {

@@ -87,6 +87,7 @@ func maxArea(height []int) int {
 	left, right := 0, len(height)-1
 	for left <= right {
 		if height[left] <= height[right] {
+			// 能盛多少水是以短的定
 			res = max(res, height[left]*(right-left))
 			left++
 		} else {
