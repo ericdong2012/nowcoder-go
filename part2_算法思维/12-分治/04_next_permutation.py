@@ -62,13 +62,13 @@ func nextPermutation(nums []int)  []int{
 	if n < 2 {
 		return nums
 	}
-    // 找降序临界点
+    // 找降序临界点(变成升序的点)
 	i:= n -1
 	for i > 0 && nums[i-1] >= nums[i] {
 		i--
 	}
 
-    // 找降序临界点前一个点比他大的
+    // 从后往前, 找比 降序临界点前一个 大的
 	if i > 0 {
 		j := n -1
 		for j >0 && nums[i-1] >= nums[j] {
@@ -78,7 +78,7 @@ func nextPermutation(nums []int)  []int{
 	}
 
     // 将降序临界点后面的反转
-    // 找到最前都没有（i=0）， 比如： [4，3，2，1] , 反转
+    // 找到最前面都没有（i=0）， 比如： [4，3，2，1] , 反转
 	reverse(nums[i:])
 	return nums
 }

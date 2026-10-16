@@ -91,7 +91,6 @@ func Convert(root *TreeNode) *TreeNode {
 	            res[i+1].left = res[i]
 	        return res[0]
 	*/
-
 	if root == nil {
 		return nil
 	}
@@ -106,7 +105,7 @@ func inorder(cur *TreeNode) {
 		return
 	}
 	inorder(cur.Left)
-	// 如果前一个节点是空，找到了最左边， 对head初始化
+	// 如果前一个节点是空，说明找到了最左边， 对head初始化
 	if prev == nil {
 		head = cur
 	} else {

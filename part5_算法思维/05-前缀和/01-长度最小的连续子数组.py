@@ -1,0 +1,61 @@
+"""
+NC202 长度最小的连续子数组
+https://www.nowcoder.com/practice/10dd5f8c5d984aa3bd69788d86aaef23
+
+知识点：二分、前缀和、双指针
+
+描述
+给定一个数组 nums 和一个正整数 target，找出满足和大于等于 target 的长度最短的连续子数组并返回其长度，
+如果不存在这种子数组则返回 0。
+
+示例1
+输入：[1,2,4,4,1,1,1],9
+返回值：3
+
+示例2
+输入：[1,4,4,4,1,1,1],3
+返回值：1
+"""
+
+
+def _min(a, b):
+    if a < b:
+        return a
+    return b
+
+
+# 前缀和，剪枝
+def min_subarray(nums, target):
+    """write code here"""
+    res = len(nums) + 1  # 哨兵上界，用于判断是否找到合法子数组
+    left, right = 0, 0
+    cur_sum = 0
+    while right < len(nums):
+        cur_sum += nums[right]
+        while cur_sum >= target:
+            res = _min(res, right - left + 1)
+            cur_sum -= nums[left]
+            left += 1
+        right += 1
+
+    # res 仍为哨兵说明没找到任何和 >= target 的子数组，按题意返回 0
+    return 0 if res == len(nums) + 1 else res
+
+
+"""
+最大连续子数组
+
+int MaxSumOfSub5(){
+    int res=-INF;
+    sum=nums[0];
+    for(int i=2;i<=cnt;i++){
+        if(sum<0){
+            sum=nums[i];
+        }else{
+            sum+=nums[i];
+        }
+        res=max(res,sum);
+    }
+    return res;
+}
+"""

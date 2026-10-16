@@ -7,7 +7,7 @@ NC170 最长不含重复字符的子字符串
 https://www.nowcoder.com/practice/48d2ff79b8564c40a50fa79f9d5fa9c7?tpId=117&tqId=39315&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D117&difficulty=undefined&judgeStatus=undefined&tags=585&title=
 
 描述
-请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度.
 
 示例1
 输入：
@@ -15,7 +15,7 @@ https://www.nowcoder.com/practice/48d2ff79b8564c40a50fa79f9d5fa9c7?tpId=117&tqId
 返回值：
 3
 说明：
-因为无重复字符的最长子串是"abc"，所以其长度为 3。
+因为无重复字符的最长子串是"abc"，所以其长度为3.
 
 
 示例2
@@ -57,7 +57,7 @@ func lengthOfLongestSubstring(s string) int {
 		if right == len(s) {
 			return maxlen
 		}
-		// arr[right] 在temp 中不存在
+		// arr[right] 在 temp 中不存在
 		if temp[s[right]] == 0 {
 			temp[s[right]]++
 			right++
@@ -76,9 +76,9 @@ func lengthOfLongestSubstring(s string) int {
 func max(a, b int) int {
 	if a > b {
 		return a
-	} else {
-		return b
 	}
+
+	return b
 }
 
 func main() {

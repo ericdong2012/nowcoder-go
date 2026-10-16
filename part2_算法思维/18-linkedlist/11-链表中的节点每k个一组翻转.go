@@ -37,7 +37,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 
 	for head != nil {
 		tail := pre
-		// 滑动窗口，找尾节点
+		// 滑动窗口, 大小为k，找尾节点
 		for i := 0; i < k; i++ {
 			// tail往前走
 			tail = tail.Next
@@ -53,9 +53,8 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		// 做拼接
 		pre.Next = head1
 		tail1.Next = next
-		// 将pre往前移动
+		// 将pre往前移动, 移动到反转后的尾节点， 将head往前移动到下一组的起始节点(pre/tail1的下一个节点)
 		pre = tail1
-		// 将head往前移动到下一组的起始节点
 		head = next
 	}
 	return dummy.Next

@@ -93,7 +93,6 @@ func solve1(s string, t string) string {
 	}
 
 	return res
-
 }
 
 func main() {

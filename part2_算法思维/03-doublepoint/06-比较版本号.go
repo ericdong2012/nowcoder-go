@@ -68,6 +68,7 @@ version1的下标2>version2的下标2，返回1
 
 /*
 	忽略“.”， 不停遍历， 处理好进位， 最后比较大小
+	直接当字符串, 直接加，最后转成数字比较大小
 */
 func compare(version1 string, version2 string) int {
 	for i, j := 0, 0; i < len(version1) || j < len(version2); i, j = i+1, j+1 {

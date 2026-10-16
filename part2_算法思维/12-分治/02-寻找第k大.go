@@ -8,7 +8,6 @@ import (
 /*
 https://www.nowcoder.com/practice/e016ad9b7f0b45048c58a9f27ba618bf?tpId=196&tqId=37124&ru=/exam/oj
 
-
 有一个整数数组，请你根据快速排序的思路，找出数组中第 k 大的数。
 给定一个整数数组 a ,同时给定它的大小n和要找的 k ，请返回第 k 大的数(包括重复的元素，不用去重)，保证答案存在。
 
@@ -25,7 +24,7 @@ https://www.nowcoder.com/practice/e016ad9b7f0b45048c58a9f27ba618bf?tpId=196&tqId
 https://www.cnblogs.com/lesroad/p/10621074.html#_label3
 https://blog.csdn.net/wjinjie/article/details/117480013
 
-1. 暴力
+1. 暴力(快排，取第k个)
 2. 大小堆
 
 */

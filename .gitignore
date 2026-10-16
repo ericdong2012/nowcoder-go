@@ -1,5 +1,66 @@
-part1_算法基础/link
-.idea
-.vscode
-test.go
+# ===== IDE / 编辑器 =====
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== Python =====
+# 字节码 / 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 打包 / 分发
+build/
+dist/
+*.egg
+*.egg-info/
+
+# 测试 / 覆盖率 / 类型检查缓存
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ===== Go =====
+# go build 产生的二进制（Windows 下题解文件名.go 会生成同名 .exe）
+*.exe
+*.exe~
+*.dll
+*.dylib
+
+# go test -c 的测试二进制
+*.test
+
+# 覆盖率 / 性能分析产物
+*.out
+*.prof
+coverage/
+
+# 依赖目录
+vendor/
+
+# Go workspace 文件
+go.work
+go.work.sum
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 个人备忘 =====
 todolist.txt

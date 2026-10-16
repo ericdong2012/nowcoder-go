@@ -7,8 +7,8 @@ BM9 删除链表的倒数第n个节点
 https://www.nowcoder.com/practice/f95dcdafbde44b22a6d741baf71653f6?tpId=295&tqId=727&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Ftab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295
 
 描述
-给定一个链表，删除链表的倒数第 n 个节点并返回链表的头指针
-例如，
+给定一个链表, 删除链表的倒数第 n 个节点并返回链表的头指针
+例如
 给出的链表为: 1→2→3→4→5, n=2
 删除了链表的倒数第n个节点之后, 链表变为 1→2→3→5
 

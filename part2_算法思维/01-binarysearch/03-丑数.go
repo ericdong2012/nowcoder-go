@@ -111,11 +111,10 @@ func GetUglyNumber(index int) int {
 
 		num[ii] = temp
 		/*
-			num[1] = 2, i=1, j=0, k=0
-			num[2] = 3, i=1, j=1, k=0
-			num[3] = 4, i=1, j=1, k=1
-
-			num[4] = min(4,6,10) = 4 , i=2, j=1, k=1
+			temp = min(2, 3, 5) = 2, i=1, j=0, k=0, num[1] = 2
+			temp = min(4, 3, 5) = 3, i=1, j=1, k=0, num[2] = 3
+			temp = min(4, 6, 5) = 4, i=1, j=1, k=1, num[3] = 4
+			temp = min(4, 6, 10) = 4,i=2, j=1, k=1, num[4] = 4
 		*/
 	}
 

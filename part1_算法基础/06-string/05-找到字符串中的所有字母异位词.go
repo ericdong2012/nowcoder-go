@@ -4,7 +4,7 @@ package main
 https://www.nowcoder.com/practice/9ff491c910e5427fab6ae67745929085?tpId=196&tqId=40518&ru=/exam/oj
 
 找到字符串中的所有字母异位词
-给定一个字符串 s 和一个非空字符串 p， 找出 s 中的所有 p 的 异位字符串的子串，返回这些子串的起始索引。
+给定一个字符串s 和一个非空字符串p ， 找出s中的所有p的异位字符串的子串，返回这些子串的起始索引。
 
 解题思路
 这道题是一道考“滑动窗口”的题目。
@@ -80,6 +80,7 @@ https://www.nowcoder.com/practice/9ff491c910e5427fab6ae67745929085?tpId=196&tqId
 func findWord(s string, p string) []int {
 	length := len(p)
 	target := [26]int{}
+	// 不管他怎么变， target置为1的元素不会变
 	for _, v := range p {
 		target[v-'a']++
 	}

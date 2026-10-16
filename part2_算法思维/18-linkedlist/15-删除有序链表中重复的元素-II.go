@@ -44,7 +44,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		if cur.Next.Val == cur.Next.Next.Val {
 			temp := cur.Next.Next.Val
 			// 将所有相同的都跳过， 中心扩散
-			// 1,2,2 第一次进入删除掉了第一个2， 1指向了后一个2， 第二次进入 cur.Next是后一个2，依然满足条件，进入循环，cur.Next = nil， 删除后一个2，无法再次进入，跳出循环
+			// 1,2,2 第一次进入删除掉了第一个2， 1指向了后一个2， 第二次进入 cur.Next是后一个2，依然满足条件进入循环，cur.Next = nil， 删除后一个2，无法再次进入，跳出循环
 			for cur.Next != nil && cur.Next.Val == temp {
 				// 跳过cur.Next  （ cur,  cur.Next,  cur.Next.Next ）
 				cur.Next = cur.Next.Next

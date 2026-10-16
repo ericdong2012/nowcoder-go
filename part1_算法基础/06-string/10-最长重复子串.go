@@ -89,6 +89,46 @@ func solve2(a string) int {
 	return res
 }
 
+func longestRepeatingSubstring(s string) int {
+	n := len(s)
+	maxLen := 0
+
+	// 检查从长度1到n-1的所有可能子串
+	for length := 1; length < n; length++ {
+		// 构建哈希表存储所有长度为length的子串
+		substrMap := make(map[string]bool)
+		for i := 0; i <= n-length; i++ {
+			substr := s[i : i+length]
+			if _, exists := substrMap[substr]; exists {
+				maxLen = length
+				break // 找到一个重复子串后可以停止当前长度的搜索
+			}
+			substrMap[substr] = true
+		}
+	}
+
+	return maxLen
+}
+
+func longestRepeatedSubstring(s string) int {
+	if len(s) < 2 {
+		return 0
+	}
+
+	maxLength := 0
+	for i := 1; i < len(s); i++ {
+		for j := i + maxLength; j < len(s); j++ {
+			if s[i:j+1] == s[0:maxLength+1] {
+				maxLength = j - i + 1
+			}
+		}
+	}
+
+	return maxLength
+}
+
+// 更高效的算法有后缀树或者后缀数组
+
 func main() {
 	i := solve2("ababc")
 	fmt.Println(i)

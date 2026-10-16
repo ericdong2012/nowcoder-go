@@ -12,7 +12,7 @@ https://www.nowcoder.com/practice/b56799ebfd684fb394bd315e89324fb4?tpId=117&tqId
 
 */
 
-// 11-最长不含重复字符的子字符串.go   几乎一摸一样
+// 11-最长不含重复字符的子字符串.go   几乎一摸一样, 只是map中的key的类型不一样
 func maxLength(arr []int) int {
 	//// 双指针
 	//n := len(arr)

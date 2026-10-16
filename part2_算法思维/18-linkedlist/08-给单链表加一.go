@@ -44,12 +44,14 @@ func plusOne(head *ListNode) *ListNode {
 	}
 	// 所有位都为9
 	if minposition == nil {
+		// 初始化一个链表，头部为0
 		minposition = &ListNode{Val: 0, Next: head}
+		// 赋值给head（同步将head 头部加上0)
 		head = minposition
 	}
 	// 情况1： 所有位都不大于9(1,2,3,4)，下面的代码会将最后位加1，然后走向终点，for 循环进不去
 	// 情况2： 所有位都为9(9,9,9,9)， 此时的minposition 和 head 都在最前面加上了0， 下面的代码会将最前的0 加上1， 变为1，for循环中，不停的将后面的9置为0
-	// 情况3： 所有位不是都为9（9,9,8,9），此时的minposition 停留在不为9的最大下标 ， 下面的代码会将当前位的minposition 加上1， 如果能进入for循环中，不停的将后面的9置为0；如果不能进入for循环，走向终点
+	// 情况3： 所有位不是都为9（9,9,8,9），此时的minposition 停留在不为9的最大下标 ， 下面的代码会将当前位的minposition 加上1， 如果能进入for循环中，不停的将后面的9置为0, 直到不能进入for循环，走向终点
 	minposition.Val += 1
 	minposition = minposition.Next
 	for minposition != nil {

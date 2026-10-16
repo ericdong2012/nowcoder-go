@@ -43,16 +43,17 @@ func maxlenEqualK(arr []int, k int) int {
 		return 0
 	}
 
-	sum := 0
 	maxLen := 0
+	sum := 0
+	// value存索引，不是在或者不在
 	temp := make(map[int]int, len(arr))
-	// 此处很重要， 两个索引相减，长度需要加1
+	// 此处很重要， 两个索引相减，如果是首位, 长度需要加1
 	temp[0] = -1
 	for i, v := range arr {
 		sum += v
 		// 符合条件的数据在i, j 之间
 		// j是之前元素的索引
-		// i是sum加上v的索引
+		// i是sum加上v的索引，当前索引
 		if j, ok := temp[sum-k]; ok {
 			maxLen = max(maxLen, i - j)
 		}

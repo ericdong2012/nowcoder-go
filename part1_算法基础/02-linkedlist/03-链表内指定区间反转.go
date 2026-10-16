@@ -42,26 +42,27 @@ func reverseBetween( head *ListNode ,  m int ,  n int ) *ListNode {
 	dummy := &ListNode{Next: head}
 	// 开始和结束前的节点
 	pre, end := dummy, dummy
+	// 以 {1,2,3,4,5},2,4 为例
 	for i := 0; i < m-1; i++ {
 		pre = pre.Next
 	}
 
+	// pre在1, start到了2
 	start := pre.Next
 	for i := 0; i < n; i++ {
 		end = end.Next
 	}
-	// 结束节点的下一个节点
+	// 结束节点的下一个节点， end到了4, next到了5
 	next := end.Next
 	end.Next = nil
 
 	// 将开始前的节点指向反转后链表的头节点
 	pre.Next = reverse(start)
-	// 将开始节点(最后节点)指向反转后链表的尾节点的下一个节点
+	// 反转后链表的下一个节点是尾节点next
 	start.Next = next
 
 	// 返回哑节点的下一个节点，即整个链表的开头
 	return dummy.Next
-
 }
 
 func reverse(head *ListNode) *ListNode {

@@ -8,7 +8,7 @@ https://www.nowcoder.com/practice/b58434e200a648c589ca2063f1faf58c?tpId=295&tqId
 
 输入：
 {1,2,3,4,5},2,4
-返回值：
+返回值： 第4个和第2个发生了反转 3,5没动
 {1,4,3,2,5}
 
 输入：
@@ -41,7 +41,7 @@ func reverseBetween( head *ListNode ,  m int ,  n int ) *ListNode {
 		post = post.Next
 	}
 	start := pre.Next
-	// 保存结束节点的下一个节点， 并断开
+	// 此时post已经在4， 保存结束节点的下一个节点， 并将结束节点断开
 	next := post.Next
 	post.Next = nil
 	// 将开始前的节点指向反转后链表的头节点(post)

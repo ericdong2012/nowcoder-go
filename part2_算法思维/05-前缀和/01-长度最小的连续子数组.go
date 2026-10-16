@@ -26,6 +26,7 @@ https://www.nowcoder.com/practice/10dd5f8c5d984aa3bd69788d86aaef23?tpId=196&tqId
 
 */
 
+// 前缀和， 剪枝
 func minSubarray(nums []int, target int) int {
 	// write code here
 	res := len(nums)

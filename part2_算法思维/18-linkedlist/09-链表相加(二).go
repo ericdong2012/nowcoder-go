@@ -59,7 +59,7 @@ func addInList(head1 *ListNode, head2 *ListNode) *ListNode {
 	// 进位
 	carry := 0
 	for t1 != nil || t2 != nil {
-		// 关键点, v 保存了上次的carry值
+		// 关键点, v 保存了上次的carry值， 同时会不断累加当前的t1, t2的值
 		v := carry
 		if t1 != nil {
 			v += t1.Val
@@ -89,7 +89,6 @@ func addInList(head1 *ListNode, head2 *ListNode) *ListNode {
 	}
 	// 将链表反转回来
 	/*
-
 		virtualNode --->  nil
 	    p
 	*/

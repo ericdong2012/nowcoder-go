@@ -26,7 +26,6 @@ https://www.nowcoder.com/practice/c4c488d4d40d4c4e9824c3650f7d5571?tpId=117&tqId
 "1", "0"
 返回值：
 "0"
-
 */
 
 /*
@@ -139,7 +138,7 @@ func solve3(s string, t string) string {
 			tempRes[i] %= 10
 		}
 	}
-	// 找到第一个不是0的索引，用k记录，目的是去除前导0
+	// 找到第一个是0的索引，用k记录，目的是去除前导0
 	k := 0
 	//for ; k < len(tempRes); k++ {
 	//	if tempRes[k] != 0 {

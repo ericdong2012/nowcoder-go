@@ -41,7 +41,9 @@ func swapLinkedPair(head *ListNode1) *ListNode1 {
 		return head
 	}
 	newHead := head.Next
+	// 当前节点 -> 下下个节点反转后的结果, 1 -> 4
 	head.Next = swapLinkedPair(newHead.Next)
+	// 下一个节点 -> 当前节点   2 -> 1
 	newHead.Next = head
 	return newHead
 }

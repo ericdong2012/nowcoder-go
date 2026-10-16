@@ -147,9 +147,11 @@ func match2(str string, pattern string) bool {
 	dp[0][0] = true
 	for i := 0; i <= m; i++ {
 		for j := 1; j <= n; j++ {
+			// 出现多次
 			if pattern[j-1] == '*' {
+				// 默认
 				dp[i][j] = dp[i][j] || dp[i][j-2]
-				// 有 .  或者 字符串相等
+				// 在前一列, 有 .  或者 字符串相等
 				if same(i-1, j-2) {
 					dp[i][j] = dp[i][j] || dp[i-1][j] ||  dp[i][j-1]
 				}
